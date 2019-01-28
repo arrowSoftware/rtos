@@ -1,0 +1,26 @@
+These files are supposed to be used as standalone programs loaded into
+Real rtos after boot.
+
+Instructions
+
+1. Build the object files:
+   a) In this directory type: make
+   b) Copy the object files to a disk that will be mounted in rtos
+
+2. Start Real rtos.
+   a) Mount the disk in rtos
+   b) Load an object file by typing: ld < example.o
+
+3. Run the program.
+   a) Run the program by typing the symbolic name of the main function,
+      usually this is the same as the name of the object file without
+      the .o at the end.
+
+4. Look at the loaded symbols using the lkup command
+
+5. Look at loaded modules using the moduleShow command
+
+Example:
+  ld < cat.o
+  cat "text1", "text2"
+

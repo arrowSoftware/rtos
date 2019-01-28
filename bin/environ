@@ -1,0 +1,8 @@
+#!/bin/sh
+
+RTOS_BASE=$HOME/Documents/Projects/osDevelopment/rtos/
+export RTOS_BASE
+
+PATH=$PATH:$RTOS_BASE/bin
+export PATH
+
