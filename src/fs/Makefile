@@ -1,9 +1,7 @@
-# Makefile -
-#
+OBJS = bio.o erfLib.o file.o fsEventUtilLib.o fs_test.o mkfs.o ramdsk.o vfs.o \
+       common.o fcalls.o fs.o mount.o vnode.o
 
-OBJS = bio.o mount.o vnode.o vfs.o erfLib.o fsEventUtilLib.o
-
-SUBDIRS = xbd
+SUBDIRS = xbd 
 LIB_TGT = fs
 
 include $(RTOS_BASE)/include/make/buildDefaults.mk

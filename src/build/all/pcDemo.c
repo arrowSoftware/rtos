@@ -148,6 +148,13 @@ int animTreshold = 0;
 /* Locals */
 LOCAL PART_ID gfxPartId;
 
+extern int fs_test(void);
+
+int tyler(void)
+{
+    fs_test();
+}
+
 int createDib(void)
 {
   int i, j;
