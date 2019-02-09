@@ -87,6 +87,7 @@
 #include <net/mbuf.h>
 #include <net/netLib.h>
 #include <net/netShow.h>
+#include <net/if.h>
 #include <ugl/ugl.h>
 #include <netinet/inetLib.h>
 
@@ -672,6 +673,8 @@ SYMBOL standTable[] = {
   {NULL, "_netPoolShow", netPoolShow, 0, N_TEXT | N_EXT},
   {NULL, "_ifShow", ifShow, 0, N_TEXT | N_EXT},
   {NULL, "_ifAddrAdd", ifAddrAdd, 0, N_TEXT | N_EXT},
+  {NULL, "_if_up", if_up, 0, N_TEXT | N_EXT},
+  {NULL, "_ifunit", ifunit, 0, N_TEXT | N_EXT},  
   {NULL, "_routeShow", routeShow, 0, N_TEXT | N_EXT},
   {NULL, "_domainShow", domainShow, 0, N_TEXT | N_EXT},
 
