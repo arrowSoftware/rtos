@@ -30,6 +30,7 @@
 #include <rtos/semLib.h>
 #include <os/miscLib.h>
 #include <net/netLib.h>
+#include <os/logLib.h>
 
 /* Defines */
 

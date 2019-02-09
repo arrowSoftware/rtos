@@ -42,8 +42,7 @@ fdalloc(struct file *f)
   return -1;
 }
 
-int
-sys_write(int fd, char *cp, int n)
+int sys_write(int fd, char *cp, int n)
 {
   struct file *f;
 
@@ -52,8 +51,7 @@ sys_write(int fd, char *cp, int n)
   return filewrite(f, cp, n);
 }
 
-int
-sys_read(int fd, char *cp, int n)
+int sys_read(int fd, char *cp, int n)
 {
   struct file *f;
 
@@ -62,8 +60,7 @@ sys_read(int fd, char *cp, int n)
   return fileread(f, cp, n);
 }
 
-int
-sys_close(int fd)
+int sys_close(int fd)
 {
   struct file *f;
   
@@ -74,8 +71,7 @@ sys_close(int fd)
   return 0;
 }
 
-int
-sys_open(char *path, int omode)
+int sys_open(char *path, int omode)
 {
   struct inode *ip, *dp;
   int fd;
@@ -148,8 +144,7 @@ sys_mknod(char *path, int type, int major, int minor)
   return 0;
 }
 
-int
-sys_mkdir(char *path)
+int sys_mkdir(char *path)
 {
   struct inode *nip;
   struct inode *dp;

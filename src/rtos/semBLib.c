@@ -23,7 +23,6 @@
 #include <rtos.h>
 #include <arch/intArchLib.h>
 #include <stdlib.h>
-
 #include <rtos/errnoLib.h>
 #include <rtos/semLib.h>
 #include <arch/intArchLib.h>
@@ -33,7 +32,6 @@
 #include <rtos/eventLib.h>
 #include <os/sigLib.h>
 
-/* Imports */
 IMPORT BOOL kernelState;
 IMPORT STATUS kernExit(void);
 IMPORT TCB_ID taskIdCurrent;
@@ -43,7 +41,6 @@ IMPORT FUNCPTR semGiveDeferTable[];
 IMPORT FUNCPTR semFlushDeferTable[];
 IMPORT int errno;
 
-/* Locals */
 LOCAL BOOL semBLibInstalled = FALSE;
 
 /******************************************************************************

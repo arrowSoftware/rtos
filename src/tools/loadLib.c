@@ -170,7 +170,6 @@ MODULE_ID loadModuleGet(char *name, int format, int *symFlags)
 STATUS loadSegmentsAllocate(SEG_INFO *pSegInfo)
 {
   int align, textAlign, dataAlign, bssAlign;
-  int pageSize;
 
   /* Inititalize locals */
   textAlign = pSegInfo->flagsText;

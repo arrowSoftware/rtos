@@ -44,8 +44,8 @@ IMPORT STATUS sysIntEnablePIC(int level);
 IMPORT STATUS dmaSetup(int dir, void *buf, unsigned int nBytes, unsigned int c);
 
 /* Locals */
-LOCAL fdDrvInstalled = FALSE;
-LOCAL fdCylinder = 1;
+LOCAL BOOL fdDrvInstalled = FALSE;
+LOCAL int fdCylinder = 1;
 
 LOCAL char fdDORvalues[] = {
   0x1c,

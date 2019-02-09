@@ -31,6 +31,8 @@
 #include <io/ioLib.h>
 #include <os/excLib.h>
 #include <tools/shellLib.h>
+#include <rtos/taskInfo.h>
+#include <sys/ioctl.h>
 
 /* Defines */
 #define MAX_PROMPT_LEN		80
@@ -60,7 +62,7 @@ LOCAL FUNCPTR logoutFunc = NULL;
 LOCAL int logoutValue = 0;
 LOCAL BOOL shellLocked = FALSE;
 LOCAL BOOL shellExecuting = FALSE;
-LOCAL origFds[3];
+LOCAL int origFds[3];
 
 LOCAL STATUS getRedir(char *line, int *pInFd, int *pOutFd);
 LOCAL void stringTrimRight(char *str);
@@ -212,6 +214,8 @@ STATUS shellLogout(void)
   /* If logout function set */
   if (logoutFunc != NULL)
     ( *logoutFunc) (logoutValue);
+
+  return OK;
 }
 
 /*******************************************************************************
@@ -286,7 +290,7 @@ STATUS shell(BOOL interactive)
     /* Else non-interactive shell */
     else {
 
-      return;
+      return OK;
 
     } /* End else non-interactive shell */
 
@@ -300,6 +304,8 @@ STATUS shell(BOOL interactive)
 
   /* When we arrive here shell has ended */
   shellExecuting = FALSE;
+
+  return OK;
 }
 
 /*******************************************************************************

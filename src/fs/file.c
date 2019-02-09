@@ -1,5 +1,5 @@
 #include <sys/stat.h>
-
+#include <os/miscLib.h>
 #include <fs/param.h>
 #include <fs/defs.h>
 #include <fs/file.h>

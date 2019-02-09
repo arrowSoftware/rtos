@@ -21,7 +21,7 @@
 /* udvgaclr.c - Vga color support */
 
 #include <arch/sysArchLib.h>
-
+#include <string.h>
 #include <ugl/ugl.h>
 #include <ugl/driver/graphics/common/udcclr.h>
 #include <ugl/driver/graphics/vga/udvga.h>
@@ -86,7 +86,7 @@ UGL_STATUS uglVga4BitColorConvert(UGL_DEVICE_ID devId,
 				  UGL_SIZE arraySize)
 {
   UGL_UINT8 **pDestArray, **pSrcArray;
-  UGL_UINT8 *pDest, *pSrc;
+  UGL_UINT8 *pDest = NULL, *pSrc = NULL;
   UGL_UINT8 destMask, srcMask;
   UGL_COLOR *pDestColor, *pSrcColor;
   UGL_UINT32 i, j, size;

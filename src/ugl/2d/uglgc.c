@@ -138,7 +138,7 @@ UGL_STATUS uglGcCopy(UGL_GC_ID src, UGL_GC_ID dest)
 
 UGL_STATUS uglGcDestroy(UGL_GC_ID gc)
 {
-  UGL_DEVICE_ID devId;
+  UGL_DEVICE_ID devId = 0;
 
   if (gc == UGL_NULL)
     return UGL_STATUS_ERROR;

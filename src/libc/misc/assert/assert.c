@@ -23,7 +23,7 @@ void assertLibInit(void)
 }
 
 void __assert(char *assertion, char *filename,
-	      int linenumber, char *function)
+	      int linenumber, const char *function)
 {
 	char buf[12];
 	char str[255];

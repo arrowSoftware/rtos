@@ -41,6 +41,7 @@
 #include <oldfs/private/dosDirLibP.h>
 #include <oldfs/private/dosFatLibP.h>
 #include <oldfs/private/dosFmtLibP.h>
+#include <string.h>
 
 /* Defines */
 

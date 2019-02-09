@@ -61,6 +61,7 @@ LOCAL char *excMsgs[] = {
   "Streaming SIMD"			/* Exception number 18 */
 };
 
+/*
 LOCAL char *excIntInfoStr = "\n\
 Uninitialized Interrupt!\n\
 Vector number %d (0-255). %s\n\
@@ -68,6 +69,7 @@ Supervisor ESP : 0x%08x\n\
 Program Counter: 0x%08x\n\
 Code Selector  : 0x%08x\n\
 Eflags register: 0x%08x\n";
+*/
 
 LOCAL void excInfoShow(EXC_INFO *pExcInfo, BOOL doBell);
 LOCAL void excIntInfoShow(int vecNum, ESF0 *pEsf, REG_SET *pRegSet,

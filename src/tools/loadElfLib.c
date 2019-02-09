@@ -36,6 +36,8 @@
 #include <tools/loadLib.h>
 #include <tools/private/loadElfLibP.h>
 #include <tools/loadElfLib.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
 
 /* Defines */
 //#define DEBUG_ELF
@@ -262,7 +264,7 @@ LOCAL BOOL loadElfArchVerify(Elf32_Ehdr *pHeader)
   result = FALSE;
 
   /* Check magic number */
-  if (strncmp(pHeader->e_ident, ELFMAG, SELFMAG) != 0) {
+  if (strncmp((const char*)pHeader->e_ident, ELFMAG, SELFMAG) != 0) {
 
     fprintf(stderr, "Unknown object module format\n");
     return FALSE;
@@ -393,6 +395,8 @@ LOCAL STATUS loadElfTablesFree(Elf32_Phdr **ppProgHeader,
   free(pIndex->pSymTableSectHeaderIndex);
   free(pIndex->pRelSectHeaderIndex);
   free(pIndex->pStrTableSectHeaderIndex);
+
+  return OK;
 }
 
 /*******************************************************************************
@@ -737,7 +741,7 @@ LOCAL void loadElfSegSizeGet(char *pNameTable,
   int i, nBytes;
   int textAlign, dataAlign, bssAlign;
   SDA_SECT_TYPE sda;
-  SDA_INFO *pSdaInfo;
+  SDA_INFO *pSdaInfo = NULL;
 
   /* Inititalize locals */
   textAlign = _ALLOC_ALIGN_SIZE;
@@ -1741,8 +1745,6 @@ LOCAL STATUS loadElfSegReloc(int fd,
 			     SYMTAB_ID symTable,
 			     SEG_INFO *pSegInfo)
 {
-  Elf32_Shdr *pSymHeader;
-  Elf32_Shdr *pStrHeader;
   Elf32_Shdr *pRelHeader;
   u_int32_t i, j;
 

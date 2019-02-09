@@ -25,7 +25,7 @@
 #include <rtos.h>
 #include <arch/intArchLib.h>
 #include <stdlib.h>
-
+#include <string.h>
 #include <rtos/errnoLib.h>
 #include <rtos/semLib.h>
 #include <arch/intArchLib.h>

@@ -3,6 +3,7 @@
 #include <fs/mount.h>
 #include <fs/vnode.h>
 #include <fs/buf.h>
+#include <string.h>
 
 /***************************************************************************
  *

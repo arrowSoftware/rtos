@@ -72,6 +72,7 @@ extern STATUS semQFlush(SEM_ID semId);
 extern void semQFlushDefer(SEM_ID semId);
 
 /* Binary semaphore */
+extern STATUS semBCoreInit(SEM_ID semId, int options, SEM_B_STATE state);
 extern STATUS semBLibInit(void);
 extern SEM_ID semBCreate(int options, SEM_B_STATE state);
 extern STATUS semBInit(SEM_ID semId, int options, SEM_B_STATE state);
@@ -80,6 +81,7 @@ extern STATUS semBTake(SEM_ID semId, unsigned timeout);
 extern void semBGiveDefer(SEM_ID semId);
 
 /* Mutex semaphore */
+STATUS semMCoreInit(SEM_ID semId, int options);
 extern STATUS semMLibInit(void);
 extern SEM_ID semMCreate(int options);
 extern STATUS semMInit(SEM_ID semId, int options);
@@ -87,6 +89,7 @@ extern STATUS semMGive(SEM_ID semId);
 extern STATUS semMTake(SEM_ID semId, unsigned timeout);
 
 /* Counting semaphore */
+extern STATUS semCCoreInit(SEM_ID semId, int options, int initialCount);
 extern STATUS semCLibInit(void);
 extern SEM_ID semCCreate(int options, int initialCount);
 extern STATUS semCInit(SEM_ID semId, int options, int initialCount);

@@ -23,21 +23,10 @@
 /* includes */
 
 #include <rtos.h>
-
 #include <stdlib.h>
-
+#include <string.h>
 #include <fs/erfLib.h>
 #include <fs/fsEventUtilLib.h>
-
-/* defines */
-
-/* structs */
-
-/* typedefs */
-
-/* globals */
-
-/* locals */
 
 LOCAL BOOL fsEventUtilLibInitialized = FALSE;
 LOCAL int  fsEventCategory;

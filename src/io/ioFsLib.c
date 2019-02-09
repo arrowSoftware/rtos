@@ -26,9 +26,11 @@
 #include <unistd.h>
 #include <errno.h>
 #include <sys/stat.h>
+#include <sys/ioctl.h>
 #include <sys/uio.h>
 #include <io/ioLib.h>
 #include <io/private/ioLibP.h>
+#include <rtos/errnoLib.h>
 
 /***************************************************************************
  *

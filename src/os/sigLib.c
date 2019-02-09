@@ -35,6 +35,7 @@
 #include <errno.h>
 #include <os/excLib.h>
 #include <os/sigLib.h>
+#include <string.h>
 
 /* Macros */
 #define issig(m)			( 1 <= (m) && (m) <= _NSIGS )

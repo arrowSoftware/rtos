@@ -27,6 +27,7 @@
 #include <oldfs/dosFsLib.h>
 #include <oldfs/private/dosFsLibP.h>
 #include <oldfs/dosFsShow.h>
+#include <string.h>
 
 /* Defines */
 

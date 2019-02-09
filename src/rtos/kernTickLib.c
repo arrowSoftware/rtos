@@ -27,9 +27,9 @@
 #include <arch/intArchLib.h>
 #include <rtos/rtosLib.h>
 #include <rtos/kernTickLib.h>
+#include <rtos/kernQLib.h>
 
-/* imports */
-
+IMPORT STATUS kernExit(void);
 IMPORT BOOL kernelState;
 
 /* globals */
@@ -61,7 +61,7 @@ void kernTickAnnounce (void)
     {
     if (kernelState)
         {
-        kernQAdd0 (rtosTickAnnounce);
+        kernQAdd0 ((FUNCPTR)rtosTickAnnounce);
         return;
         }
 

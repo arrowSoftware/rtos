@@ -23,6 +23,7 @@
 #include <sys/types.h>
 #include <rtos.h>
 #include <stdlib.h>
+#include <string.h>
 
 size_t strcspn (
     const char *s1,

@@ -1,6 +1,3 @@
-# Makefile -
-#
-
 OBJS = usrLib.o usrFsLib.o usrPage.o
 SUBDIRS =
 LIB_TGT = usr

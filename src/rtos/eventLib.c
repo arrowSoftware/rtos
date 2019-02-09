@@ -24,6 +24,7 @@
 #include <arch/intArchLib.h>
 #include <rtos/rtosLib.h>
 #include <rtos/taskLib.h>
+#include <rtos/kernQLib.h>
 #include <util/qLib.h>
 #include <util/qFifoLib.h>
 #include <rtos/eventLib.h>
@@ -34,6 +35,7 @@
 IMPORT STATUS kernExit(void);
 IMPORT TCB_ID taskIdCurrent;
 IMPORT BOOL kernelState;
+IMPORT void taskRetValueSet(TCB_ID pTcb, int val);
 
 /* Globals */
 Q_HEAD eventPendQ;

@@ -1,28 +1,7 @@
-/******************************************************************************
-*   DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
-*
-*   This file is part of Real rtos.
-*   Copyright (C) 2008 - 2009 Surplus Users Ham Society
-*
-*   Real rtos is free software: you can redistribute it and/or modify
-*   it under the terms of the GNU Lesser General Public License as published by
-*   the Free Software Foundation, either version 2.1 of the License, or
-*   (at your option) any later version.
-*
-*   Real rtos is distributed in the hope that it will be useful,
-*   but WITHOUT ANY WARRANTY; without even the implied warranty of
-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*   GNU Lesser General Public License for more details.
-*
-*   You should have received a copy of the GNU Lesser General Public License
-*   along with Real rtos.  If not, see <http://www.gnu.org/licenses/>.
-******************************************************************************/
-
-/* udg8bmp.c - 8-Bit general bitmap */
-
 #include <ugl/ugl.h>
 #include <ugl/driver/graphics/generic/udgen8.h>
 #include <ugl/driver/graphics/generic/udgen.h>
+#include <string.h>
 
 /*******************************************************************************
  * uglGeneric8BitBitmapCreate - Create 8-bit bitmap
@@ -36,7 +15,6 @@ UGL_DDB_ID uglGeneric8BitBitmapCreate(UGL_DEVICE_ID devId,
 				      UGL_UINT32 initValue,
 				      UGL_MEM_POOL_ID poolId)
 {
-  UGL_GENERIC_DRIVER *pDrv;
   UGL_GEN_DDB *pGenBmp;
   UGL_UINT32 i, size;
   UGL_SIZE width, height;
@@ -44,9 +22,6 @@ UGL_DDB_ID uglGeneric8BitBitmapCreate(UGL_DEVICE_ID devId,
   UGL_POINT destPoint;
   UGL_UINT8 *buf;
   UGL_STATUS status;
-
-  /* Get driver first in device struct */
-  pDrv = (UGL_GENERIC_DRIVER *) devId;
 
   /* Get bitmap info, from screen if NULL DIB */
   if (pDib == UGL_NULL) {
@@ -146,14 +121,10 @@ UGL_LOCAL void uglGeneric8BitBltColorToColor(UGL_DEVICE_ID devId,
 				             UGL_GEN_DDB *pDestBmp,
 				             UGL_RECT *pDestRect)
 {
-  UGL_GENERIC_DRIVER *pDrv;
   UGL_RASTER_OP rasterOp;
   UGL_SIZE width, height, srcStride, destStride;
   UGL_UINT8 *src, *dest;
   UGL_UINT32 i, j;
-
-  /* Get driver first in device struct */
-  pDrv = (UGL_GENERIC_DRIVER *) devId;
 
   /* Get variables */
   rasterOp = devId->defaultGc->rasterOp;
@@ -443,17 +414,9 @@ UGL_STATUS uglGeneric8BitBitmapBlt(UGL_DEVICE_ID devId,
 			   	   UGL_DDB_ID destBmpId,
 			   	   UGL_POINT *pDestPoint)
 {
-  UGL_GENERIC_DRIVER *pDrv;
-  UGL_GC_ID gc;
   UGL_GEN_DDB *pSrcBmp, *pDestBmp;
   UGL_RECT srcRect, destRect, clipRect;
   UGL_POINT destPoint;
-
-  /* Get driver first in device struct */
-  pDrv = (UGL_GENERIC_DRIVER *) devId;
-
-  /* Get gc */
-  gc = pDrv->gc;
 
   /* Store source and dest */
   pSrcBmp = (UGL_GEN_DDB *) srcBmpId;
@@ -517,17 +480,13 @@ UGL_STATUS uglGeneric8BitBitmapWrite(UGL_DEVICE_ID devId,
 			     	     UGL_DDB_ID ddbId,
 			     	     UGL_POINT *pDestPoint)
 {
-  UGL_GENERIC_DRIVER *pDrv;
   UGL_GEN_DDB *pDdb;
   UGL_RECT srcRect;
   UGL_POINT destPoint;
   UGL_UINT8 *src, *dest;
   UGL_ORD srcStride, destStride;
-  UGL_INT32 i, width, height, srcOffset;
+  UGL_INT32 width, height, srcOffset;
   UGL_CLUT *pClut;
-
-  /* Get driver first in device struct */
-  pDrv = (UGL_GENERIC_DRIVER *) devId;
 
   /* Store bitmap */
   pDdb = (UGL_GEN_DDB *) ddbId;

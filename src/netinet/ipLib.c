@@ -78,6 +78,7 @@
 #include <netinet/ip.h>
 #include <netinet/ip_icmp.h>
 #include <netinet/ip_var.h>
+#include <netinet/icmp_var.h>
 
 /* Defines */
 #ifndef	IPFORWARDING
@@ -97,7 +98,6 @@ IMPORT struct protosw inetsw[];
 IMPORT struct in_ifaddr *in_ifaddr;
 IMPORT int max_linkhdr;
 IMPORT struct ifnet *loif;
-
 IMPORT int sysClockRateGet();
 
 /* Locals */
@@ -144,6 +144,8 @@ int	ipprintfs = 0;
 #endif
 
 /* Functions */
+int ip_pcbopts(struct mbuf **pcbopt, struct mbuf *m);
+int looutput(struct ifnet *ifp, struct mbuf *m, struct sockaddr *dst, struct rtentry *rt);
 
 /*******************************************************************************
  * ipLibInit - Initialize ip library

@@ -39,7 +39,6 @@
 #include <rtos/taskShow.h>
 #include <rtos/kernQLib.h>
 #include <rtos/kernTickLib.h>
-
 #include "config.h"
 
 /* Defines */
@@ -48,6 +47,9 @@
 IMPORT Q_HEAD kernActiveQ;
 IMPORT Q_HEAD kernTickQ;
 IMPORT Q_HEAD kernReadyQ;
+extern STATUS taskShowInit(void);
+extern STATUS mmuLibInit(int pageSize);
+extern void printExc(char *fmt, ARG arg0, ARG arg1, ARG arg2, ARG arg3, ARG arg4);
 
 /* Locals */
 

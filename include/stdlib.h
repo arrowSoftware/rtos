@@ -71,6 +71,7 @@ extern int cfree(void *buf);
 extern void exit(int code);
 
 extern int abs(int i);
+extern int atoi(const char *str);
 extern char *itoa(int value, char *string, int radix);
 extern char *itox(int val, char *str);
 extern long strtol(const char *str, char **endptr, int base);

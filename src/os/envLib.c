@@ -27,6 +27,7 @@
 #include <rtos/taskHookLib.h>
 #include <os/logLib.h>
 #include <os/envLib.h>
+#include <string.h>
 
 /* Defines */
 #define ENV_MAX_ENTRIES			50

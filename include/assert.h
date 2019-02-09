@@ -31,6 +31,8 @@ extern "C" {
 
 extern void assertLibInit(void);
 
+extern void __assert(char *assertion, char *filename, int linenumber, const char *function);
+
 /* Macros */
 #define __STRING(x)	#x
 

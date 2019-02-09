@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <fs/mount.h>
 #include <fs/vnode.h>
+#include <string.h>
 
 /***************************************************************************
  *

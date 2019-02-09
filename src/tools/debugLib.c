@@ -31,6 +31,8 @@
 #include <io/ttyLib.h>
 #include <os/excLib.h>
 #include <tools/debugLib.h>
+#include <sys/ioctl.h>
+#include <tools/shellLib.h>
 
 /* Defines */
 

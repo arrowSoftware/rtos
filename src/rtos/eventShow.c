@@ -28,7 +28,7 @@
 #include <rtos/taskInfo.h>
 #include <rtos/eventLib.h>
 #include <rtos/eventShow.h>
-
+#include <string.h>
 /* Defines */
 
 /* Imports */

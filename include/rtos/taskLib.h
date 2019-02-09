@@ -255,6 +255,8 @@ extern TCB_ID taskTcb(int taskId);
 extern void *taskStackAllot(int taskId, unsigned size);
 extern STATUS taskIdVerify(int taskId);
 extern int taskIdle(void);
+extern char *taskName(int taskId);
+extern STATUS taskOptionsSet(int tid, int mask, int options);
 
 #ifdef __cplusplus
 }

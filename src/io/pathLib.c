@@ -25,6 +25,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
+#include <rtos/errnoLib.h>
 #include <io/iosLib.h>
 #include <io/pathLib.h>
 

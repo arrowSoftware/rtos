@@ -1145,8 +1145,6 @@ LOCAL VALUE evalExp(VALUE *pValue1, int op, VALUE *pValue2)
 LOCAL void binOp(VALUE *pResult, VALUE *pValue1, int op, VALUE *pValue2)
 {
   VALUE tmpResult, tmpValue1, tmpValue2;
-  VALUE result;
-
   getRHSValue(pValue1, &tmpValue1);
 
   /* If unary expression */
@@ -1431,8 +1429,6 @@ LOCAL VALUE newArgList(void)
 
 LOCAL void addArg(VALUE *pArgList, VALUE *pNewArg)
 {
-  SYMBOL_ID symId;
-  SYM_TYPE sType;
   VALUE value;
   int rv;
 

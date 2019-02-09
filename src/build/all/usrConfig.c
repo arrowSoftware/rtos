@@ -33,10 +33,9 @@
 #include <unistd.h>
 #include <assert.h>
 #include <sys/types.h>
-
+#include <sys/ioctl.h>
 #include <private/stdioP.h>
 #include <private/timeP.h>
-
 #include <rtos.h>
 #include <arch/iv.h>
 #include <arch/sysArchLib.h>
@@ -97,17 +96,26 @@
 #define MEM_POOL_START_ADRS		FREE_RAM_ADRS
 
 /* Imports */
-IMPORT standTableSize;
+IMPORT int standTableSize;
 IMPORT SYMBOL standTable[];
-
 IMPORT void standTableInit(void);
 IMPORT void sysHwInit0(void);
 IMPORT void sysHwInit(void);
 IMPORT char* sysMemTop(void);
-
 IMPORT STATUS sysClockConnect(FUNCPTR func, int arg);
 IMPORT STATUS sysClockRateSet(int tickePerSecond);
 IMPORT void sysClockEnable(void);
+extern STATUS excVecInit(void);
+extern void usrKernelInit(void);
+extern void usrMmuInit(void);
+extern STATUS pipeDrvInit(void);
+extern STATUS sigqueueInit(int nQueues);
+extern STATUS erfLibInit(int  maxCategories, int  maxTypes);
+extern STATUS envLibInit(BOOL installHooks);
+extern STATUS fsEventUtilInit(void);
+extern STATUS xbdLibInit(int maxXbds);
+extern STATUS usrNetInit(char *bootstring);
+extern STATUS usrLibInit(void);
 
 #ifdef INCLUDE_DEMO
 IMPORT int startDemo(void);

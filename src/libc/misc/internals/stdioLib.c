@@ -25,6 +25,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <sys/ioctl.h>
 #include <rtos.h>
 #include <rtos/taskLib.h>
 #include <rtos/taskHookLib.h>
@@ -495,7 +496,7 @@ int __sflags(const char *mode, int *optr)
     return ret;
 
   /* Check for rubbish in 3rd char */
-  if ( (*mode != '+') && (*mode != 'b') && (mode != '\0') )
+  if ( (*mode != '+') && (*mode != 'b') && (*mode != '\0') )
     return 0;
 
   /* If no 4th char */

@@ -1,25 +1,3 @@
-/******************************************************************************
-*   DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
-*
-*   This file is part of Real rtos.
-*   Copyright (C) 2008 - 2009 Surplus Users Ham Society
-*
-*   Real rtos is free software: you can redistribute it and/or modify
-*   it under the terms of the GNU Lesser General Public License as published by
-*   the Free Software Foundation, either version 2.1 of the License, or
-*   (at your option) any later version.
-*
-*   Real rtos is distributed in the hope that it will be useful,
-*   but WITHOUT ANY WARRANTY; without even the implied warranty of
-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*   GNU Lesser General Public License for more details.
-*
-*   You should have received a copy of the GNU Lesser General Public License
-*   along with Real rtos.  If not, see <http://www.gnu.org/licenses/>.
-******************************************************************************/
-
-/* usrLib.c - User functions used by shell */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -43,12 +21,10 @@
 #include <tools/loadLib.h>
 #include <usr/usrLib.h>
 
-/* Defines */
-#define MAX_BYTES_PER_LINE		16
+#define MAX_BYTES_PER_LINE	16
 #define MAXLINE				80
-#define MAX_DISP_TASKS			500
+#define MAX_DISP_TASKS	    500
 
-/* Imports */
 IMPORT TCB_ID taskIdCurrent;
 IMPORT SYMTAB_ID sysSymTable;
 IMPORT char *pKernExcStkBase;
@@ -56,18 +32,14 @@ IMPORT char *pKernExcStkEnd;
 IMPORT FUNCPTR _func_symFindSymbol;
 IMPORT FUNCPTR _func_symNameGet;
 IMPORT FUNCPTR _func_symValueGet;
-
 IMPORT int sysClockRateGet(void);
 
-/* Gloabals */
 int spTaskPriority = 100;
 int spTaskOptions = 0;
 int spTaskStackSize = 20000;
 BOOL ldCommonMatchAll = TRUE;
 
-/* Locals */
 LOCAL BOOL usrLibInstalled = FALSE;
-
 LOCAL void printStackSummary(TASK_DESC *pTd);
 
 /*******************************************************************************
@@ -78,7 +50,6 @@ LOCAL void printStackSummary(TASK_DESC *pTd);
 
 STATUS usrLibInit(void)
 {
-  int i;
   /* Check if already installed */
   if (usrLibInstalled)
     return OK;
@@ -432,7 +403,7 @@ void d(void *addr, int n, int size)
   if (n != 0)
     lastN = n;
 
-  /* Set start address /*
+  /* Set start address */
   lastAddr = (void *) ( (int) lastAddr & ~(lastSize - 1) );
 
   /* Insert spaces at start of line */
@@ -569,7 +540,7 @@ void m(void *addr, int size)
 
   } /* End if non-zero size */
 
-  /* Set start address /*
+  /* Set start address */
   lastAddr = (void *) ( (int) lastAddr & ~(lastSize - 1) );
 
   /* While loop */
@@ -881,8 +852,7 @@ void checkStack(int taskNameOrId)
 #endif /* _STACK_DIR */
 
     /* Check for overflow */
-    if ( (pIntStackHigh == pKernExcStkEnd) &&
-	 (pKernExcStkEnd != pKernExcStkBase != 0) )
+    if ((pIntStackHigh == pKernExcStkEnd) && ((pKernExcStkEnd != pKernExcStkBase) != 0))
       strcpy(s, "OVERFLOW");
     else
       strcpy(s, "");

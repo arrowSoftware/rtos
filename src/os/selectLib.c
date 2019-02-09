@@ -23,6 +23,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
+#include <sys/ioctl.h>
 #include <rtos.h>
 #include <arch/intArchLib.h>
 #include <rtos/errnoLib.h>

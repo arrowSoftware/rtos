@@ -64,6 +64,7 @@
 #include <net/mbuf.h>
 #include <net/domain.h>
 #include <net/radix.h>
+#include <os/miscLib.h>
 
 /* Macros */
 

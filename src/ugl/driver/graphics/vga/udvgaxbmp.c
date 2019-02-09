@@ -1,32 +1,8 @@
-/******************************************************************************
-*   DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
-*
-*   This file is part of Real rtos.
-*   Copyright (C) 2008 - 2009 Surplus Users Ham Society
-*
-*   Real rtos is free software: you can redistribute it and/or modify
-*   it under the terms of the GNU Lesser General Public License as published by
-*   the Free Software Foundation, either version 2.1 of the License, or
-*   (at your option) any later version.
-*
-*   Real rtos is distributed in the hope that it will be useful,
-*   but WITHOUT ANY WARRANTY; without even the implied warranty of
-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*   GNU Lesser General Public License for more details.
-*
-*   You should have received a copy of the GNU Lesser General Public License
-*   along with Real rtos.  If not, see <http://www.gnu.org/licenses/>.
-******************************************************************************/
-
-/* udvgaxbmp.c - Vga modex bitmap support */
-
 #include <stdlib.h>
 #include <string.h>
-
 #include <rtos.h>
 #include <arch/sysArchLib.h>
 #include <rtos/memPartLib.h>
-
 #include <ugl/ugl.h>
 #include <ugl/driver/graphics/generic/udgen.h>
 #include <ugl/driver/graphics/vga/udvga.h>
@@ -43,7 +19,6 @@ UGL_DDB_ID uglVgaXBitmapCreate(UGL_DEVICE_ID devId,
 			       UGL_UINT32 initValue,
 			       UGL_MEM_POOL_ID poolId)
 {
-  UGL_VGA_DRIVER *pDrv;
   UGL_VGA_DDB *pVgaBmp;
   UGL_UINT32 i, planeSize;
   UGL_SIZE width, height;
@@ -51,9 +26,6 @@ UGL_DDB_ID uglVgaXBitmapCreate(UGL_DEVICE_ID devId,
   UGL_RECT srcRect;
   UGL_POINT destPoint;
   UGL_STATUS status;
-
-  /* Get driver first in device struct */
-  pDrv = (UGL_VGA_DRIVER *) devId;
 
   /* Get bitmap info, from screen if NULL DIB */
   if (pDib == UGL_NULL) {
@@ -502,16 +474,12 @@ UGL_LOCAL void uglVgaXBltColorToColor(UGL_DEVICE_ID devId,
 				      UGL_RECT *pDestRect)
 {
   UGL_GENERIC_DRIVER *pDrv;
-  UGL_RASTER_OP rasterOp;
   int planeIndex, numPlanes;
   UGL_SIZE srcStride, destStride;
   UGL_UINT8 *src, *dest;
 
   /* Get driver first in device struct */
   pDrv = (UGL_GENERIC_DRIVER *) devId;
-
-  /* Cache raster op */
-  rasterOp = pDrv->gc->rasterOp;
 
   /* Calculate vars */
   numPlanes = pDestBmp->colorDepth;
@@ -863,17 +831,9 @@ UGL_STATUS uglVgaXBitmapBlt(UGL_DEVICE_ID devId,
 			    UGL_DDB_ID destBmpId,
 			    UGL_POINT *pDestPoint)
 {
-  UGL_GENERIC_DRIVER *pDrv;
-  UGL_GC_ID gc;
   UGL_VGA_DDB *pSrcBmp, *pDestBmp;
   UGL_RECT srcRect, destRect, clipRect;
   UGL_POINT destPoint;
-
-  /* Get driver first in device struct */
-  pDrv = (UGL_GENERIC_DRIVER *) devId;
-
-  /* Get gc */
-  gc = pDrv->gc;
 
   /* Store source and dest */
   pSrcBmp = (UGL_VGA_DDB *) srcBmpId;
@@ -937,7 +897,6 @@ UGL_STATUS uglVgaXBitmapWrite(UGL_DEVICE_ID devId,
 			      UGL_DDB_ID ddbId,
 			      UGL_POINT *pDestPoint)
 {
-  UGL_GENERIC_DRIVER *pDrv;
   UGL_VGA_DDB *pVgaBmp;
   UGL_RECT srcRect, destRect;
   UGL_POINT destPoint;
@@ -948,9 +907,6 @@ UGL_STATUS uglVgaXBitmapWrite(UGL_DEVICE_ID devId,
   UGL_UINT8 *pSrc, *pClut;
   UGL_INT32 bpp, ppb, nPixels, shift, srcMask, destIndex, destMask;
   UGL_COLOR pixel, planeMask;
-
-  /* Get driver first in device struct */
-  pDrv = (UGL_GENERIC_DRIVER *) devId;
 
   /* Get device dependent bitmap */
   pVgaBmp = (UGL_VGA_DDB *) ddbId;

@@ -28,6 +28,7 @@ void rinode(unsigned int inum, struct dinode *ip);
 void rsect(unsigned int sec, void *buf);
 static unsigned int mkfs_ialloc(unsigned short type);
 void iappend(unsigned int inum, void *p, int n);
+extern void ramdsk_rw(int diskno, unsigned int secno, void *addr, unsigned int nsecs, int read);
 
 // convert to intel byte order
 unsigned short
@@ -52,9 +53,7 @@ xint(unsigned int x)
   return y;
 }
 
-int
-//main(int argc, char *argv[])
-mkfs(void)
+int mkfs(void)
 {
   int i, cc, fd;
   unsigned int bn, rootino, inum, off;

@@ -101,6 +101,14 @@ extern UGL_STATUS uglVgaBitmapWrite(UGL_DEVICE_ID devId,
 			     	    UGL_DDB_ID ddbId,
 			     	    UGL_POINT *pDestPoint);
 
+extern void uglVgaBltPlane(UGL_DEVICE_ID devId,
+			      UGL_UINT8 *pSrc,
+			      UGL_RECT *pSrcRect,
+			      UGL_SIZE srcStride,
+			      UGL_UINT8 *pDest,
+			      UGL_RECT *pDestRect,
+			      UGL_SIZE destStride,
+			      UGL_RASTER_OP rasterOp);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

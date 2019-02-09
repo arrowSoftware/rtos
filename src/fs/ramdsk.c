@@ -36,8 +36,7 @@ void ramdsk_deinit(int diskno)
 }
 
 // Run an entire disk operation.
-void ramdsk_rw(int diskno,
-	       unsigned int secno, void *addr, unsigned int nsecs, int read)
+void ramdsk_rw(int diskno, unsigned int secno, void *addr, unsigned int nsecs, int read)
 {
   if (read)
     memcpy((unsigned char *) addr,

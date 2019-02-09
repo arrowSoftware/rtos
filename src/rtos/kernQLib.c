@@ -198,13 +198,13 @@ void kernQDoWork (void) {
         /* Call job procedure (<kernelState> is TRUE!) */
         switch(pJob->numArgs) {
             case 1:
-                (FUNCPTR *) (pJob->func) (pJob->arg1);
+                (FUNCPTR *)(pJob->func)(pJob->arg1);
 	        break;
             case 2:
-                (FUNCPTR *) (pJob->func) (pJob->arg1, pJob->arg2);
+                (FUNCPTR *)(pJob->func)(pJob->arg1, pJob->arg2);
 	        break;
             default:
-                (FUNCPTR *) (pJob->func) ();
+                (FUNCPTR *)(pJob->func)();
 	        break;
         }
 

@@ -28,6 +28,7 @@
 #include <util/ringLib.h>
 #include <io/ioLib.h>
 #include <io/ttyLib.h>
+#include <rtos/taskLib.h>
 
 /* Imports */
 IMPORT FUNCPTR _func_excJobAdd;

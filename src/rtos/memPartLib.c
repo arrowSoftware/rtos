@@ -410,7 +410,6 @@ void* memPartAlignedAlloc(PART_ID partitionId,
 {
   unsigned nWords, nWordsPad;
   DL_NODE *pNode;
-  BLOCK_HEADER origHeader;
   BLOCK_HEADER *pHeader, *pNewHeader;
 
   /* Verify object */
@@ -513,7 +512,6 @@ void* memPartAlignedAlloc(PART_ID partitionId,
 
     /* Get header from block node just found and store it */
     pHeader = NODE_TO_HEADER(pNode);
-    origHeader = *pHeader;
 
     /* Split block just found, so that the end of the block
      * is greater or equal to the requested size
@@ -601,9 +599,9 @@ void* malloc(size_t size)
 
 void *memPartRealloc(PART_ID partitionId, void *ptr, unsigned nBytes)
 {
-  BLOCK_HEADER *pHeader, *pNextHeader;
-  unsigned nWords;
-  void *pNewBlock;
+  BLOCK_HEADER *pHeader = NULL, *pNextHeader = NULL;
+  unsigned nWords = 0;
+  void *pNewBlock = NULL;
 
   /* Verify object class */
   if (OBJ_VERIFY(partitionId, memPartClassId) != OK) {

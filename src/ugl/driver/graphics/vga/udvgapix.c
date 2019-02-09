@@ -42,7 +42,6 @@ UGL_STATUS uglVgaPixelSet(UGL_DEVICE_ID devId,
   UGL_RECT *pClipRect;
   UGL_VGA_DDB *pBmp;
   UGL_UINT8 mask, *dest, **pPlaneArray;
-  volatile UGL_UINT8 tmp;
   UGL_INT32 i, pixel, bytesPerLine, destIndex;
   UGL_UINT8 pixelMask, pixelMaskNot, colorMask;
 
@@ -77,7 +76,6 @@ UGL_STATUS uglVgaPixelSet(UGL_DEVICE_ID devId,
       }
 
       /* Set pixel */
-      tmp = *dest;
       *dest = mask;
 
     } /* End render to display */

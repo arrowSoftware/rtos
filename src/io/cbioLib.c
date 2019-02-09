@@ -35,6 +35,7 @@
 #include <io/ioLib.h>
 #include <io/cbioLib.h>
 #include <io/private/cbioLibP.h>
+#include <rtos/taskLib.h>
 
 /* Defines */
 #define cbioBlkShift			cbioPriv0

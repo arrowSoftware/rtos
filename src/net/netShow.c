@@ -35,6 +35,7 @@
 #include <netinet/in.h>
 #include <netinet/in_var.h>
 #include <netinet/inetLib.h>
+#include <os/miscLib.h>
 
 /* Defines */
 #define RT_SHOW_NET				0x001
@@ -45,6 +46,7 @@
 IMPORT struct domain *domains;
 IMPORT struct ifnet *ifnet;
 IMPORT struct radix_node_head *rt_tables[];
+extern void inet_ntoa_b(struct in_addr addr, char *str);
 
 /* Locals */
 LOCAL char afName[AF_MAX][14] = {

@@ -38,15 +38,13 @@ xbdEventRemove ERF type.
 /* includes */
 
 #include <rtos.h>
-
 #include <stdlib.h>
 #include <errno.h>
-
+#include <string.h>
 #include <arch/intArchLib.h>
-
 #include <fs/xbd.h>
 #include <fs/erfLib.h>
-
+#include <rtos/errnoLib.h>
 /* defines */
 
 /* typedefs */
@@ -75,9 +73,8 @@ LOCAL int    xbdMaxDevices = 0;
  * RETURNS: OK on success, ERROR otherwise
  */
 
-STATUS xbdLibInit (
-    int  maxXbds
-    ) {
+STATUS xbdLibInit (int  maxXbds)
+{
     if (xbdDeviceList != NULL) {
         return (OK);
     }

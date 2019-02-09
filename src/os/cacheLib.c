@@ -28,7 +28,7 @@
 /* Defines */
 
 /* Imports */
-IMPORT STATUS cacheArcLibInit(CACHE_MODE textMode, CACHE_MODE dataMode);
+IMPORT STATUS cacheArchLibInit(CACHE_MODE textMode, CACHE_MODE dataMode);
 
 /* Locals */
 

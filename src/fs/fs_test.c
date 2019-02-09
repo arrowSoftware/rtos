@@ -2,13 +2,22 @@
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
-
 #include <fs/buf.h>
 #include <fs/param.h>
 #include <fs/defs.h>
 #include <fs/fs.h>
 #include <fs/fsvar.h>
 #include <fs/mount.h>
+
+extern int sys_open(char *path, int omode);
+extern int sys_read(int fd, char *cp, int n);
+extern int sys_write(int fd, char *cp, int n);
+extern int sys_close(int fd);
+extern int ramdsk_init(int diskno, unsigned int nsecs);
+extern int mkfs(void);
+extern int sys_mkdir(char *path);
+extern void ramdsk_deinit(int diskno);
+
 
 /*
  * Most of the fields in the following structure are filled with

@@ -66,7 +66,6 @@ UGL_STATUS uglBitmapDestroy(UGL_DEVICE_ID devId,
 			    UGL_MEM_POOL_ID poolId)
 {
   UGL_STATUS status;
-  UGL_DDB_ID bmpId;
 
   /* Validate */
   if (devId == NULL)

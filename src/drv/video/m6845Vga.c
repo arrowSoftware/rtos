@@ -23,6 +23,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <rtos.h>
+#include <rtos/taskLib.h>
 #include <rtos/semLib.h>
 #include <util/ringLib.h>
 #include <io/ioLib.h>

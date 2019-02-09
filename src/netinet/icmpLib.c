@@ -70,6 +70,8 @@
 #include <netinet/ip_var.h>
 #include <netinet/ip_icmp.h>
 #include <netinet/icmp_var.h>
+#include <os/miscLib.h>
+#include <string.h>
 
 /* Imports */
 IMPORT struct protosw inetsw[];

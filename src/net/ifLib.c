@@ -78,6 +78,7 @@
 
 /* Imports */
 IMPORT VOIDFUNCPTR rtIfaceMsgHook;
+IMPORT int sysClockRateGet(void);
 
 /* Locals */
 LOCAL SEM_ID ifIndexSem;

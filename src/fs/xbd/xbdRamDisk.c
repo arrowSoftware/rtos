@@ -1,8 +1,8 @@
 #include <rtos.h>
-
+#include <string.h>
 #include <stdlib.h>
-
 #include <fs/xbd.h>
+#include <fs/erfLib.h>
 #include <rtos/semLib.h>
 
 #define XBD_MIN_BLKSIZE   512
@@ -111,8 +111,11 @@ device_t xbdRamDiskDevCreate (
         return (NULLDEV);
     } 
 
-    status = erfEventRaise (xbdEventCategory, xbdEventPrimaryInsert,
-                            (void *) device, NULL);
+    status = erfEventRaise(xbdEventCategory,
+    		               xbdEventPrimaryInsert,
+    		               ERF_SYNC_PROCESS,
+                           (void *)device,
+                           NULL);
 
     if (status != OK) {
         /* TODO: Need an xbdDetach() I think */

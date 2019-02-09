@@ -1,6 +1,6 @@
 #!/bin/sh
 
-RTOS_BASE=$HOME/Documents/Projects/osDevelopment/rtos/
+RTOS_BASE=$HOME/Documents/remove/rtos/
 export RTOS_BASE
 
 PATH=$PATH:$RTOS_BASE/bin

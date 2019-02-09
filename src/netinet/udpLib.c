@@ -74,8 +74,10 @@
 #include <netinet/in_var.h>
 #include <netinet/ip_var.h>
 #include <netinet/ip_icmp.h>
+#include <netinet/icmp_var.h>
 #include <netinet/udp.h>
 #include <netinet/udp_var.h>
+#include <string.h>
 
 /* Imports */
 IMPORT struct in_addr zeroin_addr;

@@ -32,7 +32,7 @@
 #define NUM_PAGE_STATES 256
 
 /* Imports */
-IMPORT cacheMmuAvailable;
+IMPORT BOOL cacheMmuAvailable;
 
 /* Locals */
 LOCAL unsigned vmStateTransTable[NUM_PAGE_STATES];

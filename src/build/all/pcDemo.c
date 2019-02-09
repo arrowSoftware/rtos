@@ -21,7 +21,8 @@
 /* pcDemo.c - Demo program for Real rtos */
 
 #include "configAll.h"
-
+#include <setjmp.h>
+#include <sys/ioctl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -35,7 +36,6 @@
 #include <a.out.h>
 #include <elf.h>
 #include <assert.h>
-
 #include <rtos.h>
 #include <arch/iv.h>
 #include <arch/sysArchLib.h>
@@ -77,13 +77,11 @@
 #include <util/qMsgLib.h>
 #include <os/pipeDrv.h>
 #include <tools/moduleLib.h>
-
 #include <net/netBufLib.h>
 #include <net/mbuf.h>
 #include <net/netShow.h>
 #include <net/netLib.h>
 #include <net/sockLib.h>
-
 #include <ugl/ugl.h>
 #include <ugl/driver/graphics/vga/udvga.h>
 
@@ -105,8 +103,12 @@ IMPORT SYMTAB_ID sysSymTable;
 IMPORT BOOL kernelState;
 IMPORT TCB_ID taskIdCurrent;
 IMPORT void kernExit(void);
-
 IMPORT int sysClockRateGet(void);
+extern STATUS msgQEvRegister(MSG_Q_ID msgQId, u_int32_t events, u_int8_t options);
+extern STATUS semEvRegister(SEM_ID semId, u_int32_t events, u_int8_t options);
+extern int setjmp(jmp_buf env);
+extern STATUS inet_ntoa_b();
+extern STATUS remove(const char *path);
 
 /* Globals */
 char bigString[] = "\n"

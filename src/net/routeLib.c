@@ -71,6 +71,7 @@
 #include <net/radix.h>
 #include <net/m2Lib.h>
 #include <net/route.h>
+#include <os/miscLib.h>
 
 /* Imports */
 IMPORT struct domain *domains;
@@ -95,6 +96,8 @@ struct radix_node_head *rt_tables[AF_MAX + 1];
 /* Macros */
 #define	SA(p) ((struct sockaddr *)(p))
 #define ROUNDUP(a) (a>0 ? (1 + (((a) - 1) | (sizeof(long) - 1))) : sizeof(long))
+
+int rt_setgate(struct rtentry *rt0, struct sockaddr *dst, struct sockaddr *gate);
 
 /*******************************************************************************
  * rtable_init - Initialize routing tables
@@ -1028,8 +1031,7 @@ rt_fixchange(struct radix_node *rn, void *vp)
  * RETURNS: Zero or error code
  ******************************************************************************/
 
-int
-rt_setgate(struct rtentry *rt0, struct sockaddr *dst, struct sockaddr *gate)
+int rt_setgate(struct rtentry *rt0, struct sockaddr *dst, struct sockaddr *gate)
 {
 	caddr_t new, old;
 	int dlen = ROUNDUP(dst->sa_len), glen = ROUNDUP(gate->sa_len);

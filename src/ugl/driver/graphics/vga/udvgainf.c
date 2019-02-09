@@ -1,25 +1,3 @@
-/******************************************************************************
-*   DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
-*
-*   This file is part of Real rtos.
-*   Copyright (C) 2008 - 2009 Surplus Users Ham Society
-*
-*   Real rtos is free software: you can redistribute it and/or modify
-*   it under the terms of the GNU Lesser General Public License as published by
-*   the Free Software Foundation, either version 2.1 of the License, or
-*   (at your option) any later version.
-*
-*   Real rtos is distributed in the hope that it will be useful,
-*   but WITHOUT ANY WARRANTY; without even the implied warranty of
-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*   GNU Lesser General Public License for more details.
-*
-*   You should have received a copy of the GNU Lesser General Public License
-*   along with Real rtos.  If not, see <http://www.gnu.org/licenses/>.
-******************************************************************************/
-
-/* udvgainf.c - Get graphics mode info */
-
 #include <ugl/ugl.h>
 #include <ugl/driver/graphics/generic/udgen.h>
 #include <ugl/driver/graphics/vga/udvga.h>
@@ -34,10 +12,10 @@ UGL_STATUS uglVgaInfo(UGL_DEVICE_ID devId,
 		      UGL_INFO_REQ infoReq,
 		      void *info)
 {
-  UGL_GENERIC_DRIVER *pDrv;
-  UGL_FB_INFO *fbInfo;
-  UGL_COLOR_INFO *colorInfo;
-  UGL_MODE_INFO *modeInfo;
+  UGL_GENERIC_DRIVER *pDrv = NULL;
+  UGL_FB_INFO *fbInfo = NULL;
+  UGL_COLOR_INFO *colorInfo = NULL;
+  UGL_MODE_INFO *modeInfo = NULL;
 
   /* Get driver first in device struct */
   pDrv = (UGL_GENERIC_DRIVER *) devId;

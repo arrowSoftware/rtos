@@ -39,6 +39,8 @@
 #include <netinet/tcp_var.h>
 #include <netinet/udp.h>
 #include <netinet/udp_var.h>
+#include <string.h>
+#include <unistd.h>
 
 /* Defines */
 #define MAX_PARTS		4

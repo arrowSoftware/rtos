@@ -36,10 +36,10 @@ extern "C" {
 #include <sys/types.h>
 #include <rtos/msgQLib.h>
 
-extern msgQEvRegister(MSG_Q_ID msgQId,
+extern STATUS msgQEvRegister(MSG_Q_ID msgQId,
 		      u_int32_t events,
 		      u_int8_t options);
-extern msgQEvUnregister(MSG_Q_ID msgQId);
+extern STATUS msgQEvUnregister(MSG_Q_ID msgQId);
 
 #ifdef __cplusplus
 }

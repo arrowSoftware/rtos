@@ -8,13 +8,11 @@
 /* includes */
 
 #include <rtos.h>
-
 #include <stdlib.h>
-
 #include <rtos/msgQLib.h>
 #include <rtos/semLib.h>
 #include <rtos/taskLib.h>
-
+#include <string.h>
 #include <fs/erfLib.h>
 
 /* defines */

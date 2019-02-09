@@ -29,6 +29,7 @@
 #include <net/netBufLib.h>
 #include <net/netLib.h>
 #include <net/mbuf.h>
+#include <string.h>
 
 /* Defines */
 

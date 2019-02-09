@@ -33,7 +33,7 @@ extern "C" {
 #endif
 
 IMPORT STATUS cbioShowInit(void);
-IMPORT cbioShow(CBIO_DEV_ID devId);
+IMPORT STATUS cbioShow(CBIO_DEV_ID devId);
 
 #ifdef __cplusplus
 }

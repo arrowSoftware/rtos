@@ -142,12 +142,8 @@ UGL_BOOL uglGenericClipDibToDdb(UGL_DEVICE_ID devId,
 				UGL_BMAP_ID *pBmpId,
 				UGL_POINT *pDestPoint)
 {
-  UGL_GENERIC_DRIVER *pDrv;
   UGL_POS x, y;
   UGL_RECT srcRect, srcClip, destRect, destClip;
-
-  /* Get driver first in device struct */
-  pDrv = (UGL_GENERIC_DRIVER *) devId;
 
   /* Setup geometry */
   srcRect.top = pSrcRect->top;

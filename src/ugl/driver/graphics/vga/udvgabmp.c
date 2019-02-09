@@ -301,7 +301,7 @@ UGL_LOCAL void uglVgaShiftBitmap(UGL_DEVICE_ID devId,
  * RETURNS: N/A
  ******************************************************************************/
 
-UGL_LOCAL uglVgaBltAlign(UGL_DEVICE_ID devId,
+UGL_LOCAL void uglVgaBltAlign(UGL_DEVICE_ID devId,
 			 UGL_BMAP_HEADER *pSrcBmp,
 			 UGL_RECT *pSrcRect,
 			 UGL_VGA_DDB *pDestBmp,
@@ -680,16 +680,12 @@ UGL_LOCAL void uglVgaBltColorToColor(UGL_DEVICE_ID devId,
 				     UGL_RECT *pDestRect)
 {
   UGL_GENERIC_DRIVER *pDrv;
-  UGL_RASTER_OP rasterOp;
   int planeIndex, numPlanes;
   UGL_SIZE srcStride, destStride;
   UGL_UINT8 *src, *dest;
 
   /* Get driver first in device struct */
   pDrv = (UGL_GENERIC_DRIVER *) devId;
-
-  /* Cache raster op */
-  rasterOp = pDrv->gc->rasterOp;
 
   /* Calculate vars */
   numPlanes = pDestBmp->colorDepth;
@@ -729,7 +725,6 @@ UGL_LOCAL void uglVgaBltColorToFrameBuffer(UGL_DEVICE_ID devId,
   UGL_GENERIC_DRIVER *pDrv;
   UGL_VGA_DRIVER *pVgaDrv;
   UGL_RASTER_OP rasterOp;
-  volatile register UGL_UINT8 tmp;
   UGL_INT32 i, y, height, planeIndex, numPlanes, width;
   UGL_INT32 destBytesPerLine, srcBytesPerLine, srcOffset;
   UGL_UINT8 *destStart, startMask, endMask, regValue, byteValue;
@@ -797,7 +792,6 @@ UGL_LOCAL void uglVgaBltColorToFrameBuffer(UGL_DEVICE_ID devId,
 
       /* Write start mask */
       UGL_OUT_BYTE(0x3cf, startMask);
-      tmp = dest[i];
       dest[i] = src[i];
       i++;
 
@@ -823,7 +817,6 @@ UGL_LOCAL void uglVgaBltColorToFrameBuffer(UGL_DEVICE_ID devId,
 	  else {
 
 	    for (i = 1; i < width - 1; i++) {
-	      tmp = dest[i];
 	      dest[i] = src[i];
 	    }
 
@@ -833,7 +826,6 @@ UGL_LOCAL void uglVgaBltColorToFrameBuffer(UGL_DEVICE_ID devId,
 
         /* Write end mask */
         UGL_OUT_BYTE(0x3cf, endMask);
-        tmp = dest[i];
 	dest[i] = src[i];
 
       } /* End if anything more to blit */
@@ -1095,17 +1087,9 @@ UGL_STATUS uglVgaBitmapBlt(UGL_DEVICE_ID devId,
 			   UGL_DDB_ID destBmpId,
 			   UGL_POINT *pDestPoint)
 {
-  UGL_GENERIC_DRIVER *pDrv;
-  UGL_GC_ID gc;
   UGL_VGA_DDB *pSrcBmp, *pDestBmp;
   UGL_RECT srcRect, destRect, clipRect;
   UGL_POINT destPoint;
-
-  /* Get driver first in device struct */
-  pDrv = (UGL_GENERIC_DRIVER *) devId;
-
-  /* Get gc */
-  gc = pDrv->gc;
 
   /* Store source and dest */
   pSrcBmp = (UGL_VGA_DDB *) srcBmpId;
@@ -1169,7 +1153,6 @@ UGL_STATUS uglVgaBitmapWrite(UGL_DEVICE_ID devId,
 			     UGL_DDB_ID ddbId,
 			     UGL_POINT *pDestPoint)
 {
-  UGL_GENERIC_DRIVER *pDrv;
   UGL_VGA_DDB *pVgaBmp;
   UGL_RECT srcRect, destRect;
   UGL_POINT destPoint;
@@ -1180,9 +1163,6 @@ UGL_STATUS uglVgaBitmapWrite(UGL_DEVICE_ID devId,
   UGL_UINT8 *pSrc, *pClut;
   UGL_INT32 bpp, ppb, nPixels, shift, srcMask, destIndex, destMask;
   UGL_COLOR pixel, planeMask;
-
-  /* Get driver first in device struct */
-  pDrv = (UGL_GENERIC_DRIVER *) devId;
 
   /* Get device dependent bitmap */
   pVgaBmp = (UGL_VGA_DDB *) ddbId;

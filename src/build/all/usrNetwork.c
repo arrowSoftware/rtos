@@ -54,6 +54,8 @@
 
 /* Imports */
 SOCK_FUNC* bsdSockLibAdd(int domain);
+extern void rawLibInit(int sendSpace, int recvSpace);
+extern STATUS loattach(void);
 
 M_CL_CONFIG mClBlkConfig = {
 /*num. mBlk		num. clkBlk		memArea		memSize

@@ -26,11 +26,12 @@
 
 #include <rtos.h>
 #include <stdlib.h>
-
+#include <string.h>
 #include <fs/buf.h>
 #include <fs/param.h>
 #include <fs/defs.h>
 #include <fs/vnode.h>
+#include <os/miscLib.h>
 
 struct buf buf[NBUF];
 // struct spinlock buf_table_lock;

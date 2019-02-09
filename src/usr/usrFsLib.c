@@ -37,6 +37,7 @@
 #include <io/private/ioLibP.h>
 #include <io/pathLib.h>
 #include <usr/usrFsLib.h>
+#include <sys/ioctl.h>
 
 /* Locals */
 LOCAL void usrPathCat(const char *dirname, const char *filename, char *result);
@@ -638,7 +639,7 @@ LOCAL STATUS copyStreams(int inFd, int outFd)
 {
   char *buf;
   int nBytes, totBytes;
-  size_t bufSize;
+  size_t bufSize = 0;
 
   /* Inititalize locals */
   totBytes = 0;

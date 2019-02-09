@@ -21,6 +21,7 @@
 /* unixDomainLib.c - Unix domain library */
 
 /* Includes */
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>

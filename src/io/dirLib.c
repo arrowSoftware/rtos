@@ -39,6 +39,8 @@ It is freed when the directory is closed using closedir().
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <string.h>
+#include <sys/ioctl.h>
 
 /* defines */
 

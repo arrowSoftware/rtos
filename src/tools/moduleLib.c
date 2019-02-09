@@ -255,8 +255,6 @@ STATUS moduleInit(MODULE_ID modId, char *name, int format, int flags)
 
 STATUS moduleDestroy(MODULE_ID modId, BOOL dealloc)
 {
-  SEGMENT_ID segId;
-
   /* Verify object class */
   if (OBJ_VERIFY(modId, moduleClassId) != OK)
     return ERROR;
@@ -664,6 +662,8 @@ STATUS moduleCreateHookAdd(FUNCPTR func)
   semTake(moduleCreateHookSem, WAIT_FOREVER);
   dllAdd(&moduleCreateHookList, &pHook->node);
   semGive(moduleCreateHookSem);
+
+  return OK;
 }
 
 /*******************************************************************************

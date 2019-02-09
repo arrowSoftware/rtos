@@ -33,6 +33,7 @@
 /* Defines */
 
 /* Imports */
+IMPORT int sysClockRateGet(void);
 
 /* Locals */
 LOCAL WDOG_ID pffasttimoWd;

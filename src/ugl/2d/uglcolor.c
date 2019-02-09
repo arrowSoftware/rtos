@@ -169,6 +169,6 @@ UGL_STATUS uglColorFree(UGL_DEVICE_ID devId,
 
   /* Unlock */
   uglOsUnLock(devId->lockId);
-
+  return UGL_STATUS_OK;
 }
 

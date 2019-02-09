@@ -36,7 +36,7 @@ extern "C" {
 extern STATUS semEvRegister(SEM_ID semId,
 			    u_int32_t events,
 			    u_int8_t options);
-extern semEvUnregister(SEM_ID semId);
+extern STATUS semEvUnregister(SEM_ID semId);
 
 #ifdef __cplusplus
 }
