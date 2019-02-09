@@ -2723,6 +2723,8 @@ void addDemo(void)
 
 int helpDemo(void);
 SYMBOL symTableDemo[] = {
+  {NULL, "_tyler", tyler, 0, N_TEXT | N_EXT },
+  {NULL, "tyler", tyler, 0, N_TEXT | N_EXT },
   {NULL, "_createHook", createHook, 0, N_TEXT | N_EXT},
   {NULL, "_deleteHook", deleteHook, 0, N_TEXT | N_EXT},
   {NULL, "_switchHook", switchHook, 0, N_TEXT | N_EXT},
