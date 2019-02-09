@@ -208,7 +208,6 @@ int  vnioReadlink (
  *
  * RETURNS: OK on success, error otherwise
  */
-
 int  lookup (
     nameidata_t *  nidp
     ) {
@@ -319,6 +318,7 @@ int  lookup (
     return (OK);
 }
 
+#ifdef TYLER
 /***************************************************************************
  *
  * namei -
@@ -403,7 +403,7 @@ int  namei (
     /* nidp->ni_dvp is locked; nidp->ni_vp is locked */
     return (OK);
 }
-
+#endif
 /***************************************************************************
  *
  * vattrInit - initialize all vattr fields to VNOVAL

@@ -1,25 +1,3 @@
-/******************************************************************************
-*   DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
-*
-*   This file is part of Real rtos.
-*   Copyright (C) 2008 - 2009 Surplus Users Ham Society
-*
-*   Real rtos is free software: you can redistribute it and/or modify
-*   it under the terms of the GNU Lesser General Public License as published by
-*   the Free Software Foundation, either version 2.1 of the License, or
-*   (at your option) any later version.
-*
-*   Real rtos is distributed in the hope that it will be useful,
-*   but WITHOUT ANY WARRANTY; without even the implied warranty of
-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*   GNU Lesser General Public License for more details.
-*
-*   You should have received a copy of the GNU Lesser General Public License
-*   along with Real rtos.  If not, see <http://www.gnu.org/licenses/>.
-******************************************************************************/
-
-/* pcDemo.c - Demo program for Real rtos */
-
 #include "configAll.h"
 #include <setjmp.h>
 #include <sys/ioctl.h>
@@ -85,8 +63,7 @@
 #include <ugl/ugl.h>
 #include <ugl/driver/graphics/vga/udvga.h>
 
-/* Defines */
-//#define INCLUDE_GFX
+/*#define INCLUDE_GFX*/
 #define PERIODIC_INTERVAL	(5 * sysClockRateGet() )
 #define DELAY_SHORT		(sysClockRateGet() / 10)
 #define DELAY_LONG		(1 * sysClockRateGet() )
@@ -95,7 +72,6 @@
 #define MAX_MESSAGES		10
 #define LOOP_PAL_LENGTH 	16
 
-/* Imports */
 IMPORT PART_ID memHeapPartId;
 IMPORT TCB_ID taskIdCurrent;
 IMPORT unsigned kernTicks;
@@ -110,7 +86,8 @@ extern int setjmp(jmp_buf env);
 extern STATUS inet_ntoa_b();
 extern STATUS remove(const char *path);
 
-/* Globals */
+int helpDemo(void);
+
 char bigString[] = "\n"
 		   "******************************************************\n"
   		   "Suddenly I awoke. I must have falled asleep under the \n"
@@ -135,6 +112,7 @@ int numMsg = 0;
 char buf[1024];
 int var[256];
 
+#define INCLUDE_GFX
 #ifdef INCLUDE_GFX
 
 #include "rtosball.cbm"
@@ -151,6 +129,8 @@ int animTreshold = 0;
 LOCAL PART_ID gfxPartId;
 
 extern int fs_test(void);
+
+const char *TylerGajewski = "Tyler Gajewski";
 
 int tyler(void)
 {

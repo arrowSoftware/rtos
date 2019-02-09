@@ -1,5 +1,5 @@
 OBJS =
-SUBDIRS = arch drv fs io oldfs os libc libkern tools ugl util usr net netinet \
+SUBDIRS = arch fs io oldfs os libc libkern tools ugl util usr net netinet \
           rtos
 LIB_TGT =
 
