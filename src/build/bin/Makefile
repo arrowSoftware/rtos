@@ -22,7 +22,14 @@
 # COMPILE PART
 ###############################################################################
 
-CC = gcc
+#AR       = ar
+#CC       = gcc
+#LD       = ld
+#GDB      = gdb
+AR     = /usr/local/i386elfgcc/bin/i386-elf-ar
+CC     = /usr/local/i386elfgcc/bin/i386-elf-gcc
+LD     = /usr/local/i386elfgcc/bin/i386-elf-ld
+GDB    = /usr/local/i386elfgcc/bin/i386-elf-gdb
 RM = rm -f
 
 CPU = PENTIUM2
