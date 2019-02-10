@@ -159,30 +159,33 @@ STATUS ifLibInit(int ifqMaxLen)
 
 int ifIndexAlloc(void)
 {
-  if (ifIndexValue == 0)
-    return ERROR;
+    if (ifIndexValue == 0)
+    {
+        printf("[!](%s:%d) ifIndexValue = 0\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  semTake(ifIndexSem, WAIT_FOREVER);
+    semTake(ifIndexSem, WAIT_FOREVER);
 
-  if (ifIndexValue == -1) {
+    if (ifIndexValue == -1)
+    {
+        printf("[!](%s:%d) ifIndexValue = -1\n", __func__, __LINE__);
+        semGive(ifIndexSem);
+        return ERROR;
+    }
+
+    /* If overflow */
+    if (++ifIndexValue >= IF_MAX_INDEX)
+    {
+        printf("[!](%s:%d) ifIndexValue overflow\n", __func__, __LINE__);
+        semGive(ifIndexSem);
+        ifIndexValue = -1;
+        return ERROR;
+    } /* End if overflow */
 
     semGive(ifIndexSem);
-    return ERROR;
 
-  }
-
-  /* If owerflow */
-  if (++ifIndexValue >= IF_MAX_INDEX) {
-
-    semGive(ifIndexSem);
-    ifIndexValue = -1;
-    return ERROR;
-
-  } /* End if overflow */
-
-  semGive(ifIndexSem);
-
-  return ifIndexValue;
+    return ifIndexValue;
 }
 
 /*******************************************************************************
@@ -255,101 +258,112 @@ struct ifnet* ifIndexToIfp(int index)
 
 STATUS if_attach(struct ifnet *ifp)
 {
-  unsigned int socksize, ifasize;
-  int i, s, namelen, unitlen, masklen;
-  char buf[12], *unitname;
-  struct ifnet **p;
-  struct sockaddr_dl *sdl;
-  struct ifaddr *ifa;
+    unsigned int socksize, ifasize;
+    int i, s, namelen, unitlen, masklen;
+    char buf[12], *unitname;
+    struct ifnet **p;
+    struct sockaddr_dl *sdl;
+    struct ifaddr *ifa;
 
-  /* Initialize locals */
-  p = &ifnet;
+    /* Initialize locals */
+    p = &ifnet;
 
-  /* Initialize default flags */
-  ifp->if_flags |= IFF_NOTRAILERS;
+    /* Initialize default flags */
+    ifp->if_flags |= IFF_NOTRAILERS;
 
-  /* Initialize queue len */
-  if (ifp->if_snd.ifq_maxlen == 0)
-    ifp->if_snd.ifq_maxlen = ifqmaxlen;
+    /* Initialize queue len */
+    if (ifp->if_snd.ifq_maxlen == 0)
+    {
+        ifp->if_snd.ifq_maxlen = ifqmaxlen;
+    }
 
-  /* Precalculate variables */
-  unitname = sprint_d((unsigned int) ifp->if_unit, buf, sizeof(buf));
-  namelen = strlen(ifp->if_name);
-  unitlen = strlen(unitname);
+    /* Precalculate variables */
+    unitname = sprint_d((unsigned int) ifp->if_unit, buf, sizeof(buf));
+    namelen = strlen(ifp->if_name);
+    unitlen = strlen(unitname);
 
-  masklen = OFFSET(struct sockaddr_dl, sdl_data[0]) + unitlen + namelen;
+    masklen = OFFSET(struct sockaddr_dl, sdl_data[0]) + unitlen + namelen;
 
-  socksize = masklen + ifp->if_addrlen;
-  socksize = roundup(socksize);
-  if (socksize < sizeof(struct sockaddr_dl))
-    socksize = sizeof(struct sockaddr_dl);
+    socksize = masklen + ifp->if_addrlen;
+    socksize = roundup(socksize);
+    if (socksize < sizeof(struct sockaddr_dl))
+    {
+        socksize = sizeof(struct sockaddr_dl);
+    }
 
-  /* Size of ifaddr struct plus 2 sockets */
-  ifasize = sizeof(struct ifaddr) + 2 * socksize;
+    /* Size of ifaddr struct plus 2 sockets */
+    ifasize = sizeof(struct ifaddr) + 2 * socksize;
 
-  /* Allocate memory */
-  ifa = mb_alloc(ifasize, MT_IFADDR, M_WAIT);
-  if (ifa == NULL)
-    return ERROR;
+    /* Allocate memory */
+    ifa = mb_alloc(ifasize, MT_IFADDR, M_WAIT);
+    if (ifa == NULL)
+    {
+        printf("[!](%s:%d) mb_alloc return NULL\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  /* Get processor level */
-  s = splnet();
+    /* Get processor level */
+    s = splnet();
 
-  /* While interfaces left */
-  while (*p != NULL)
-    p = &((*p)->if_next);
+    /* While interfaces left */
+    while (*p != NULL)
+    {
+        p = &((*p)->if_next);
+    }
 
-  /* Set processor level */
-  splx(s);
+    /* Set processor level */
+    splx(s);
 
-  /* Create new interface index */
-  i = ifIndexAlloc();
-  if (i == ERROR) {
+    /* Create new interface index */
+    i = ifIndexAlloc();
+    if (i == ERROR)
+    {
+        printf("[!](%s:%d) ifIndexAlloc return ERROR\n", __func__, __LINE__);
+        mb_free(ifa);
+        return ERROR;
+    }
 
-    mb_free(ifa);
-    return ERROR;
+    /* Set interface index */
+    ifp->if_index = i;
 
-  }
+    /* Set pointer to interface */
+    *p = ifp;
 
-  /* Set interface index */
-  ifp->if_index = i;
+    /* Clear all memory allocted */
+    memset(ifa, 0, ifasize);
 
-  /* Set pointer to interface */
-  *p = ifp;
+    /* Initialize link socket structure */
+    sdl = (struct sockaddr_dl *) (ifa + 1);
+    sdl->sdl_len = socksize;
+    sdl->sdl_family = AF_LINK;
+    memcpy(sdl->sdl_data, ifp->if_name, namelen);
+    memcpy(namelen + (char *) sdl->sdl_data, unitname, unitlen);
+    sdl->sdl_nlen = (namelen += unitlen);
+    sdl->sdl_index = ifp->if_index;
+    sdl->sdl_type = ifp->if_type;
 
-  /* Clear all memory allocted */
-  memset(ifa, 0, ifasize);
+    /* Setup inteface address structure */
+    ifa->ifa_ifp = ifp;
+    ifa->ifa_next = ifp->if_addrlist;
+    ifa->ifa_rtrequest = (FUNCPTR) link_rtrequest;
 
-  /* Initialize link socket structure */
-  sdl = (struct sockaddr_dl *) (ifa + 1);
-  sdl->sdl_len = socksize;
-  sdl->sdl_family = AF_LINK;
-  memcpy(sdl->sdl_data, ifp->if_name, namelen);
-  memcpy(namelen + (char *) sdl->sdl_data, unitname, unitlen);
-  sdl->sdl_nlen = (namelen += unitlen);
-  sdl->sdl_index = ifp->if_index;
-  sdl->sdl_type = ifp->if_type;
+    /* Setup interface structure */
+    ifp->if_addrlist = ifa;
 
-  /* Setup inteface address structure */
-  ifa->ifa_ifp = ifp;
-  ifa->ifa_next = ifp->if_addrlist;
-  ifa->ifa_rtrequest = (FUNCPTR) link_rtrequest;
+    /* Setup interface address addr field */
+    ifa->ifa_addr = (struct sockaddr *) sdl;
 
-  /* Setup interface structure */
-  ifp->if_addrlist = ifa;
+    /* Setup interface mask, 2:nd socket allocated */
+    sdl = (struct sockaddr_dl *) (socksize + (char *) sdl);
+    ifa->ifa_netmask = (struct sockaddr *) sdl;
+    sdl->sdl_len = masklen;
 
-  /* Setup interface address addr field */
-  ifa->ifa_addr = (struct sockaddr *) sdl;
+    while (namelen != 0)
+    {
+        sdl->sdl_data[--namelen] = 0xff;
+    }
 
-  /* Setup interface mask, 2:nd socket allocated */
-  sdl = (struct sockaddr_dl *) (socksize + (char *) sdl);
-  ifa->ifa_netmask = (struct sockaddr *) sdl;
-  sdl->sdl_len = masklen;
-
-  while (namelen != 0)
-    sdl->sdl_data[--namelen] = 0xff;
-
-  return OK;
+    return OK;
 }
 
 /*******************************************************************************

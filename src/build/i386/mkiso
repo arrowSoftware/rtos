@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sudo cp rtos rtos_iso/boot/.
+sudo grub-mkrescue -o rtos.iso rtos_iso

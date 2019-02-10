@@ -93,6 +93,7 @@
 
 /* Imports */
 IMPORT PART_ID memHeapPartId;
+extern STATUS loattach(void);
 
 /* Gloabals */
 int standTableSize = 0;
@@ -701,8 +702,11 @@ SYMBOL standTable[] = {
   {NULL, "_uglUgiDevDeinit", uglUgiDevDeinit, 0, N_TEXT | N_EXT},
   {NULL, "_uglGraphicsDevDestroy", uglGraphicsDevDestroy, 0, N_TEXT | N_EXT},
 
+  {NULL, "_loattach", loattach, 0, N_TEXT | N_EXT},
+
   /* Heap memory partition */
   {NULL, "_memHeapPartId", NULL, 0, N_DATA | N_EXT}
+
 };
 
 /* Locals */

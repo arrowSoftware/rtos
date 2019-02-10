@@ -1,14 +1,14 @@
 RM     = rm -rvf
 OUTPUT = rtos
-AR     = /usr/local/i386elfgcc/bin/i386-elf-ar
-CC     = /usr/local/i386elfgcc/bin/i386-elf-gcc
-LD     = /usr/local/i386elfgcc/bin/i386-elf-ld
-GDB    = /usr/local/i386elfgcc/bin/i386-elf-gdb
+#AR     = /usr/local/i386elfgcc/bin/i386-elf-ar
+#CC     = /usr/local/i386elfgcc/bin/i386-elf-gcc
+#LD     = /usr/local/i386elfgcc/bin/i386-elf-ld
+#GDB    = /usr/local/i386elfgcc/bin/i386-elf-gdb
 NASM = nasm
-#AR = ar
-#CC = gcc
-#LD = ld
-#GDB = gdb
+AR = ar
+CC = gcc
+LD = ld
+GDB = gdb
 
 CPU = PENTIUM2
 CFLAGS = -nostdinc -fno-builtin -m32 -fno-stack-protector
@@ -32,7 +32,7 @@ LD_LIBRARY_PATH = -L$(RTOS_BASE)/lib/$(CPU)/
 
 OBJECTS = sysALib.o sysLib.o ../all/usrConfig.o ../all/usrKernel.o \
           ../all/usrMmuInit.o ../all/usrNetwork.o ../all/standTable.o \
-          ../all/pcDemo.o
+          ../all/pcDemo.o symTblAll.o
 
 all: image
 

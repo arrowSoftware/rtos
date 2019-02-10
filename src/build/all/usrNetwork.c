@@ -139,121 +139,171 @@ TCP_CFG_PARAMS tcpCfgParams = {
  *
  * RETURNS: OK or ERROR
  ******************************************************************************/
-
 STATUS usrNetInit(char *bootString)
 {
-  int i;
-  CL_DESC  *pClDesc;
-  struct protosw protoSwitch;
+    int i;
+    CL_DESC  *pClDesc;
+    struct protosw protoSwitch;
 
-  /* Initialize network buffers library */
-  netBufLibInit();
+    /* Initialize network buffers library */
+    netBufLibInit();
 
-  /* Initialize number of entries */
-  clDescTableNumEntries = NELEMENTS(clDescTable);
+    /* Initialize number of entries */
+    clDescTableNumEntries = NELEMENTS(clDescTable);
 
-  /* Initialize memory */
-  mClBlkConfig.memSize = (mClBlkConfig.mBlkNum * (MSIZE + sizeof(long)) +
-			  mClBlkConfig.clBlkNum * CL_BLK_SZ);
-  mClBlkConfig.memArea = malloc(mClBlkConfig.memSize);
-  if (mClBlkConfig.memArea == NULL)
-    return ERROR;
+    /* Initialize memory */
+    mClBlkConfig.memSize = (mClBlkConfig.mBlkNum * (MSIZE + sizeof(long)) +
+          mClBlkConfig.clBlkNum * CL_BLK_SZ);
+    mClBlkConfig.memArea = malloc(mClBlkConfig.memSize);
+    if (mClBlkConfig.memArea == NULL)
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  /* For all elements in descriptor table */
-  for (pClDesc = clDescTable, i = 0;
+    /* For all elements in descriptor table */
+    for (pClDesc = clDescTable, i = 0;
        i < clDescTableNumEntries;
-       i++, pClDesc++) {
+       i++, pClDesc++)
+    {
+        pClDesc->memSize = pClDesc->clNum * (pClDesc->clSize * sizeof(long));
+        pClDesc->memArea = malloc(pClDesc->memSize);
 
-    pClDesc->memSize = pClDesc->clNum * (pClDesc->clSize * sizeof(long));
-    pClDesc->memArea = malloc(pClDesc->memSize);
-    if (pClDesc->memArea == NULL)
-      return ERROR;
+        if (pClDesc->memArea == NULL)
+        {
+            return ERROR;
+        }
+    } /* End for all elements in descriptor table */
 
-  } /* End for all elements in descriptor table */
+    /* Initialize number of entries */
+    sysClDescTableNumEntries = NELEMENTS(sysClDescTable);
 
-  /* Initialize number of entries */
-  sysClDescTableNumEntries = NELEMENTS(sysClDescTable);
+    /* Initialize memory */
+    sysMclBlkConfig.memSize = (sysMclBlkConfig.mBlkNum * (MSIZE + sizeof(long)) +
+                 sysMclBlkConfig.clBlkNum * CL_BLK_SZ);
+    sysMclBlkConfig.memArea = malloc(sysMclBlkConfig.memSize);
 
-  /* Initialize memory */
-  sysMclBlkConfig.memSize = (sysMclBlkConfig.mBlkNum * (MSIZE + sizeof(long)) +
-			     sysMclBlkConfig.clBlkNum * CL_BLK_SZ);
-  sysMclBlkConfig.memArea = malloc(sysMclBlkConfig.memSize);
-  if (sysMclBlkConfig.memArea == NULL)
-    return ERROR;
+    if (sysMclBlkConfig.memArea == NULL)
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  /* For all elements in descriptor table */
-  for (pClDesc = sysClDescTable, i = 0;
+    /* For all elements in descriptor table */
+    for (pClDesc = sysClDescTable, i = 0;
        i < sysClDescTableNumEntries;
-       i++, pClDesc++) {
+       i++, pClDesc++)
+    {
+        pClDesc->memSize = pClDesc->clNum * (pClDesc->clSize * sizeof(long));
+        pClDesc->memArea = malloc(pClDesc->memSize);
 
-    pClDesc->memSize = pClDesc->clNum * (pClDesc->clSize * sizeof(long));
-    pClDesc->memArea = malloc(pClDesc->memSize);
-    if (pClDesc->memArea == NULL)
-      return ERROR;
+        if (pClDesc->memArea == NULL)
+        {
+            printf("[!](%s:%d)\n", __func__, __LINE__);
+            return ERROR;
+        }
+    } /* End for all elements in descriptor table */
 
-  } /* End for all elements in descriptor table */
+    /* Initialize set processor level */
+    if ( miscLibInit() != OK)
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  /* Initialize set processor level */
-  if ( miscLibInit() != OK)
-    return ERROR;
+    /* Initialize network buffers */
+    if ( mbufLibInit() != OK )
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  /* Initialize network buffers */
-  if ( mbufLibInit() != OK )
-    return ERROR;
+    /* Start net task */
+    netLibInit();
 
-  /* Start net task */
-  netLibInit();
+    /* Initialize domains */
+    unixDomainLibInit(256);
+    inetLibInit();
 
-  /* Initialize domains */
-  unixDomainLibInit(256);
-  inetLibInit();
+    /* Initialize socket confuguration */
+    soLibInit(SOMAXCONN_CFG);
+    inLibInit();
 
-  /* Initialize socket confuguration */
-  soLibInit(SOMAXCONN_CFG);
-  inLibInit();
+    /* Initialize socket library */
+    if ( sockLibInit(SOCKET_MAX_FD) != OK )
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  /* Initialize socket library */
-  if ( sockLibInit(SOCKET_MAX_FD) != OK )
-    return ERROR;
+    /* Add bsd socket library */
+    if ( bsdSockLibAdd(AF_UNIX) != OK)
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  /* Add bsd socket library */
-  if ( bsdSockLibAdd(AF_UNIX) != OK)
-    return ERROR;
+    /* Add bsd socket library */
+    if ( bsdSockLibAdd(AF_INET) != OK)
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  /* Add bsd socket library */
-  if ( bsdSockLibAdd(AF_INET) != OK)
-    return ERROR;
+    if ( ipLibInit(&ipCfgParams) != OK )
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  if ( ipLibInit(&ipCfgParams) != OK )
-    return ERROR;
+    rawLibInit(8192, 8192);
 
-  rawLibInit(8192, 8192);
+    if ( rawIpLibInit(&rawipCfgParams) != OK )
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  if ( rawIpLibInit(&rawipCfgParams) != OK )
-    return ERROR;
+    if (icmpLibInit(&icmpCfgParams) != OK)
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  if (icmpLibInit(&icmpCfgParams) != OK)
-    return ERROR;
+    if ( radixLibInit(sizeof(struct sockaddr_in)) != OK )
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  if ( radixLibInit(sizeof(struct sockaddr_in)) != OK )
-    return ERROR;
+    routeLibInit();
 
-  routeLibInit();
+    if ( ifLibInit(IFQ_MAXLEN) != OK )
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  if ( ifLibInit(IFQ_MAXLEN) != OK )
-    return ERROR;
+    if ( loattach() != OK)
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  if ( loattach() != OK)
-    return ERROR;
+    if ( udpLibInit(&udpCfgParams) != OK)
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  if ( udpLibInit(&udpCfgParams) != OK)
-    return ERROR;
+    if ( tcpLibInit(&tcpCfgParams) != OK )
+    {
+        printf("[!](%s:%d)\n", __func__, __LINE__);
+        return ERROR;
+    }
 
-  if ( tcpLibInit(&tcpCfgParams) != OK )
-    return ERROR;
+    domaininit();
 
-  domaininit();
-
-  return OK;
+    return OK;
 }
 

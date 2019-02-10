@@ -65,45 +65,47 @@ int looutput(struct ifnet *ifp,
  *
  * RETURNS: OK or ERROR
  ******************************************************************************/
-
 STATUS loattach(void)
 {
-  int i;
-  struct ifnet *ifp;
+    int i;
+    struct ifnet *ifp;
 
-  for (i = 0; i < NLOOP; i++) {
+    for (i = 0; i < NLOOP; i++)
+    {
+        ifp = &loif[i];
 
-    ifp = &loif[i];
+        memset(ifp, 0, sizeof(struct ifnet));
 
-    memset(ifp, 0, sizeof(struct ifnet));
+        ifp->if_unit = i;
+        ifp->if_name = malloc(strlen(ifName));
 
-    ifp->if_unit = i;
-    ifp->if_name = malloc( strlen(ifName) );
-    if (ifp->if_name == NULL)
-      return ERROR;
+        if (ifp->if_name == NULL)
+        {
+            printf("[!](%s:%d) if_name is NULL\n", __func__, __LINE__);
+            return ERROR;
+        }
 
-    strcpy(ifp->if_name, ifName);
+        strcpy(ifp->if_name, ifName);
 
-    ifp->if_mtu = LOMTU;
-    ifp->if_flags = IFF_LOOPBACK | IFF_MULTICAST;
-    ifp->if_type = IFT_LOOP;
-    ifp->if_hdrlen = 0;
-    ifp->if_addrlen = 0;
-    ifp->pCookie = NULL;
+        ifp->if_mtu = LOMTU;
+        ifp->if_flags = IFF_LOOPBACK | IFF_MULTICAST;
+        ifp->if_type = IFT_LOOP;
+        ifp->if_hdrlen = 0;
+        ifp->if_addrlen = 0;
+        ifp->pCookie = NULL;
 
-    ifp->if_ioctl = (FUNCPTR) NULL;
-    ifp->if_output = (FUNCPTR) looutput;
+        ifp->if_ioctl = (FUNCPTR) NULL;
+        ifp->if_output = (FUNCPTR) looutput;
 
-    if (if_attach(ifp) != OK) {
-
-      free(ifp->if_name);
-      return ERROR;
-
+        if (if_attach(ifp) != OK)
+        {
+            printf("[!](%s:%d) if_attach return ERROR\n", __func__, __LINE__);
+            free(ifp->if_name);
+            return ERROR;
+        }
     }
 
-  }
-
-  return OK;
+    return OK;
 }
 
 /*******************************************************************************

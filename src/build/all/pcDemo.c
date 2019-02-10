@@ -2838,6 +2838,8 @@ int helpDemo(void)
   return 0;
 }
 
+extern SYMBOL symTblAllInit(void);
+
 int init(void)
 {
   struct tm startDate;
@@ -2899,9 +2901,11 @@ int init(void)
 
   printf("Demo started, type 'helpDemo' for a list of commands\n");
 
+  symTblAllInit();
   return 0;
 }
 
+/* Start here */
 int demo(void)
 {
   taskCreateHookAdd((FUNCPTR) createHook);
@@ -2950,6 +2954,10 @@ int demo(void)
   return 0;
 }
 
+
+/******************************************************************************
+ * blk stuff
+ */
 #define NUM_MBLK_LOCAL 256
 #define NUM_CLBLK_LOCAL 256
 #define NUM_MBLK_CL_LOCAL 256

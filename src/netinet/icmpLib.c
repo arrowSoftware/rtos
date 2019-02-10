@@ -131,6 +131,7 @@ STATUS icmpLibInit(ICMP_CFG_PARAMS *cfg)
 #ifdef ICMPPRINTFS
   icmpprintfs = 0;
 #endif
+  return OK;
 }
 
 /*******************************************************************************
