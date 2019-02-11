@@ -2838,7 +2838,22 @@ int helpDemo(void)
   return 0;
 }
 
-extern SYMBOL symTblAllInit(void);
+extern SYMBOL *symTblAll;
+extern int symTblAllSize;
+
+void symTblAllInit(void)
+{
+    int i = 0;
+
+    symTblAllSize = NELEMENTS(symTblAll);
+
+    printf("Adding %d symbols for symTblAll.\n", symTblAllSize);
+
+    for (i = 0; i < symTblAllSize; i++)
+    {
+        symTableAdd(sysSymTable, &symTblAll[i]);
+    }
+}
 
 int init(void)
 {

@@ -89,11 +89,9 @@
 #include <net/netShow.h>
 #include <net/if.h>
 #include <ugl/ugl.h>
-#include <netinet/inetLib.h>
 
 /* Imports */
 IMPORT PART_ID memHeapPartId;
-extern STATUS loattach(void);
 
 /* Gloabals */
 int standTableSize = 0;
@@ -673,9 +671,6 @@ SYMBOL standTable[] = {
   {NULL, "_netJobAdd", netJobAdd, 0, N_TEXT | N_EXT},
   {NULL, "_netPoolShow", netPoolShow, 0, N_TEXT | N_EXT},
   {NULL, "_ifShow", ifShow, 0, N_TEXT | N_EXT},
-  {NULL, "_ifAddrAdd", ifAddrAdd, 0, N_TEXT | N_EXT},
-  {NULL, "_if_up", if_up, 0, N_TEXT | N_EXT},
-  {NULL, "_ifunit", ifunit, 0, N_TEXT | N_EXT},  
   {NULL, "_routeShow", routeShow, 0, N_TEXT | N_EXT},
   {NULL, "_domainShow", domainShow, 0, N_TEXT | N_EXT},
 
@@ -701,8 +696,6 @@ SYMBOL standTable[] = {
   {NULL, "_uglUgiDevInit", uglUgiDevInit, 0, N_TEXT | N_EXT},
   {NULL, "_uglUgiDevDeinit", uglUgiDevDeinit, 0, N_TEXT | N_EXT},
   {NULL, "_uglGraphicsDevDestroy", uglGraphicsDevDestroy, 0, N_TEXT | N_EXT},
-
-  {NULL, "_loattach", loattach, 0, N_TEXT | N_EXT},
 
   /* Heap memory partition */
   {NULL, "_memHeapPartId", NULL, 0, N_DATA | N_EXT}

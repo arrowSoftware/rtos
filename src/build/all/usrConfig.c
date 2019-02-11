@@ -98,6 +98,9 @@
 /* Imports */
 IMPORT int standTableSize;
 IMPORT SYMBOL standTable[];
+IMPORT int symTblAllSize;
+IMPORT SYMBOL symTblAll[];
+
 IMPORT void standTableInit(void);
 IMPORT void sysHwInit0(void);
 IMPORT void sysHwInit(void);
@@ -444,6 +447,13 @@ void usrRoot(char *pMemPoolStart, unsigned memPoolSize)
 
   for (i = 0; i < standTableSize; i++)
     symTableAdd(sysSymTable, &standTable[i]);
+
+  printf("Adding %d symbols for symTblAll.\n", symTblAllSize);
+
+  for (i = 0; i < symTblAllSize; i++)
+  {
+      symTableAdd(sysSymTable, &symTblAll[i]);
+  }
 
 #if defined(INCLUDE_LOGGING) && defined(INCLUDE_LOG_STARTUP)
 
