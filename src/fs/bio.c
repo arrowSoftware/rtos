@@ -33,6 +33,8 @@
 #include <fs/vnode.h>
 #include <os/miscLib.h>
 
+#define debug printf("bio.c:%d\n", __LINE__);
+
 struct buf buf[NBUF];
 // struct spinlock buf_table_lock;
 
@@ -161,30 +163,35 @@ struct buf * buf_getblk (
  * RETURNS: OK on success, non-zero otherwise
  */
 
-int  bread (
-    struct vnode *  pVnode,    /* vnode to assign to buffer (not yet used) */
-    lblkno_t        lbn,       /* logical block number */
-    int             blkSize,   /* block size */
-    struct ucred *  pCred,     /* ptr to user credentials */
-    struct buf **   ppBuf      /* output: double ptr to buffer with data */
-    ) {
-    struct buf *  b;
-    unsigned int  dev = pVnode->v_mount->mnt_dev;
+int bread(struct vnode *pVnode, /* vnode to assign to buffer (not yet used) */
+          lblkno_t lbn,         /* logical block number */
+          int blkSize,          /* block size */
+          struct ucred *pCred,  /* ptr to user credentials */
+          struct buf **ppBuf)   /* output: double ptr to buffer with data */
+{
+debug
+    struct buf *b;
+    unsigned int dev = pVnode->v_mount->mnt_dev;
     strategy_args_t  args;
-
+debug
     b = buf_getblk (pVnode, lbn, blkSize);
-    if (b->b_flags & B_VALID) {
+debug
+    if (b->b_flags & B_VALID)
+    {
         *ppBuf = b;
         return (OK);
     }
-
+debug
     args.vp = pVnode;
     args.bp = b;
-    VOP_STRATEGY (pVnode, args);
+debug
+    VOP_STRATEGY(pVnode, args);
+debug
     b->b_flags |= B_VALID;
-
+debug
     *ppBuf = b;
-    return (OK);
+debug
+    return OK;
 }
 
 /***************************************************************************

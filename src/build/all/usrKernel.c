@@ -69,89 +69,70 @@ unsigned kernReadyBmp[8];
 
 void usrKernelInit(void)
 {
-  classLibInit();
-  taskLibInit();
+    historyLogStr((void*)usrKernelInit, "usrKernelInit", "Entry", 0);
+    classLibInit();
+    taskLibInit();
 
 #ifdef INCLUDE_TASK_HOOKS
-
-  taskHookLibInit();
-
-#ifdef INCLUDE_SHOW_ROUTINES
-
-  taskHookShowInit();
-
-#endif /* INCLUDE_SHOW_ROUTINES */
-
+    taskHookLibInit();
+    #ifdef INCLUDE_SHOW_ROUTINES
+        taskHookShowInit();
+    #endif /* INCLUDE_SHOW_ROUTINES */
 #endif /* INCLUDE_TASK_HOOK */
 
 #ifdef INCLUDE_SEM_BINARY
-
-  semLibInit();
-  semBLibInit();
-
+    semLibInit();
+    semBLibInit();
 #endif /* INCLUDE_SEM_BINARY */
 
 #ifdef INCLUDE_SEM_MUTEX
-
-  semLibInit();
-  semMLibInit();
-
+    semLibInit();
+    semMLibInit();
 #endif /* INCLUDE_SEM_MUTEX */
 
 #ifdef INCLUDE_SEM_COUNTING
-
-  semLibInit();
-  semCLibInit();
-
+    semLibInit();
+    semCLibInit();
 #endif /* INCLUDE_SEM_COUNTING */
 
 #ifdef INCLUDE_SEM_RW
-
-  semLibInit();
-  semRWLibInit();
-
+    semLibInit();
+    semRWLibInit();
 #endif /* INCLUDE_SEM_RW */
 
 #ifdef INCLUDE_rtos_EVENTS
-
-  eventLibInit();
-
+    eventLibInit();
 #endif /* INCLUDE_rtos_EVENTS */
 
 #ifdef INCLUDE_MSG_Q
-
-  msgQLibInit();
-
-#ifdef INCLUDE_SHOW_ROUTINES
-
-  msgQShowInit();
-
-#endif /* INCLUDE_SHOW_ROUTINES */
-
+    msgQLibInit();
+    #ifdef INCLUDE_SHOW_ROUTINES
+        msgQShowInit();
+    #endif /* INCLUDE_SHOW_ROUTINES */
 #endif /* INCLUDE_MSG_Q */
 
 #ifdef INCLUDE_SHOW_ROUTINES
-
-  classShowInit();
-  taskShowInit();
-  semShowInit();
-
+    classShowInit();
+    taskShowInit();
+    semShowInit();
 #endif /* INCLUDE_SHOW_ROUTINES */
 
-  /* Initialize kernel queues */
-  qInit(&kernActiveQ, qFifoClassId);
-  qInit(&kernTickQ, qPrioClassId);
+    /* Initialize kernel queues */
+    qInit(&kernActiveQ, qFifoClassId);
+    qInit(&kernTickQ, qPrioClassId);
 
 #ifdef INCLUDE_CONSTANT_RDY_Q
-  qInit(&kernReadyQ, qPriBmpClassId, 256, kernReadyLst, kernReadyBmp);
+    qInit(&kernReadyQ, qPriBmpClassId, 256, kernReadyLst, kernReadyBmp);
 #else
-  qInit(&kernReadyQ, qPrioClassId);
+    qInit(&kernReadyQ, qPrioClassId);
 #endif /* INCLUDE_CONSTANT_RDY_Q */
 
-  /* Initialize kernel work queue */
-  kernQLibInit();
+    /* Initialize kernel work queue */
+    kernQLibInit();
 
-  /* Initialize kernel clock to zero */
-  kernTickLibInit();
+    /* Initialize kernel clock to zero */
+    kernTickLibInit();
+
+    historyLogStr((void*)usrKernelInit, "usrKernelInit", "Exit", 0);
 }
 

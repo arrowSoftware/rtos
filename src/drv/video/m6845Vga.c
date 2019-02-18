@@ -140,8 +140,8 @@ LOCAL void vgaStatInit(void)
     vs->colorMode = COLOR;
     vs->savedCol = vs->col = 0;
     vs->savedRow = vs->row = 0;
-    vs->savedCurrAttrib = vs->currAttrib = DEFAULT_ATR;
-    vs->defaultAttrib = DEFAULT_ATR;
+    vs->savedCurrAttrib = vs->currAttrib = ATRB_FG_BRIGHTWHITE | ATRB_BG_BLACK;
+    vs->defaultAttrib = ATRB_FG_BRIGHTWHITE | ATRB_BG_BLACK;
     vs->currCharPos = vs->memBase;
     vs->savedReverse = vs->reverse;
     vs->nCol = 80;

@@ -28,6 +28,7 @@ extern int actStart;
 extern int addDemo();
 extern int addDomain();
 extern int addTaskVars();
+extern int addToHistory();
 extern int animTreshold;
 extern int asprintf();
 extern int __assert();
@@ -372,6 +373,13 @@ extern int hashTableRemove();
 extern int hashTableTerminate();
 extern int help();
 extern int helpDemo();
+extern int historyCount;
+extern int historyData;
+extern int historyDump();
+extern int historyInit();
+extern int historyInitialized;
+extern int historyLog();
+extern int historySize;
 extern int i();
 extern int i2b();
 extern int ialloc();
@@ -1360,6 +1368,8 @@ extern int symTableDestroy();
 extern int symTableInit();
 extern int symTableRemove();
 extern int symTableTerminate();
+extern int symTblAllInit();
+extern int symTblAllSize;
 extern int symTypeGet();
 extern int symValueGet();
 extern int sys_chdir();
@@ -1793,7 +1803,7 @@ extern int yystart();
 extern int zeroes;
 extern int zeroin_addr;
 
-SYMBOL symTblAll[1770] =
+SYMBOL symTblAll[1781] =
 {
     {NULL, "_abs", (char*)abs, 0, (N_TEXT | N_EXT)},
     {NULL, "_accept", (char*)accept, 0, (N_TEXT | N_EXT)},
@@ -1801,6 +1811,7 @@ SYMBOL symTblAll[1770] =
     {NULL, "_addDemo", (char*)addDemo, 0, (N_TEXT | N_EXT)},
     {NULL, "_addDomain", (char*)addDomain, 0, (N_TEXT | N_EXT)},
     {NULL, "_addTaskVars", (char*)addTaskVars, 0, (N_TEXT | N_EXT)},
+    {NULL, "_addToHistory", (char*)addToHistory, 0, (N_TEXT | N_EXT)},
     {NULL, "_animTreshold", (char*)&animTreshold, 0, (N_BSS | N_EXT)},
     {NULL, "_asprintf", (char*)asprintf, 0, (N_TEXT | N_EXT)},
     {NULL, "___assert", (char*)__assert, 0, (N_TEXT | N_EXT)},
@@ -2145,6 +2156,13 @@ SYMBOL symTblAll[1770] =
     {NULL, "_hashTableTerminate", (char*)hashTableTerminate, 0, (N_TEXT | N_EXT)},
     {NULL, "_help", (char*)help, 0, (N_TEXT | N_EXT)},
     {NULL, "_helpDemo", (char*)helpDemo, 0, (N_TEXT | N_EXT)},
+    {NULL, "_historyCount", (char*)&historyCount, 0, (N_BSS | N_EXT)},
+    {NULL, "_historyData", (char*)&historyData, 0, (N_BSS | N_EXT)},
+    {NULL, "_historyDump", (char*)historyDump, 0, (N_TEXT | N_EXT)},
+    {NULL, "_historyInit", (char*)historyInit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_historyInitialized", (char*)&historyInitialized, 0, (N_BSS | N_EXT)},
+    {NULL, "_historyLog", (char*)historyLog, 0, (N_TEXT | N_EXT)},
+    {NULL, "_historySize", (char*)&historySize, 0, (N_DATA | N_EXT)},
     {NULL, "_i", (char*)i, 0, (N_TEXT | N_EXT)},
     {NULL, "_i2b", (char*)i2b, 0, (N_TEXT | N_EXT)},
     {NULL, "_ialloc", (char*)ialloc, 0, (N_TEXT | N_EXT)},
@@ -3133,6 +3151,9 @@ SYMBOL symTblAll[1770] =
     {NULL, "_symTableInit", (char*)symTableInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_symTableRemove", (char*)symTableRemove, 0, (N_TEXT | N_EXT)},
     {NULL, "_symTableTerminate", (char*)symTableTerminate, 0, (N_TEXT | N_EXT)},
+    {NULL, "_symTblAll", (char*)&symTblAll, 0, (N_DATA | N_EXT)},
+    {NULL, "_symTblAllInit", (char*)symTblAllInit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_symTblAllSize", (char*)&symTblAllSize, 0, (N_DATA | N_EXT)},
     {NULL, "_symTypeGet", (char*)symTypeGet, 0, (N_TEXT | N_EXT)},
     {NULL, "_symValueGet", (char*)symValueGet, 0, (N_TEXT | N_EXT)},
     {NULL, "_sys_chdir", (char*)sys_chdir, 0, (N_TEXT | N_EXT)},
@@ -3566,4 +3587,4 @@ SYMBOL symTblAll[1770] =
     {NULL, "_zeroes", (char*)&zeroes, 0, (N_BSS | N_EXT)},
     {NULL, "_zeroin_addr", (char*)&zeroin_addr, 0, (N_BSS | N_EXT)},
 };
-int symTblAllSize = 1770;
+int symTblAllSize = 1781;

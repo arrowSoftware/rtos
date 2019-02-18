@@ -1,25 +1,3 @@
-/******************************************************************************
-*   DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
-*
-*   This file is part of Real rtos.
-*   Copyright (C) 2008 - 2009 Surplus Users Ham Society
-*
-*   Real rtos is free software: you can redistribute it and/or modify
-*   it under the terms of the GNU Lesser General Public License as published by
-*   the Free Software Foundation, either version 2.1 of the License, or
-*   (at your option) any later version.
-*
-*   Real rtos is distributed in the hope that it will be useful,
-*   but WITHOUT ANY WARRANTY; without even the implied warranty of
-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*   GNU Lesser General Public License for more details.
-*
-*   You should have received a copy of the GNU Lesser General Public License
-*   along with Real rtos.  If not, see <http://www.gnu.org/licenses/>.
-******************************************************************************/
-
-/* kernLib.c - Kernel */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -29,6 +7,7 @@
 #include <util/qPrioLib.h>
 #include <util/qPriBmpLib.h>
 #include <util/qFifoLib.h>
+#include <util/historyLog.h>
 #include <rtos/taskLib.h>
 #include <rtos/kernLib.h>
 #include <rtos/kernQLib.h>
@@ -38,16 +17,14 @@
 #include <rtos/kernTickLib.h>
 #include <arch/taskArchLib.h>
 
-/* Macros */
-#define TCB_SIZE		((unsigned)STACK_ROUND_UP(sizeof(TCB)))
-#define MEM_BLOCK_HEADER_SIZE	((unsigned)STACK_ROUND_UP(sizeof(BLOCK_HEADER)))
-#define MEM_FREE_BLOCK_SIZE	((unsigned)STACK_ROUND_UP(sizeof(FREE_BLOCK)))
-#define MEM_BASE_BLOCK_SIZE	(MEM_BLOCK_HEADER_SIZE+MEM_FREE_BLOCK_SIZE)
-#define MEM_END_BLOCK_SIZE	(MEM_BLOCK_HEADER_SIZE)
-#define MEM_TOTAL_BLOCK_SIZE	((2*MEM_BLOCK_HEADER_SIZE)+MEM_FREE_BLOCK_SIZE)
+#define TCB_SIZE              ((unsigned)STACK_ROUND_UP(sizeof(TCB)))
+#define MEM_BLOCK_HEADER_SIZE ((unsigned)STACK_ROUND_UP(sizeof(BLOCK_HEADER)))
+#define MEM_FREE_BLOCK_SIZE   ((unsigned)STACK_ROUND_UP(sizeof(FREE_BLOCK)))
+#define MEM_BASE_BLOCK_SIZE   (MEM_BLOCK_HEADER_SIZE+MEM_FREE_BLOCK_SIZE)
+#define MEM_END_BLOCK_SIZE    (MEM_BLOCK_HEADER_SIZE)
+#define MEM_TOTAL_BLOCK_SIZE  ((2*MEM_BLOCK_HEADER_SIZE)+MEM_FREE_BLOCK_SIZE)
 
 
-/* Globals */
 char kernVersion[] = "rtos pre-alpha";
 BOOL kernInitialized = FALSE;
 BOOL kernelState = FALSE;
@@ -58,81 +35,94 @@ TCB_ID taskIdCurrent = NULL;
 Q_HEAD kernActiveQ = {NULL, 0, 0 ,NULL};
 Q_HEAD kernTickQ;
 Q_HEAD kernReadyQ;
-
 char* pKernExcStkBase;
 char* pKernExcStkEnd;
 unsigned kernExcStkCnt = 0;
-
 char *pRootMemStart;
 unsigned rootMemNBytes;
 int rootTaskId;
 
-/* Imports */
-IMPORT void kernTaskLoadContext(void);
+extern void kernTaskLoadContext(void);
 
 /*******************************************************************************
- * kernelInit - Initialize kernel
- * 
- * RETURNS: N/A
- ******************************************************************************/
-
+*   Function:
+*       kernelInit.
+*
+*   Description:
+*       Initializes the kernel.
+*
+*   Arguments:
+*        rootFunc: TODO
+*        rootMemSize:
+*        pMemPoolStart:
+*        pMemPoolEnd:
+*        stackSize:
+*        lockOutLevel:
+*
+*   Returns:
+*       None.
+*******************************************************************************/
 void kernelInit(FUNCPTR rootFunc,
-		unsigned rootMemSize,
-		char *pMemPoolStart,
-		char *pMemPoolEnd,
-		unsigned intStackSize,
-		int lockOutLevel)
+                unsigned rootMemSize,
+                char *pMemPoolStart,
+                char *pMemPoolEnd,
+                unsigned intStackSize,
+                int lockOutLevel)
 {
-  union {
-    char align[8];
-    TCB initTcb;
-  } tcbAligned;
+    union
+    {
+        char align[8];
+        TCB initTcb;
+    } tcbAligned;
 
-  TCB_ID tcbId;
-  unsigned rootStkSize, memPoolSize;
-  char *pRootStkBase;
-  int level;
+    TCB_ID tcbId;
+    unsigned rootStkSize, memPoolSize;
+    char *pRootStkBase;
+    int level;
 
-  /* Align input parameters */
-  pMemPoolStart = (char *) STACK_ROUND_UP(pMemPoolStart);
-  pMemPoolEnd = (char *) STACK_ROUND_UP(pMemPoolEnd);
-  intStackSize = STACK_ROUND_UP(intStackSize);
+    historyLogStr((void *)kernelInit,
+                  "kernelInit",
+                  "Entry: 0x%x, %d, 0x%x, 0x%x, %d, %d",
+                  rootFunc, rootMemSize, pMemPoolStart,
+                  pMemPoolEnd, intStackSize, lockOutLevel);
 
-  /* Setup global root task memory byte count */
-  rootMemNBytes = STACK_ROUND_UP(rootMemSize);
 
-  /* Setup interrupt lock level */
-  intLockLevelSet(lockOutLevel);
+    /* Align input parameters */
+    pMemPoolStart = (char *)STACK_ROUND_UP(pMemPoolStart);
+    pMemPoolEnd = (char *)STACK_ROUND_UP(pMemPoolEnd);
+    intStackSize = STACK_ROUND_UP(intStackSize);
 
-  /* Initialize kernel state variables */
-  kernelState = FALSE;
-  kernRoundRobin = FALSE;
-  kernRoundRobinTimeSlice = 0;
+    /* Setup global root task memory byte count */
+    rootMemNBytes = STACK_ROUND_UP(rootMemSize);
+
+    /* Setup interrupt lock level */
+    intLockLevelSet(lockOutLevel);
+
+    /* Initialize kernel state variables */
+    kernelState = FALSE;
+    kernRoundRobin = FALSE;
+    kernRoundRobinTimeSlice = 0;
 
 #if (_STACK_DIR == _STACK_GROWS_DOWN)
+    /* Setup interrupt stack at bottom of memory pool */
+    pKernExcStkBase = pMemPoolStart + intStackSize;
+    pKernExcStkEnd = pMemPoolStart;
 
-  /* Setup interrupt stack at bottom of memory pool */
-  pKernExcStkBase = pMemPoolStart + intStackSize;
-  pKernExcStkEnd = pMemPoolStart;
+    /* Fill stack with 0xee */
+    memset(pKernExcStkEnd, 0xee, (int) intStackSize);
 
-  /* Fill stack with 0xee */
-  memset(pKernExcStkEnd, 0xee, (int) intStackSize);
-
-  /* Memory will start after interrupt stack */
-  pMemPoolStart = pKernExcStkBase;
-
+    /* Memory will start after interrupt stack */
+    pMemPoolStart = pKernExcStkBase;
 #else /* _STACK_DIR == _STACK_GROWS_UP */
+    /* Setup interrupt stack at bottom of memory pool */
+    pKernExcStkBase = pMemPoolStart;
+    pKernExcStkEnd = pMemPoolStart + intStackSize;
 
-  /* Setup interrupt stack at bottom of memory pool */
-  pKernExcStkBase = pMemPoolStart;
-  pKernExcStkEnd = pMemPoolStart + intStackSize;
+    /* Fill stack with 0xee */
+    memset(pKernExcStkBase, 0xee, (int) intStackSize);
 
-  /* Fill stack with 0xee */
-  memset(pKernExcStkBase, 0xee, (int) intStackSize);
-
-  /* Memory will start after interrupt stack */
-  pMemPoolStart = pKernExcStkEnd;
-
+    /* Memory will start after interrupt stack */
+    pMemPoolStart = pKernExcStkEnd;
 #endif /* _STACK_DIR */
 
   /*
@@ -141,19 +131,15 @@ void kernelInit(FUNCPTR rootFunc,
    * One memory block must be left alone at the end and at the beginning
    * of the memory pool.
    */
-  rootStkSize = rootMemNBytes - TCB_SIZE - MEM_TOTAL_BLOCK_SIZE;
-  pRootMemStart = pMemPoolEnd - rootMemNBytes;
+    rootStkSize = rootMemNBytes - TCB_SIZE - MEM_TOTAL_BLOCK_SIZE;
+    pRootMemStart = pMemPoolEnd - rootMemNBytes;
 
 #if (_STACK_DIR == _STACK_GROWS_DOWN)
-
-  pRootStkBase = pRootMemStart + rootStkSize + MEM_BASE_BLOCK_SIZE;
-  tcbId = (TCB_ID) pRootStkBase;
-
+    pRootStkBase = pRootMemStart + rootStkSize + MEM_BASE_BLOCK_SIZE;
+    tcbId = (TCB_ID) pRootStkBase;
 #else /* _STACK_DIR == _STACK_GROWS_UP */
-
-  tcbId = (TCB_ID) (pRootMemStart + MEM_BASE_BLOCK_SIZE);
-  pRootStkBase = pRootMemStart + TCB_SIZE + MEM_BASE_BLOCK_SIZE;
-
+    tcbId = (TCB_ID) (pRootMemStart + MEM_BASE_BLOCK_SIZE);
+    pRootStkBase = pRootMemStart + TCB_SIZE + MEM_BASE_BLOCK_SIZE;
 #endif /* _STACK_DIR */
 
   /*
@@ -161,44 +147,38 @@ void kernelInit(FUNCPTR rootFunc,
    * Since the kernel ready queue will be empty no task
    * switch will occur.
    */
-
   taskIdCurrent = NULL;
   memset(&tcbAligned, 0, sizeof(TCB));
 
   /* New memory pool will lose the memory which is reserved for the root task */
-  memPoolSize = (unsigned) ( (int) pRootMemStart - (int) pMemPoolStart );
+  memPoolSize = (unsigned) ((int) pRootMemStart - (int)pMemPoolStart);
 
   /* Initialize the root task */
-  taskInit(tcbId,						/* TCB */
-	   "tRootTask",						/* Name */
-	   0,							/* Priority */
-	   /* TASK_OPTIONS_DEALLOC_STACK | */
-	   TASK_OPTIONS_UNBREAKABLE,				/* Options */
-	   pRootStkBase,				 	/* Stk base */
-	   (unsigned) rootStkSize,				/* Stk size */
-	   (FUNCPTR) rootFunc,					/* Func */
-	   (ARG) pMemPoolStart,					/* arg0 */
-	   (ARG) memPoolSize,					/* arg1 */
-	   (ARG) 0,
-	   (ARG) 0,
-	   (ARG) 0,
-	   (ARG) 0,
-	   (ARG) 0,
-	   (ARG) 0,
-	   (ARG) 0,
-	   (ARG) 0);
+  taskInit(tcbId,                    /* TCB */
+           "tRootTask",              /* Name */
+           0,                        /* Priority */
+           TASK_OPTIONS_UNBREAKABLE, /* Options */
+           pRootStkBase,             /* Stack base */
+           (unsigned)rootStkSize,    /* Stack size */
+           (FUNCPTR)rootFunc,        /* Func */
+           (ARG)pMemPoolStart,       /* arg0 */
+           (ARG)memPoolSize,         /* arg1 */
+           (ARG)0, (ARG)0, (ARG)0, (ARG)0, (ARG)0,
+           (ARG)0, (ARG)0, (ARG)0);
 
-  /* Store root tasks id */
-  rootTaskId = (int) tcbId;
+    /* Store root tasks id */
+    rootTaskId = (int) tcbId;
 
-  /* Temporary storage for taskIdCurrent, later it points to next ready task */
-  taskIdCurrent = &tcbAligned.initTcb;
+    /* Temporary storage for taskIdCurrent, later it points to next ready task */
+    taskIdCurrent = &tcbAligned.initTcb;
 
-  /* Mark kernel as initialized */
-  kernInitialized = TRUE;
+    /* Mark kernel as initialized */
+    kernInitialized = TRUE;
 
-  /* Start the root task */
-  taskActivate (rootTaskId);
+    /* Start the root task */
+    taskActivate (rootTaskId);
+
+    historyLogStr((void *)kernelInit, "kernelInit", "Exit", 0);
 }
 
 /*******************************************************************************

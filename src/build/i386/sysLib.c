@@ -1,29 +1,7 @@
-/******************************************************************************
-*   DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
-*
-*   This file is part of Real rtos.
-*   Copyright (C) 2008 - 2009 Surplus Users Ham Society
-*
-*   Real rtos is free software: you can redistribute it and/or modify
-*   it under the terms of the GNU Lesser General Public License as published by
-*   the Free Software Foundation, either version 2.1 of the License, or
-*   (at your option) any later version.
-*
-*   Real rtos is distributed in the hope that it will be useful,
-*   but WITHOUT ANY WARRANTY; without even the implied warranty of
-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*   GNU Lesser General Public License for more details.
-*
-*   You should have received a copy of the GNU Lesser General Public License
-*   along with Real rtos.  If not, see <http://www.gnu.org/licenses/>.
-******************************************************************************/
-
 /* sysLib.c - System dependent C code */
 
-/* Includes */
 #include "configAll.h"
 #include "config.h"
-
 #include <sys/types.h>
 #include <rtos.h>
 #include <arch/regs.h>
@@ -34,8 +12,6 @@
 #include <arch/mmuArchLib.h>
 #include <os/cacheLib.h>
 #include <os/vmLib.h>
-
-/* Driver include */
 
 /* Interrput controller */
 #include <drv/intrCtl/i8259Pic.c>
@@ -58,7 +34,6 @@ PC_CON_DEV pcConDev[N_VIRTUAL_CONSOLES];
 
 /* Graphics driver */
 #include <drv/video/vgahw.c>
-
 #include <drv/netif/if_loop.c>
 
 /* Dma driver */
@@ -67,7 +42,7 @@ PC_CON_DEV pcConDev[N_VIRTUAL_CONSOLES];
 /* Floppy driver */
 #include <drv/fdisk/nec765Fd.c>
 
-/* Defines */
+#include <util/historyLog.h>
 
 #ifdef LOCAL_MEM_AUTOSIZE
 
@@ -228,9 +203,9 @@ char* sysPhysMemTop(void);
  *
  * RETURNS: N/A
  ******************************************************************************/
-
 void sysHwInit0(void)
 {
+    historyLogStr((void *)sysHwInit0, "sysHwInit0", "Entry", 0);
 }
 
 /*******************************************************************************
@@ -241,32 +216,36 @@ void sysHwInit0(void)
 
 void sysHwInit(void)
 {
-  int i;
-  PHYS_MEM_DESC *pVm;
+    int i;
+    PHYS_MEM_DESC *pVm;
+
+    historyLogStr((void*)sysHwInit, "sysHwInit", "Entry", 0);
 
 #ifdef INCLUDE_MMU
+    /* Initialize number of virtual memory descriptors */
+    pVm = &sysPhysMemDesc[0];
 
-  /* Initialize number of virtual memory descriptos */
-  pVm = &sysPhysMemDesc[0];
+    /* For all virtual memory descriptos */
+    for (i = 0; i < NELEMENTS(sysPhysMemDesc); i++)
+    {
+        if ( (int) pVm->vAddr != (int) VM_INVALID_ADDR)
+        {
+            pVm++;
+        }
+        else
+        {
+            break;
+        }
+    }
 
-  /* For all virtual memory descriptos */
-  for (i = 0; i < NELEMENTS(sysPhysMemDesc); i++) {
-
-    if ( (int) pVm->vAddr != (int) VM_INVALID_ADDR)
-      pVm++;
-    else
-      break;
-
-  } /* End for all virtual m memory descriptos */
-
-  /* Store number of descriptors */
-  sysPhysMemDescNumEntries = i;
-
+    /* Store number of descriptors */
+    sysPhysMemDescNumEntries = i;
 #endif /* INCLUDE_MMU */
 
-  /* Initialize interrupt controller */
-  sysIntInitPIC();
-  intEoi = sysIntEOI;
+    /* Initialize interrupt controller */
+    sysIntInitPIC();
+    intEoi = sysIntEOI;
+    historyLogStr((void*)sysHwInit, "sysHwInit", "Exit", 0);
 }
 
 /*******************************************************************************

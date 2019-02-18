@@ -30,26 +30,25 @@
 #include <arch/excArchLib.h>
 #include <arch/i386/sysI386Lib.h>
 #include <arch/intArchLib.h>
+#include <util/historyLog.h>
 
-/* Imports */
-IMPORT void intVBRSet(FUNCPTR *baseAddress);
-IMPORT void kernIntEnt(void);
-IMPORT void kernIntExit(void);
-IMPORT u_int32_t sysIntIdtType;
-IMPORT u_int32_t sysCsInt;
+extern void intVBRSet(FUNCPTR *baseAddress);
+extern void kernIntEnt(void);
+extern void kernIntExit(void);
+extern u_int32_t sysIntIdtType;
+extern u_int32_t sysCsInt;
 
-/* Globals */
-u_int32_t		intLockMask	= 0x0;
-u_int32_t		intCnt		= 0;
-VOIDFUNCPTR		intVecSetEnt	= NULL;
-VOIDFUNCPTR		intVecSetExit	= NULL;
-VOIDFUNCPTR		intEoi		= NULL;
-VOIDFUNCPTR		intCallTbl[IDT_ENTRIES];
-void			*intParamTbl[IDT_ENTRIES];
+u_int32_t intLockMask = 0x0;
+u_int32_t intCnt = 0;
+VOIDFUNCPTR intVecSetEnt = NULL;
+VOIDFUNCPTR intVecSetExit = NULL;
+VOIDFUNCPTR intEoi = NULL;
+VOIDFUNCPTR intCallTbl[IDT_ENTRIES];
+void *intParamTbl[IDT_ENTRIES];
 
-/* Locals */
-LOCAL FUNCPTR		*intVecBase = 0;
-LOCAL u_int8_t		intConnectCode[] =
+
+LOCAL FUNCPTR *intVecBase = 0;
+LOCAL u_int8_t intConnectCode[] =
 {
 /* 00	e8 kk kk kk kk	call	kernIntEnt	* Kernel enter hook
  * 05	50		pushl	%eax		* Save regs
@@ -93,18 +92,22 @@ LOCAL u_int8_t		intConnectCode[] =
 
 void intVecBaseSet(FUNCPTR *baseAddr)
 {
-  u_int8_t idt[6];
-  u_int8_t *p = idt;
+    historyLogStr((void*)intVecBaseSet, "intVecBaseSet", "Entry(0x%x)", baseAddr);
 
-  /* Store pointer locally */
-  intVecBase = baseAddr;
+    u_int8_t idt[6];
+    u_int8_t *p = idt;
 
-  /* Setup idt descriptor pointer */
-  *(u_int16_t *) p = 0x07ff;
-  *(u_int32_t *) (p + 2) = (u_int32_t) baseAddr;
+    /* Store pointer locally */
+    intVecBase = baseAddr;
 
-  /* Call external assembly function to update IDT */
-  intVBRSet((FUNCPTR *) idt);
+    /* Setup idt descriptor pointer */
+    *(u_int16_t *) p = 0x07ff;
+    *(u_int32_t *) (p + 2) = (u_int32_t) baseAddr;
+
+    /* Call external assembly function to update IDT */
+    intVBRSet((FUNCPTR *) idt);
+
+    historyLogStr((void*)intVecBaseSet, "intVecBaseSet", "Exit", 0);
 }
 
 /*******************************************************************************

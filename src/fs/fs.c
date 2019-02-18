@@ -15,6 +15,8 @@
 #include <fs/vnode.h>
 #include <fs/mount.h>
 
+#define debug printf("fs.c:%d\n", __LINE__);
+
 // Inode table.  The inode table is an in-memory cache of the 
 // on-disk inode structures.  If an inode in the table has a non-zero
 // reference count, then some open files refer to it and it must stay
@@ -112,57 +114,73 @@ bfree(int dev, unsigned int b)
 // from disk into the in-core table if necessary.
 // The returned inode has busy set and has its ref count incremented.
 // Caller must iput the return value when done with it.
-struct inode*
-iget(unsigned int dev, unsigned int inum)
+struct inode *iget(unsigned int dev, unsigned int inum)
 {
-  struct inode *ip, *nip;
-  struct dinode *dip;
-  struct buf *bp;
+    printf("fs.c:%d iget(%d, %d)\n", __LINE__, dev, inum);
+    struct inode *ip, *nip;
+    struct dinode *dip;
+    struct buf *bp;
 
-  //acquire(&inode_table_lock);
+    //acquire(&inode_table_lock);
 
- loop:
-  nip = 0;
-  for(ip = &inode[0]; ip < &inode[NINODE]; ip++){
-    if(ip->ref > 0 && ip->dev == dev && ip->inum == inum){
-      if(ip->busy){
-        //sleep(ip, &inode_table_lock);
-        // Since we droped inode_table_lock, ip might have been reused
-        // for some other inode entirely.  Must start the scan over,
-        // and hopefully this time we will find the inode we want 
-        // and it will not be busy.
-        goto loop;
-      }
-      ip->ref++;
-      ip->busy = 1;
-      //release(&inode_table_lock);
-      return ip;
+    loop:
+    nip = 0;
+debug
+    for(ip = &inode[0]; ip < &inode[NINODE]; ip++)
+    {
+debug
+        if(ip->ref > 0 && ip->dev == dev && ip->inum == inum)
+        {
+debug
+            if(ip->busy)
+            {
+debug
+                //sleep(ip, &inode_table_lock);
+                // Since we droped inode_table_lock, ip might have been reused
+                // for some other inode entirely.  Must start the scan over,
+                // and hopefully this time we will find the inode we want
+                // and it will not be busy.
+                goto loop;
+            }
+debug
+            ip->ref++;
+            ip->busy = 1;
+            //release(&inode_table_lock);
+            return ip;
+        }
+debug
+        if(nip == 0 && ip->ref == 0)
+        {
+            nip = ip;
+        }
+debug
     }
-    if(nip == 0 && ip->ref == 0)
-      nip = ip;
-  }
-
-  if(nip == 0)
-    panic("out of inodes");
-
-  nip->dev = dev;
-  nip->inum = inum;
-  nip->ref = 1;
-  nip->busy = 1;
-
-  //release(&inode_table_lock);
-
-  bread (pRootSyncer, IBLOCK(inum), 512, NULL, &bp);
-  dip = &((struct dinode*)(bp->b_data))[inum % IPB];
-  nip->type = dip->type;
-  nip->major = dip->major;
-  nip->minor = dip->minor;
-  nip->nlink = dip->nlink;
-  nip->size = dip->size;
-  memmove(nip->addrs, dip->addrs, sizeof(nip->addrs));
-  brelse(bp);
-
-  return nip;
+debug
+    if(nip == 0)
+    {
+        panic("out of inodes");
+    }
+debug
+    nip->dev = dev;
+    nip->inum = inum;
+    nip->ref = 1;
+    nip->busy = 1;
+debug
+    //release(&inode_table_lock);
+debug
+    bread(pRootSyncer, IBLOCK(inum), 512, NULL, &bp);
+debug
+    dip = &((struct dinode*)(bp->b_data))[inum % IPB];
+    nip->type = dip->type;
+    nip->major = dip->major;
+    nip->minor = dip->minor;
+    nip->nlink = dip->nlink;
+    nip->size = dip->size;
+    memmove(nip->addrs, dip->addrs, sizeof(nip->addrs));
+debug
+    brelse(bp);
+debug
+    return nip;
 }
 
 // Copy inode in memory, which has changed, to disk.
@@ -190,15 +208,14 @@ iupdate(struct inode *ip)
 
 // Allocate a new inode with the given type
 // from the file system on device dev.
-struct inode*
-ialloc(unsigned int dev, short type)
+struct inode *ialloc(unsigned int dev, short type)
 {
-  struct inode *ip;
-  struct dinode *dip = 0;
-  struct superblock *sb;
-  int ninodes;
-  int inum;
-  struct buf *bp;
+    struct inode *ip;
+    struct dinode *dip = 0;
+    struct superblock *sb;
+    int ninodes;
+    int inum;
+    struct buf *bp;
 
   bread (pRootSyncer, 1, 512, NULL, &bp);
   sb = (struct superblock*) bp->b_data;
@@ -501,59 +518,91 @@ writei(struct inode *ip, char *addr, unsigned int off, unsigned int n)
 //   *ret_ip and *ret_last may be zero even if return value is zero.
 // NAMEI_DELETE: return locked parent inode, offset of dirent in *ret_off.
 //   return 0 if name doesn't exist.
-struct inode*
-namei(char *path, int mode, unsigned int *ret_off,
-      char **ret_last, struct inode **ret_ip)
+struct inode *namei(char *path,
+                    int mode,
+                    unsigned int *ret_off,
+                    char **ret_last,
+                    struct inode **ret_ip)
 {
-  struct inode *dp;
-  char *cp = path, *cp1;
-  unsigned int off, dev;
-  struct buf *bp;
-  struct dirent *ep;
-  int i, l, atend;
-  unsigned int ninum;
+    struct inode *dp;
+    char *cp = path, *cp1;
+    unsigned int off, dev;
+    struct buf *bp;
+    struct dirent *ep;
+    int i, l, atend;
+    unsigned int ninum;
+debug
+    if(ret_off)
+    {
+        *ret_off = 0xffffffff;
+    }
 
-  if(ret_off)
-    *ret_off = 0xffffffff;
-  if(ret_last)
-    *ret_last = 0;
-  if(ret_ip)
-    *ret_ip = 0;
+    if(ret_last)
+    {
+        *ret_last = 0;
+    }
 
-  if(*cp == '/')
-    dp = iget(pRootMount->mnt_dev, 1);
-  else {
-    dp = cwd;
-    iincref(dp);
-    ilock(dp);
-  }
+    if(ret_ip)
+    {
+        *ret_ip = 0;
+    }
+debug
+    if(*cp == '/')
+    {
+debug
+        dp = iget(pRootMount->mnt_dev, 1);
+debug
+    }
+    else
+    {
+        dp = cwd;
+debug
+        iincref(dp);
+debug
+        ilock(dp);
+debug
+    }
+debug
+    for(;;)
+    {
+        while(*cp == '/')
+        {
+            cp++;
+        }
+debug
+    if(*cp == '\0')
+    {
+        if(mode == NAMEI_LOOKUP)
+        {
+            return dp;
+        }
 
-  for(;;){
-    while(*cp == '/')
-      cp++;
+        if(mode == NAMEI_CREATE && ret_ip)
+        {
+            *ret_ip = dp;
+            return 0;
+        }
 
-    if(*cp == '\0'){
-      if(mode == NAMEI_LOOKUP)
-        return dp;
-      if(mode == NAMEI_CREATE && ret_ip){
-        *ret_ip = dp;
+        iput(dp);
         return 0;
-      }
-      iput(dp);
-      return 0;
+    }
+debug
+    if(dp->type != T_DIR)
+    {
+        iput(dp);
+        return 0;
     }
 
-    if(dp->type != T_DIR){
-      iput(dp);
-      return 0;
+    for(i = 0; cp[i] != 0 && cp[i] != '/'; i++);
+    {
+        l = i;
     }
 
-    for(i = 0; cp[i] != 0 && cp[i] != '/'; i++)
-      ;
-    l = i;
     if(i > DIRSIZ)
-      l = DIRSIZ;
-
+    {
+        l = DIRSIZ;
+    }
+debug
     for(off = 0; off < dp->size; off += BSIZE){
 #if 0
       bp = bread(dp->dev, bmap(dp, off / BSIZE));

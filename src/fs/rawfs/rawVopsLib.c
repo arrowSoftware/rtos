@@ -532,6 +532,7 @@ int  rawVopAbort (
 void rawVopStrategy (
     strategy_args_t  args
     ) {
+    printf("HEREaaaaaaaaaa\n");
     RAWFS_DEV *          pFsDev;
     RAWFS_VOLUME_DESC *  pVolDesc;
     struct bio *         pBio;

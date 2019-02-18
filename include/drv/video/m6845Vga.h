@@ -25,7 +25,7 @@
 
 #define N_PARAM			16
 
-#define ATRB_FG_BLACK		0x01
+#define ATRB_FG_BLACK		0x00
 #define ATRB_FG_BLUE		0x01
 #define ATRB_FG_GREEN		0x02
 #define ATRB_FG_CYAN		0x03

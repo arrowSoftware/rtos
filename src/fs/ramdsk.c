@@ -11,23 +11,33 @@
 
 unsigned char *ramdsk_buf[RAMDSK_MAX];
 
+#define debug printf("ramdsk.c:%d\n", __LINE__);
 int ramdsk_init(int diskno, unsigned int nsecs)
 {
-  struct superblock super;
+    printf("ramdsk.c:%d ramdsk_init(%x, %d)\n", __LINE__, diskno, nsecs);
+    struct superblock super;
+debug
+    ramdsk_buf[diskno] = (unsigned char *) malloc(nsecs * RAMDSK_BLKSIZE);
+debug
 
-  if ( (ramdsk_buf[diskno] =
-	(unsigned char *) malloc(nsecs * RAMDSK_BLKSIZE)) == NULL)
-    return 1;
+    if (ramdsk_buf[diskno] == NULL)
+    {
+        return 1;
+    }
+debug
 
-  memset(ramdsk_buf[diskno], 0x00, nsecs * RAMDSK_BLKSIZE);
+    memset(ramdsk_buf[diskno], 0x00, nsecs * RAMDSK_BLKSIZE);
+debug
 
-  super.size = nsecs;
-  super.nblocks = nsecs;
-  super.ninodes = 512;
+    super.size = nsecs;
+    super.nblocks = nsecs;
+    super.ninodes = 512;
+    debug
 
-  memcpy(ramdsk_buf[diskno], (unsigned char *) &super, sizeof(super));
+    memcpy(ramdsk_buf[diskno], (unsigned char *) &super, sizeof(super));
+debug
 
-  return 0;
+    return 0;
 }
 
 void ramdsk_deinit(int diskno)

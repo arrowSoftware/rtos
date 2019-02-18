@@ -12,43 +12,46 @@
  * RETURNS: OK on success, non-zero otherwise
  */
 
-int mountCreate (
-    vfsops_t *  vfsops,
-    unsigned    device,
-    int         maxFiles,
-    char *      devName,
-    mount_t **  ppMount
-    ) {
-    SEM_ID     semId;
-    mount_t *  mp;
-    vnode_t *  vp;
-    filedesc_t *  fdList;
-    int        size;
-    int        i;
-    char *     data;
-    u_long *   cookieData;
+int mountCreate (vfsops_t *vfsops,
+                 unsigned device,
+                 int maxFiles,
+                 char *devName,
+                 mount_t **ppMount)
+{
+    SEM_ID semId;
+    mount_t *mp;
+    vnode_t *vp;
+    filedesc_t *fdList;
+    int size;
+    int i;
+    char *data;
+    u_long *cookieData;
 
     if ((vfsops == NULL) || (devName == NULL) || (ppMount == NULL) ||
         (vfsops->devSize <= 0) || (vfsops->inodeSize <= 0) ||
-        (maxFiles <= 0)) {
+        (maxFiles <= 0))
+    {
         return (EINVAL);
     }
 
     /* Allocate memory for the size of the device */
     mp = (mount_t *) malloc (sizeof (mount_t) + vfsops->devSize);
-    if (mp == NULL) {
+    if (mp == NULL)
+    {
         return (ENOMEM);
     }
 
     /* Create syncer and file/logical vnodes.  <vp> will be syncer. */
     vp = vnodesCreate (mp, vfsops->inodeSize, maxFiles);
-    if (vp == NULL) {
+    if (vp == NULL)
+    {
         free (mp);
         return (ENOMEM);
     }
 
     semId = semMCreate (SEM_Q_PRIORITY);
-    if (semId == NULL) {
+    if (semId == NULL)
+    {
         vnodesDelete (vp, maxFiles);
         free (mp);
         return (ENOMEM);
@@ -56,14 +59,16 @@ int mountCreate (
 
     fdList = malloc (sizeof (filedesc_t) +
                      sizeof (u_long) * vfsops->maxCookies);
-    if (fdList == NULL) {
+    if (fdList == NULL)
+    {
         vnodesDelete (vp, maxFiles);
         semDelete (semId);
         free (mp);
     }
 
     cookieData = (u_long *) &fdList[maxFiles];
-    for (i = 0; i < maxFiles; i++) {
+    for (i = 0; i < maxFiles; i++)
+    {
         fdList[i].fd_vnode = NULL;             /* not using any vnode */
         fdList[i].fd_mode  = 0;                /* no mode (yet) */
         fdList[i].fd_off   = 0;                /* current file position */
@@ -81,19 +86,24 @@ int mountCreate (
     listInit (&mp->mnt_vused);    /* list of used vnodes */
     listInit (&mp->mnt_buflist);  /* lru list of available buffers */
 
-    for (i = 0; i < maxFiles; i++, vp++) {
+    for (i = 0; i < maxFiles; i++, vp++)
+    {
         listAdd (&mp->mnt_vlist, &vp->v_node);
     }
+
 
     mp->mnt_bufsize = 0;    /* No buffers allocated yet */
     mp->mnt_maxfiles = maxFiles;
     mp->mnt_lock = semId;
     mp->mnt_dev = device;
                                         
-    data = ((char *) mp) + sizeof (mount_t);
+    data = ((char *)mp) + sizeof(mount_t);
     mp->mnt_data = data;
 
-    return (OK);
+    *ppMount = mp;
+
+    printf("mount.c:%d device %d\n", __LINE__, device);
+    return OK;
 }
 
 /***************************************************************************

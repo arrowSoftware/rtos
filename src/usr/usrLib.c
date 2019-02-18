@@ -1002,26 +1002,24 @@ void version(void)
 
 void printLogo(void)
 {
-  int i;
-  static char *logo[] = {
-"+-++-++-++-+   _           _  _           _  _           _ ",
-"|R||e||a||l|  (_)         (_)(_) _     _ (_)(_)_       _(_)",
-"+-++-++-++-+  (_)         (_)(_)(_)   (_)(_)  (_)_   _(_)  ",
-"              (_)_       _(_)(_) (_)_(_) (_)    (_)_(_)    ",
-"                (_)     (_)  (_)   (_)   (_)     _(_)_     ",
-"                 (_)   (_)   (_)         (_)   _(_) (_)_   ",
-"                  (_)_(_)    (_)         (_) _(_)     (_)_ ",
-"                    (_)      (_)         (_)(_)         (_)"
+    int i;
+    static char *logo[] = {
+" ______    _______  _______  _______ ",
+"|    _ |  |       ||       ||       |",
+"|   | ||  |_     _||   _   ||  _____|",
+"|   |_||_   |   |  |  | |  || |_____ ",
+"|    __  |  |   |  |  |_|  ||_____  |",
+"|   |  | |  |   |  |       | _____| |",
+"|___|  |_|  |___|  |_______||_______|"
 };
-                                       
 
-  for (i = 0; i < NELEMENTS(logo); i++)
-    printf("%s\n", logo[i]);
+    for (i = 0; i < NELEMENTS(logo); i++)
+    {
+      printf("%s\n", logo[i]);
+    }
 
-  printf("KERNEL: %s.\n", kernelVersion());
-  printf("This system is released under GNU lesser general public license.\n");
-
-  printf("\n");
+    printf("KERNEL: %s.\n", kernelVersion());
+    printf("\n");
 }
 
 /*******************************************************************************

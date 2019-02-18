@@ -144,39 +144,44 @@ sys_mknod(char *path, int type, int major, int minor)
   return 0;
 }
 
+#define debug printf("fcalls.c:%d\n", __LINE__);
 int sys_mkdir(char *path)
 {
-  struct inode *nip;
-  struct inode *dp;
-  struct dirent de;
-  char *last;
-
-  dp = namei(path, NAMEI_CREATE, 0, &last, 0);
-  if(dp == 0)
-    return -1;
-
-  nip = mknod1(dp, last, T_DIR, 0, 0);
-  if(nip == 0){
+    struct inode *nip;
+    struct inode *dp;
+    struct dirent de;
+    char *last;
+debug
+    dp = namei(path, NAMEI_CREATE, 0, &last, 0);
+    if(dp == 0)
+    {
+        return -1;
+    }
+debug
+    nip = mknod1(dp, last, T_DIR, 0, 0);
+debug
+    if(nip == 0)
+    {
+        iput(dp);
+        return -1;
+    }
+debug
+    dp->nlink++;
+    iupdate(dp);
+debug
+    memset(de.d_name, '\0', DIRSIZ);
+    de.d_name[0] = '.';
+    de.d_ino = nip->inum;
+    writei(nip, (char*) &de, 0, sizeof(de));
+debug
+    de.d_ino = dp->inum;
+    de.d_name[1] = '.';
+    writei(nip, (char*) &de, sizeof(de), sizeof(de));
+debug
     iput(dp);
-    return -1;
-  }
-
-  dp->nlink++;
-  iupdate(dp);
-
-  memset(de.d_name, '\0', DIRSIZ);
-  de.d_name[0] = '.';
-  de.d_ino = nip->inum;
-  writei(nip, (char*) &de, 0, sizeof(de));
-
-  de.d_ino = dp->inum;
-  de.d_name[1] = '.';
-  writei(nip, (char*) &de, sizeof(de), sizeof(de));
-
-  iput(dp);
-  iput(nip);
-
-  return 0;
+    iput(nip);
+debug
+    return 0;
 }
 
 int

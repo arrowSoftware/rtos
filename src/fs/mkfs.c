@@ -68,9 +68,11 @@ int mkfs(void)
   }
 */
 
+/*
+ * TYLER
   assert((512 % sizeof(struct dinode)) == 0);
   assert((512 % sizeof(struct dirent)) == 0);
-
+*/
 /*
   fsfd = open(argv[1], O_RDWR|O_CREAT|O_TRUNC, 0666);
   if(fsfd < 0){

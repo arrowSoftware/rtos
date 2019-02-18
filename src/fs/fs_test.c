@@ -207,43 +207,56 @@ void check_file(char *path)
   sys_close(fd);
 }
 
+#define debug printf("fs_test.c:%d\n", __LINE__);
 int fs_test(void)
 {
-  int fd;
-  int error;
-
-  error = mountCreate (&vfsops, 1, 10, "/devname", &pRootMount);
-  if (error != OK) {
-    return (error);
-  }
-  pRootSyncer = pRootMount->mnt_syncer;
-
-  if (ramdsk_init(pRootMount->mnt_dev, 1024) != 0) {
-    fprintf(stderr, "Error initializing ramdisk\n");
-    return 1;
-  }
-  mkfs();
-
-  binit();
-  iinit();
-  fileinit();
-
-  //test_blkdev();
-  //test_inode();
-  //test_inode();
-  //test_filename();
-  sys_mkdir("/usr");
-  if ( (fd = sys_open("/usr/file", O_CREAT)) < 0) {
-    fprintf(stderr, "Error unable to create file\n");
-    return 1;
-  }
-  sys_close(fd);
-
-  fill_file("/usr/file");
-  check_file("/usr/file");
-
-  ramdsk_deinit(pRootMount->mnt_dev);
-
-  return 0;
+    int fd;
+    int error;
+debug
+    error = mountCreate(&vfsops, 1, 10, "/devname", &pRootMount);
+debug
+    if (error != OK)
+    {
+        return error;
+    }
+debug
+    pRootSyncer = pRootMount->mnt_syncer;
+debug
+    if (ramdsk_init(pRootMount->mnt_dev, 1024) != 0)
+    {
+        fprintf(stderr, "Error initializing ramdisk\n");
+        return 1;
+    }
+debug
+    mkfs();
+debug
+    binit();
+debug
+    iinit();
+debug
+    fileinit();
+debug
+    //test_blkdev();
+    //test_inode();
+    //test_inode();
+    //test_filename();
+debug
+    sys_mkdir("/usr");
+debug
+    if ( (fd = sys_open("/usr/file", O_CREAT)) < 0)
+    {
+        fprintf(stderr, "Error unable to create file\n");
+        return 1;
+    }
+debug
+    sys_close(fd);
+debug
+    fill_file("/usr/file");
+debug
+    check_file("/usr/file");
+debug
+    ramdsk_deinit(pRootMount->mnt_dev);
+debug
+    return 0;
 }
 

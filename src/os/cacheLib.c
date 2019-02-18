@@ -19,20 +19,13 @@
 ******************************************************************************/
 
 /* cacheLib.c - Cache library */
-
-/* Includes */
 #include <stdlib.h>
 #include <rtos.h>
 #include <os/cacheLib.h>
+#include <util/historyLog.h>
 
-/* Defines */
+extern STATUS cacheArchLibInit(CACHE_MODE textMode, CACHE_MODE dataMode);
 
-/* Imports */
-IMPORT STATUS cacheArchLibInit(CACHE_MODE textMode, CACHE_MODE dataMode);
-
-/* Locals */
-
-/* Globals */
 BOOL cacheLibInstalled = FALSE;
 CACHE_MODE cacheDataMode = CACHE_DISABLED;
 BOOL cacheDataEnabled = FALSE;
@@ -40,7 +33,6 @@ BOOL cacheMmuAvailable = FALSE;
 FUNCPTR cacheDmaMallocFunc = NULL;
 FUNCPTR cacheDmaFreeFunc = NULL;
 
-/* Functions */
 
 /*******************************************************************************
  * cacheLibInit - Initalize cache library
@@ -50,18 +42,26 @@ FUNCPTR cacheDmaFreeFunc = NULL;
 
 STATUS cacheLibInit(CACHE_MODE textMode, CACHE_MODE dataMode)
 {
-  /* If installed */
-  if (cacheLibInstalled)
+    historyLogStr((void *)cacheLibInit, "cacheLibInit", "ENTRY", 0);
+
+    /* If installed */
+    if (cacheLibInstalled)
+    {
+        return OK;
+    }
+
+    /* Install arch cache library */
+    if ( cacheArchLibInit(textMode, dataMode) != OK)
+    {
+        return ERROR;
+    }
+
+    /* Mark as installed */
+    cacheLibInstalled = TRUE;
+
+    historyLogStr((void *)cacheLibInit, "cacheLibInit", "Exit", 0);
+
     return OK;
-
-  /* Install arch cache library */
-  if ( cacheArchLibInit(textMode, dataMode) != OK)
-    return ERROR;
-
-  /* Mark as installed */
-  cacheLibInstalled = TRUE;
-
-  return OK;
 }
 
 /*******************************************************************************

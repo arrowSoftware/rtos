@@ -56,8 +56,8 @@ IMPORT int taskSwapReference[];
 
 void rtosSpawn(TCB_ID pTcb)
 {
-  /* Activate task */
-  Q_PUT(&kernActiveQ, &pTcb->activeNode, FIFO_KEY_TAIL);
+    /* Activate task */
+    Q_PUT(&kernActiveQ, &pTcb->activeNode, FIFO_KEY_TAIL);
 }
 
 /******************************************************************************

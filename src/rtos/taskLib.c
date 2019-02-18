@@ -28,6 +28,7 @@
 #include <util/objLib.h>
 #include <util/qLib.h>
 #include <util/qPrioLib.h>
+#include <util/historyLog.h>
 #include <rtos/memPartLib.h>
 #include <rtos/rtosLib.h>
 #include <arch/intArchLib.h>
@@ -268,158 +269,154 @@ int taskCreat(const char *name,
 STATUS taskInit(TCB_ID tcbId,
                 const char *name,
                 unsigned priority,
-		int options,
-  		char *pStackBase,
+                int options,
+                char *pStackBase,
                 unsigned stackSize,
                 FUNCPTR func,
-		ARG arg0,
-		ARG arg1,
-		ARG arg2,
-		ARG arg3,
-		ARG arg4,
-		ARG arg5,
-		ARG arg6,
-		ARG arg7,
-		ARG arg8,
-		ARG arg9)
+                ARG arg0, ARG arg1, ARG arg2, ARG arg3, ARG arg4,
+                ARG arg5, ARG arg6, ARG arg7, ARG arg8, ARG arg9)
 {
-  static unsigned new_id;
-  int i, len;
-  char *taskName;
-  ARG args[MAX_TASK_ARGS];
+    static unsigned new_id;
+    int i, len;
+    char *taskName;
+    ARG args[MAX_TASK_ARGS];
 
-  if (INT_RESTRICT() != OK)
-  {
-    errnoSet (S_intLib_NOT_ISR_CALLABLE);
-    return ERROR;
-  }
+    historyLogStr((void *)taskInit,
+                  "taskInit",
+                  "Entry 0x%x, %s, %d, %d, 0x%x, %d, 0x%x, %d, %d, %d, %d",
+                  tcbId, name, priority, options, pStackBase, stackSize, func,
+                  arg0, arg1, arg2, arg3);
 
-  /* Check if task lib is installed */
-  if (!taskLibInstalled)
-  {
-    errnoSet (S_taskLib_NOT_INSTALLED);
-    return ERROR;
-  }
+    if (INT_RESTRICT() != OK)
+    {
+        errnoSet (S_intLib_NOT_ISR_CALLABLE);
+        return ERROR;
+    }
 
-  /* Copy args to array */
-  args[0] = arg0;
-  args[1] = arg1;
-  args[2] = arg2;
-  args[3] = arg3;
-  args[4] = arg4;
-  args[5] = arg5;
-  args[6] = arg6;
-  args[7] = arg7;
-  args[8] = arg8;
-  args[9] = arg9;
+    /* Check if task lib is installed */
+    if (!taskLibInstalled)
+    {
+        errnoSet (S_taskLib_NOT_INSTALLED);
+        return ERROR;
+    }
 
-  /* Set unique id */
-  tcbId->id = new_id++;
+    /* Copy args to array */
+    args[0] = arg0;
+    args[1] = arg1;
+    args[2] = arg2;
+    args[3] = arg3;
+    args[4] = arg4;
+    args[5] = arg5;
+    args[6] = arg6;
+    args[7] = arg7;
+    args[8] = arg8;
+    args[9] = arg9;
 
-  /* Set initial status as suspended */
-  tcbId->status = TASK_SUSPEND;
-  tcbId->lockCount = 0;
-  tcbId->priority = priority;
-  tcbId->options = options;
+    /* Set unique id */
+    tcbId->id = new_id++;
 
-  /* Time slice counter */
-  tcbId->timeSlice = 0;
+    /* Set initial status as suspended */
+    tcbId->status = TASK_SUSPEND;
+    tcbId->lockCount = 0;
+    tcbId->priority = priority;
+    tcbId->options = options;
 
-  /* Pending queue, used by semaphores */
-  tcbId->pPendQ = NULL;
+    /* Time slice counter */
+    tcbId->timeSlice = 0;
 
-  tcbId->objUnpendHandler = NULL;
-  tcbId->pObj             = NULL;
-  tcbId->objInfo          = 0;
+    /* Pending queue, used by semaphores */
+    tcbId->pPendQ = NULL;
 
-  /* Initialize safety */
-  tcbId->safeCount = 0;
-  qInit(&tcbId->safetyQ, qPrioClassId,
-	(ARG)0,
-	(ARG)0,
-	(ARG)0,
-	(ARG)0,
-	(ARG)0,
-	(ARG)0,
-	(ARG)0,
-	(ARG)0,
-	(ARG)0,
-	(ARG)0);
+    tcbId->objUnpendHandler = NULL;
+    tcbId->pObj             = NULL;
+    tcbId->objInfo          = 0;
 
-  /* Task entry point */
-  tcbId->entry = func;
+    /* Initialize safety */
+    tcbId->safeCount = 0;
+    qInit(&tcbId->safetyQ, qPrioClassId,
+         (ARG)0, (ARG)0, (ARG)0, (ARG)0, (ARG)0, (ARG)0,
+         (ARG)0, (ARG)0, (ARG)0, (ARG)0);
 
-  /* Setup error status */
-  tcbId->errorStatus = OK;
-  tcbId->exitCode = 0;
+    /* Task entry point */
+    tcbId->entry = func;
 
-  /* Zero task extensions */
-  tcbId->pTaskVar = NULL;
+    /* Setup error status */
+    tcbId->errorStatus = OK;
+    tcbId->exitCode = 0;
 
-  /* Zero signals and exception info */
-  tcbId->pSignalInfo = NULL;
+    /* Zero task extensions */
+    tcbId->pTaskVar = NULL;
 
-  /* Exception info */
-  tcbId->pExcRegSet = NULL;
-  tcbId->excInfo.valid = 0;
+    /* Zero signals and exception info */
+    tcbId->pSignalInfo = NULL;
 
-  /* Setup stack */
-  tcbId->pStackBase = pStackBase;
-  tcbId->pStackLimit = tcbId->pStackBase + stackSize * _STACK_DIR;
-  tcbId->pStackEnd = tcbId->pStackLimit;
+    /* Exception info */
+    tcbId->pExcRegSet = NULL;
+    tcbId->excInfo.valid = 0;
 
-  if ( !(options & TASK_OPTIONS_NO_STACK_FILL) )
+    /* Setup stack */
+    tcbId->pStackBase = pStackBase;
+    tcbId->pStackLimit = tcbId->pStackBase + stackSize * _STACK_DIR;
+    tcbId->pStackEnd = tcbId->pStackLimit;
 
+    if (!(options & TASK_OPTIONS_NO_STACK_FILL))
+    {
 #if (_STACK_DIR == _STACK_GROWS_DOWN)
-
     memset(tcbId->pStackLimit, 0xee, stackSize);
-
 #else /* _STACK_GROWS_UP */
-
     memset(tcbId->stackBase, 0xee, stackSize);
-
 #endif /* _STACK_DIR */
+    }
 
-  /* Clear events structure */
-  memset((char *) &(tcbId->events), 0, sizeof(EVENTS));
+    /* Clear events structure */
+    memset((char *) &(tcbId->events), 0, sizeof(EVENTS));
 
-  /* Initialize standard file desriptors */
-  for (i = 0; i < 3; i++) {
+    /* Initialize standard file desriptors */
+    for (i = 0; i < 3; i++)
+    {
+        tcbId->taskStd[i] = i;
+        tcbId->taskStdFp[i] = NULL;
+    }
 
-    tcbId->taskStd[i] = i;
-    tcbId->taskStdFp[i] = NULL;
+    /* Initialize architecutre depedent stuff */
+    taskRegsInit(tcbId, pStackBase);
 
-  }
+    /* Push args on task stack */
+    taskArgSet(tcbId, pStackBase, args);
 
-  /* Initialize architecutre depedent stuff */
-  taskRegsInit(tcbId, pStackBase);
+    /* Object core */
+    objCoreInit(&tcbId->objCore, taskClassId);
 
-  /* Push args on task stack */
-  taskArgSet(tcbId, pStackBase, args);
+    /* Copy name if not unnamed */
+    if (name != NULL)
+    {
+        len = strlen(name) + 1;
+        taskName = (char *) taskStackAllot((int) tcbId, len);
+        if (taskName != NULL)
+        {
+            strcpy(taskName, name);
+        }
+        tcbId->name = taskName;
+    }
+    else
+    {
+        tcbId->name = NULL;
+    }
 
-  /* Object core */
-  objCoreInit(&tcbId->objCore, taskClassId);
+    /* Run create hooks */
+    for (i = 0; i < MAX_TASK_CREATE_HOOKS; i++)
+    {
+        if (taskCreateHooks[i] != NULL)
+        {
+            (*taskCreateHooks[i])(tcbId);
+        }
+    }
 
-  /* Copy name if not unnamed */
-  if (name != NULL) {
-    len = strlen(name) + 1;
-    taskName = (char *) taskStackAllot((int) tcbId, len);
-    if (taskName != NULL)
-      strcpy(taskName, name);
-    tcbId->name = taskName;
-  }
-  else
-    tcbId->name = NULL;
+    /* Start task */
+    rtosSpawn(tcbId);
 
-  /* Run create hooks */
-  for (i = 0; i < MAX_TASK_CREATE_HOOKS; i++)
-    if (taskCreateHooks[i] != NULL)
-      (*taskCreateHooks[i])(tcbId);
-
-  /* Start task */
-  rtosSpawn(tcbId);
-
-  return OK;
+    historyLogStr((void *)taskInit, "taskInit", "Exit", 0);
+    return OK;
 }
 
 /*******************************************************************************
