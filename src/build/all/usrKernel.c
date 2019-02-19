@@ -70,6 +70,7 @@ unsigned kernReadyBmp[8];
 void usrKernelInit(void)
 {
     historyLogStr((void*)usrKernelInit, "usrKernelInit", "Entry", 0);
+
     classLibInit();
     taskLibInit();
 

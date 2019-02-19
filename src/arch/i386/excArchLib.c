@@ -63,27 +63,30 @@ LOCAL BOOL programError(int vecNum);
 *
 * RETURNS: OK
 *******************************************************************************/
-
 STATUS excVecInit(void)
 {
-  FAST int vecNum;
+    register int vecNum;
 
-  /* Clear interrupt table */
-  for (vecNum = LOW_VEC; vecNum <= HIGH_VEC; ++vecNum)
-    intCallTbl[vecNum] = NULL;
+    historyLogStr((void*)excVecInit, "excVecInit", "Entry", 0);
 
-  /* Setup pointers in idt to all procedures defined in
-     excALib.s */
+    /* Clear interrupt table */
+    for (vecNum = LOW_VEC; vecNum <= HIGH_VEC; ++vecNum)
+    {
+        intCallTbl[vecNum] = NULL;
+    }
 
-  for (vecNum = LOW_VEC; vecNum <= HIGH_VEC; ++vecNum)
-  {
-    intVecSet2((FUNCPTR *) INUM_TO_IVEC(vecNum),
-	       (FUNCPTR)   &excCallTbl[vecNum * 5],
-	       programError(vecNum) ? IDT_TRAP_GATE : sysIntIdtType,
-	       programError(vecNum) ? sysCsExc : sysCsInt);
-  }
+    /* Setup pointers in idt to all procedures defined in excALib.s */
+    for (vecNum = LOW_VEC; vecNum <= HIGH_VEC; ++vecNum)
+    {
+        intVecSet2((FUNCPTR *)INUM_TO_IVEC(vecNum),
+                   (FUNCPTR)&excCallTbl[vecNum * 5],
+                   programError(vecNum) ? IDT_TRAP_GATE : sysIntIdtType,
+                   programError(vecNum) ? sysCsExc : sysCsInt);
+    }
 
-  return(OK);
+    historyLogStr((void*)excVecInit, "excVecInit", "Exit", 0);
+
+    return OK;
 }
 
 /*******************************************************************************

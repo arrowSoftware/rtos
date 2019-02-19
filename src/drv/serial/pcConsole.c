@@ -73,35 +73,41 @@ STATUS pcConDrvInit(void)
 *
 * RETURNS: OK or ERROR
 *******************************************************************************/
-
 STATUS pcConDevCreate(char *name,
-		      int channel,
-		      int readBufferSize,
-		      int writeBufferSize)
+                      int channel,
+                      int readBufferSize,
+                      int writeBufferSize)
 {
-  PC_CON_DEV *pc;
+    PC_CON_DEV *pc;
 
-  if (pcNumber <= 0)
-    return(ERROR);
+    if (pcNumber <= 0)
+    {
+        return ERROR;
+    }
 
-  if (channel < 0  || channel >= N_VIRTUAL_CONSOLES)
-    return(ERROR);
+    if (channel < 0  || channel >= N_VIRTUAL_CONSOLES)
+    {
+        return ERROR;
+    }
 
-  pc = &pcConDev[channel];
+    pc = &pcConDev[channel];
 
-  if (pc->created)
-    return(ERROR);
+    if (pc->created)
+    {
+        return ERROR;
+    }
 
-  if (ttyDevInit(&pc->ttyDev, readBufferSize, writeBufferSize,
-		 vgaWriteString) != OK)
-    return(ERROR);
+    if (ttyDevInit(&pc->ttyDev, readBufferSize, writeBufferSize,vgaWriteString) != OK)
+    {
+        return ERROR;
+    }
 
-  /* Enable interrupt level for keyboard */
-  sysIntEnablePIC(KBD_INT_LVL);
+    /* Enable interrupt level for keyboard */
+    sysIntEnablePIC(KBD_INT_LVL);
 
-  pc->created = TRUE;
+    pc->created = TRUE;
 
-  return(iosDevAdd(&pc->ttyDev.devHeader, name, pcNumber));
+    return iosDevAdd(&pc->ttyDev.devHeader, name, pcNumber);
 }
 
 /*******************************************************************************

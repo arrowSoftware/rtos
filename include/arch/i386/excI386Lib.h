@@ -32,7 +32,7 @@
 
 /* Exception info validation bits */
 #define EXC_VEC_NUM		0x01		/* Vector number valid */
-#define EXC_ERROR_CODE		0x02		/* Error code valid */
+#define EXC_ERROR_CODE	0x02		/* Error code valid */
 #define EXC_ESP_SS		0x04		/* ESP and SS valid */
 #define EXC_CR2			0x08		/* CR2 valid */
 

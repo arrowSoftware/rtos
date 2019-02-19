@@ -39,7 +39,6 @@ FUNCPTR cacheDmaFreeFunc = NULL;
  *
  * RETURNS: OK or ERROR
  ******************************************************************************/
-
 STATUS cacheLibInit(CACHE_MODE textMode, CACHE_MODE dataMode)
 {
     historyLogStr((void *)cacheLibInit, "cacheLibInit", "ENTRY", 0);
@@ -51,7 +50,7 @@ STATUS cacheLibInit(CACHE_MODE textMode, CACHE_MODE dataMode)
     }
 
     /* Install arch cache library */
-    if ( cacheArchLibInit(textMode, dataMode) != OK)
+    if (cacheArchLibInit(textMode, dataMode) != OK)
     {
         return ERROR;
     }
@@ -72,7 +71,9 @@ STATUS cacheLibInit(CACHE_MODE textMode, CACHE_MODE dataMode)
 
 STATUS cacheEnable(CACHE_TYPE cache)
 {
-  return CACHE_ENABLE(cache);
+    historyLogStr((void*)cacheEnable, "cacheEnable", "Entry %d", cache);
+
+    return CACHE_ENABLE(cache);
 }
 
 /*******************************************************************************

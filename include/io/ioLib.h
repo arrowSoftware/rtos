@@ -74,13 +74,12 @@
 #define OPT_CRMOD		0x02
 #define OPT_TANDEM		0x04
 #define OPT_7_BIT		0x08
-#define OPT_MON_TRAP		0x10
+#define OPT_MON_TRAP	0x10
 #define OPT_ABORT		0x20
 #define OPT_LINE		0x40
 
-#define OPT_TERMINAL		( OPT_ECHO | OPT_CRMOD | OPT_TANDEM | \
-				  OPT_MON_TRAP | OPT_7_BIT | OPT_ABORT | \
-				  OPT_LINE )
+#define OPT_TERMINAL (OPT_ECHO | OPT_CRMOD | OPT_TANDEM | \
+                      OPT_MON_TRAP | OPT_7_BIT | OPT_ABORT | OPT_LINE)
 
 #define DEFAULT_FILE_PERM	0000640
 #define DEFAULT_DIR_PERM	0000750

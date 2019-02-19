@@ -37,11 +37,21 @@ void addToHistory(char *argData)
     historyCount++;
 }
 
-void historyDump(void)
+void historyDump(int argAmount)
 {
     int i = 0;
 
-    for (i = 0; i < historyCount; i++)
+    if (argAmount > historyCount)
+    {
+        argAmount = historyCount;
+    }
+
+    if (argAmount == 0)
+    {
+        argAmount = 25;
+    }
+
+    for (i = 0; i < argAmount; i++)
     {
         printf("%s\n", historyData[i].data);
     }
