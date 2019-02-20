@@ -1802,9 +1802,13 @@ extern int yyparse();
 extern int yystart();
 extern int zeroes;
 extern int zeroin_addr;
+extern void iosFdShow();
+extern void iosDrvShow();
 
-SYMBOL symTblAll[1781] =
+SYMBOL symTblAll[1782] =
 {
+    {NULL, "_iosFdShow", (char*)iosFdShow, 0, (N_TEXT | N_EXT)},
+    {NULL, "_iosDrvShow", (char*)iosDrvShow, 0, (N_TEXT | N_EXT)},
     {NULL, "_abs", (char*)abs, 0, (N_TEXT | N_EXT)},
     {NULL, "_accept", (char*)accept, 0, (N_TEXT | N_EXT)},
     {NULL, "_actStart", (char*)&actStart, 0, (N_BSS | N_EXT)},
@@ -3587,4 +3591,4 @@ SYMBOL symTblAll[1781] =
     {NULL, "_zeroes", (char*)&zeroes, 0, (N_BSS | N_EXT)},
     {NULL, "_zeroin_addr", (char*)&zeroin_addr, 0, (N_BSS | N_EXT)},
 };
-int symTblAllSize = 1781;
+int symTblAllSize = 1782;

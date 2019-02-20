@@ -1,25 +1,4 @@
-/******************************************************************************
-*   DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
-*
-*   This file is part of Real rtos.
-*   Copyright (C) 2008 - 2009 Surplus Users Ham Society
-*
-*   Real rtos is free software: you can redistribute it and/or modify
-*   it under the terms of the GNU Lesser General Public License as published by
-*   the Free Software Foundation, either version 2.1 of the License, or
-*   (at your option) any later version.
-*
-*   Real rtos is distributed in the hope that it will be useful,
-*   but WITHOUT ANY WARRANTY; without even the implied warranty of
-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*   GNU Lesser General Public License for more details.
-*
-*   You should have received a copy of the GNU Lesser General Public License
-*   along with Real rtos.  If not, see <http://www.gnu.org/licenses/>.
-******************************************************************************/
-
 /* pcConsole.c - PC console */
-
 #include <sys/types.h>
 #include <rtos.h>
 #include <io/iosLib.h>
@@ -30,14 +9,12 @@
 #include <drv/serial/pcConsole.h>
 #include <stdlib.h>
 
-/* Locals */
 LOCAL int pcNumber = 0;
 
 LOCAL void pcConDrvHrdInit(void);
 LOCAL int pcConDrvOpen(PC_CON_DEV *pc, char *name, int mode);
 LOCAL STATUS pcConDrvIoctl(PC_CON_DEV *pc, int req, int arg);
 
-/* Imports */
 IMPORT int vgaWriteString(PC_CON_DEV *pc);
 
 /*******************************************************************************
@@ -45,7 +22,6 @@ IMPORT int vgaWriteString(PC_CON_DEV *pc);
 *
 * RETURNS: OK or ERROR
 *******************************************************************************/
-
 STATUS pcConDrvInit(void)
 {
   if (pcNumber > 0)

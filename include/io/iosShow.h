@@ -31,6 +31,8 @@ extern "C" {
 
 IMPORT void iosShowInit(void);
 IMPORT void iosDevShow(void);
+extern void iosDrvShow(void);
+extern void iosFdShow(void);
 
 #ifdef __cplusplus
 }

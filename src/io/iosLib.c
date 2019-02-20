@@ -399,8 +399,8 @@ DEV_HEADER *iosFdDevFind(int fd)
   /* Validate and get fd */
   f = STD_MAP(fd);
 
-  if ( (f >= 0) && (f < iosMaxFd) && 
-       (iosFdTable[f].used != FALSE) ) {
+  if ( (f >= 0) && (f < iosMaxFd) && (iosFdTable[f].used != FALSE) )
+  {
     return(iosFdTable[f].pDevHeader);
   }
 

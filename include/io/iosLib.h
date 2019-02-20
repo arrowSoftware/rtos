@@ -66,7 +66,6 @@ extern STATUS iosDevAdd(DEV_HEADER *pDevHeader,
 extern void iosDevDelete(DEV_HEADER *pDevHeader);
 extern DEV_HEADER *iosDevFind(char *name, char **pNameTail);
 extern DEV_HEADER *iosNextDevGet(DEV_HEADER *pDevHeader);
-
 extern ARG iosFdValue(int fd);
 extern DEV_HEADER *iosFdDevFind(int fd);
 extern void iosFdFree(int fd);
