@@ -39,17 +39,17 @@ IMPORT void sysReboot(void);
 
 /* Locals */
 LOCAL int ttyMutexOptions = SEM_Q_FIFO | SEM_DELETE_SAFE;
-LOCAL FUNCPTR	ttyAbortFunc		= NULL;
-LOCAL char	ttyAbortChar		= 0x03;
-LOCAL char	ttyBackSpaceChar 	= 0x08;
-LOCAL char	ttyDeleteLineChar	= 0x15;
-LOCAL char	ttyEofChar		= 0x04;
-LOCAL char	ttyMonitorTrapChar	= 0x18;
-LOCAL int	ttyXoffTreshold		= 80;
-LOCAL int 	ttyXonTreshold		= 100;
-LOCAL int	ttyWriteTreshold	= 20;
-LOCAL int	ttyXoffChars		= 0;
-LOCAL int	ttyXoffMaxChars		= 0;
+LOCAL FUNCPTR ttyAbortFunc = NULL;
+LOCAL char ttyAbortChar = 0x03;
+LOCAL char ttyBackSpaceChar = 0x08;
+LOCAL char ttyDeleteLineChar = 0x15;
+LOCAL char ttyEofChar = 0x04;
+LOCAL char ttyMonitorTrapChar = 0x18;
+LOCAL int ttyXoffTreshold = 80;
+LOCAL int ttyXonTreshold = 100;
+LOCAL int ttyWriteTreshold = 20;
+LOCAL int ttyXoffChars = 0;
+LOCAL int ttyXoffMaxChars = 0;
 
 LOCAL void ttyFlush(TTY_DEV_ID ttyId);
 LOCAL void ttyFlushRead(TTY_DEV_ID ttyId);
@@ -57,7 +57,6 @@ LOCAL void ttyFlushWrite(TTY_DEV_ID ttyId);
 LOCAL void ttyReadXoff(TTY_DEV_ID ttyId, BOOL xoff);
 LOCAL void ttyWriteXoff(TTY_DEV_ID ttyId, BOOL xoff);
 LOCAL void ttyTxStartup(TTY_DEV_ID ttyId);
-
 LOCAL void ttySelAdd(TTY_DEV_ID ttyId, int arg);
 LOCAL void ttySelDelete(TTY_DEV_ID ttyId, int arg);
 

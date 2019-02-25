@@ -241,6 +241,28 @@ void usrRoot(char *pMemPoolStart, unsigned memPoolSize)
         iosShowInit();
     #endif /* INCLUDE_SHOW_ROUTINES */
 
+    consoleFd = 0;
+
+    #ifdef INCLUDE_TTY_DRV
+        if (NUM_TTY > 0)
+        {
+            ttyDrv();
+            for (i = 0; i < NUM_TTY; i++)
+            {
+                sprintf(ttyName, "%s%d", "/tyCo/", i);
+                ttyDevCreate(ttyName, i, 512, 512);
+                if (i == CONSOLE_TTY)
+                {
+                    strcpy(consoleName, ttyName);
+                }
+            }
+            consoleFd = open(consoleName, O_RDWR, 0);
+
+            ioctl(consoleFd, FIOBAUDRATE, CONSOLE_BUAD_RATE);
+            ioctl(consoleFd, FIOSETOPTIONS, OPT_TERMINAL);
+        }
+    #endif
+
     #ifdef INCLUDE_PC_CONSOLE
         /* Initailize pc console driver */
         pcConDrvInit();
