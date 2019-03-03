@@ -69,6 +69,7 @@
 #include <os/cacheLib.h>
 #include <usr/usrLib.h>
 #include <usr/usrFsLib.h>
+#include "../../drv/serial/serial.c"
 
 #define MEM_POOL_START_ADRS FREE_RAM_ADRS
 
@@ -422,5 +423,10 @@ void usrRoot(char *pMemPoolStart, unsigned memPoolSize)
     addDemo();
 #endif /* INCLUDE_DEMO */
 
+    printf("Tyler\n");
+    historyLogStr((void *)usrRoot, "usrRoot", "Before init_serial", 0);
+    init_serial();
+    historyLogStr((void *)usrRoot, "usrRoot", "Before write_serial", 0);
+    write_serial("X");
     historyLogStr((void *)usrRoot, "usrRoot", "Exit", 0);
 }

@@ -1804,9 +1804,19 @@ extern int zeroes;
 extern int zeroin_addr;
 extern void iosFdShow();
 extern void iosDrvShow();
+extern void write_serial(char a);
+extern void serialGetBaud();
+extern void serialSetBaud();
+extern void serial_test();
+extern void write_serial_str();
 
-SYMBOL symTblAll[1782] =
+SYMBOL symTblAll[1785] =
 {
+    {NULL, "_write_serial_str", (char*)write_serial_str, 0, (N_TEXT | N_EXT)},
+    {NULL, "_serial_test", (char*)serial_test, 0, (N_TEXT | N_EXT)},
+    {NULL, "_serialGetBaud", (char*)serialGetBaud, 0, (N_TEXT | N_EXT)},
+    {NULL, "_serialSetBaud", (char*)serialSetBaud, 0, (N_TEXT | N_EXT)},
+    {NULL, "_write_serial", (char*)write_serial, 0, (N_TEXT | N_EXT)},
     {NULL, "_iosFdShow", (char*)iosFdShow, 0, (N_TEXT | N_EXT)},
     {NULL, "_iosDrvShow", (char*)iosDrvShow, 0, (N_TEXT | N_EXT)},
     {NULL, "_abs", (char*)abs, 0, (N_TEXT | N_EXT)},
@@ -3591,4 +3601,4 @@ SYMBOL symTblAll[1782] =
     {NULL, "_zeroes", (char*)&zeroes, 0, (N_BSS | N_EXT)},
     {NULL, "_zeroin_addr", (char*)&zeroin_addr, 0, (N_BSS | N_EXT)},
 };
-int symTblAllSize = 1782;
+int symTblAllSize = 1785;

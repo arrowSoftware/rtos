@@ -27,7 +27,6 @@
  *
  * RETURNS: Character or EOF
  ******************************************************************************/
-
 int putc(int c, FILE *fp)
 {
   return __sputc(c, fp);

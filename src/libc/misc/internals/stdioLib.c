@@ -536,7 +536,7 @@ int __sread(FILE *fp, char *buf, int n)
 *
 * RETURNS: Bytes written
 *******************************************************************************/
-
+extern void write_serial_str(char *buffer, int size);
 int __swrite(FILE *fp, char *buf, int n)
 {
   if (fp->_flags & __SAPP)
@@ -544,6 +544,7 @@ int __swrite(FILE *fp, char *buf, int n)
 
   fp->_flags &= ~__SOFF;
 
+  write_serial_str(buf, n);
   return write(fp->_file, buf, n);
 }
 
