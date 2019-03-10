@@ -37,6 +37,12 @@ void addToHistory(char *argData)
     historyCount++;
 }
 
+void historyHeader(void)
+{
+     printf("\nSym Addr-Sym Name\n");
+     printf("================================================================================\n");
+}
+
 void historyDump(int argAmount)
 {
     int i = 0;
@@ -51,6 +57,7 @@ void historyDump(int argAmount)
         argAmount = 25;
     }
 
+    historyHeader();
     for (i = 0; i < argAmount; i++)
     {
         printf("%s\n", historyData[i].data);

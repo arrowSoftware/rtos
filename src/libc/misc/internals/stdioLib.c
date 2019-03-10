@@ -537,6 +537,7 @@ int __sread(FILE *fp, char *buf, int n)
 * RETURNS: Bytes written
 *******************************************************************************/
 extern void write_serial_str(char *buffer, int size);
+/* TYLER */
 int __swrite(FILE *fp, char *buf, int n)
 {
   if (fp->_flags & __SAPP)

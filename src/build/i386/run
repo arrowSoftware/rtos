@@ -1,4 +1,4 @@
 #!/bin/sh
 
-qemu-system-i386 -cdrom rtos.iso -m 2048
+qemu-system-i386 -serial stdio -cdrom rtos.iso -m 2048
 
