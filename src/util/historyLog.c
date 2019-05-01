@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <os/symLib.h>
 #include <string.h>
+#include <time.h>
 
 extern SYMTAB_ID sysSymTable;
 #define NULL ((void *)0)
@@ -62,6 +63,20 @@ void historyDump(int argAmount)
     {
         printf("%s\n", historyData[i].data);
     }
+}
+
+static inline char *timenow()
+{
+    static char buffer[64];
+    time_t rawtime;
+    struct tm *timeinfo;
+
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(buffer, 64, "%Y-%m-%d %H:%M:%S", timeinfo);
+
+    return buffer;
 }
 
 void historyLogStr(void *argFunction, const char *argFunctionName, const char *argFormat, ...)

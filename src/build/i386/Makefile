@@ -1,14 +1,14 @@
 RM     = rm -rvf
 OUTPUT = rtos
-#AR     = /usr/local/i386elfgcc/bin/i386-elf-ar
-#CC     = /usr/local/i386elfgcc/bin/i386-elf-gcc
-#LD     = /usr/local/i386elfgcc/bin/i386-elf-ld
-#GDB    = /usr/local/i386elfgcc/bin/i386-elf-gdb
+AR     = i386-elf-ar
+CC     = i386-elf-gcc
+LD     = i386-elf-ld
+GDB    = i386-elf-gdb
+#AR = ar
+#CC = gcc
+#LD = ld
+#GDB = gdb
 NASM = nasm
-AR = ar
-CC = gcc
-LD = ld
-GDB = gdb
 
 CPU = PENTIUM2
 CFLAGS = -nostdinc -fno-builtin -m32 -fno-stack-protector

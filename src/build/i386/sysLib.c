@@ -206,6 +206,7 @@ char* sysPhysMemTop(void);
 void sysHwInit0(void)
 {
     historyLogStr((void *)sysHwInit0, "sysHwInit0", "Entry", 0);
+    historyLogStr((void *)sysHwInit0, "sysHwInit0", "Exit", 0);
 }
 
 /*******************************************************************************
@@ -213,7 +214,6 @@ void sysHwInit0(void)
  *
  * RETURNS: N/A
  ******************************************************************************/
-
 void sysHwInit(void)
 {
     int i;
@@ -253,7 +253,6 @@ void sysHwInit(void)
  *
  * RETURNS: N/A
  ******************************************************************************/
-
 void sysHwInit2(void)
 {
   /* Connect system timer interrupt handler */

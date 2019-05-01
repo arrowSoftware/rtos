@@ -89,7 +89,6 @@ LOCAL u_int8_t intConnectCode[] =
 *
 * RETURNS: N/A
 *******************************************************************************/
-
 void intVecBaseSet(FUNCPTR *baseAddr)
 {
     historyLogStr((void*)intVecBaseSet, "intVecBaseSet", "Entry(0x%x)", baseAddr);

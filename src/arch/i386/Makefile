@@ -1,11 +1,11 @@
-AR       = ar
-CC       = gcc
-LD       = ld
-GDB      = gdb
-#AR     = /usr/local/i386elfgcc/bin/i386-elf-ar
-#CC     = /usr/local/i386elfgcc/bin/i386-elf-gcc
-#LD     = /usr/local/i386elfgcc/bin/i386-elf-ld
-GDB    = /usr/local/i386elfgcc/bin/i386-elf-gdb
+AR     = i386-elf-ar
+CC     = i386-elf-gcc
+LD     = i386-elf-ld
+GDB    = i386-elf-gdb
+#AR = ar
+#CC = gcc
+#LD = ld
+#GDB = gdb
 OBJS     = excALib.o excArchLib.o intALib.o intArchLib.o kernALib.o memcpy.o \
     	   mmuALib.o mmuArchLib.o sysALib.o taskArchLib.o sigCtxALib.o \
 	       sigCtxArchLib.o excArchShow.o cacheALib.o cacheArchLib.o \

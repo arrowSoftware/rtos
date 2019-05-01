@@ -1,13 +1,13 @@
 RM     = rm -rvf
 OUTPUT = rtos
-#AR     = /usr/local/i386elfgcc/bin/i386-elf-ar
-#CC     = /usr/local/i386elfgcc/bin/i386-elf-gcc
-#LD     = /usr/local/i386elfgcc/bin/i386-elf-ld
-#GDB    = /usr/local/i386elfgcc/bin/i386-elf-gdb
-AR = ar
-CC = gcc
-LD = ld
-GDB = gdb
+AR     = i386-elf-ar
+CC     = i386-elf-gcc
+LD     = i386-elf-ld
+GDB    = i386-elf-gdb
+#AR = ar
+#CC = gcc
+#LD = ld
+#GDB = gdb
 # $(ADDED_*FLAGS) is to come from the Makefile.
 # $(EXTRA_*FLAGS) is to come from the command line.
 
@@ -22,6 +22,11 @@ ifeq ($(CPU),)
 endif
 
 %.o: %.c
+	@mkdir -p $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)
+	$(CC) $(CFLAGS) $(INCFLAGS) $(DFLAGS) -c $^ -o $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)/$@
+	$(AR) $(ARFLAGS) $(RTOS_BASE)/lib/$(CPU)/lib$(LIB_TGT).a $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)/$@
+
+%.o: %.cpp
 	@mkdir -p $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)
 	$(CC) $(CFLAGS) $(INCFLAGS) $(DFLAGS) -c $^ -o $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)/$@
 	$(AR) $(ARFLAGS) $(RTOS_BASE)/lib/$(CPU)/lib$(LIB_TGT).a $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)/$@

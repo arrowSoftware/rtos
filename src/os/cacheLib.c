@@ -1,24 +1,3 @@
-/******************************************************************************
-*   DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
-*
-*   This file is part of Real rtos.
-*   Copyright (C) 2010 Surplus Users Ham Society
-*
-*   Real rtos is free software: you can redistribute it and/or modify
-*   it under the terms of the GNU Lesser General Public License as published by
-*   the Free Software Foundation, either version 2.1 of the License, or
-*   (at your option) any later version.
-*
-*   Real rtos is distributed in the hope that it will be useful,
-*   but WITHOUT ANY WARRANTY; without even the implied warranty of
-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*   GNU Lesser General Public License for more details.
-*
-*   You should have received a copy of the GNU Lesser General Public License
-*   along with Real rtos.  If not, see <http://www.gnu.org/licenses/>.
-******************************************************************************/
-
-/* cacheLib.c - Cache library */
 #include <stdlib.h>
 #include <rtos.h>
 #include <os/cacheLib.h>
@@ -33,9 +12,8 @@ BOOL cacheMmuAvailable = FALSE;
 FUNCPTR cacheDmaMallocFunc = NULL;
 FUNCPTR cacheDmaFreeFunc = NULL;
 
-
 /*******************************************************************************
- * cacheLibInit - Initalize cache library
+ * cacheLibInit - Initialize cache library
  *
  * RETURNS: OK or ERROR
  ******************************************************************************/
@@ -46,12 +24,14 @@ STATUS cacheLibInit(CACHE_MODE textMode, CACHE_MODE dataMode)
     /* If installed */
     if (cacheLibInstalled)
     {
+        historyLogStr((void *)cacheLibInit, "cacheLibInit", "cacheLib already installed", 0);
         return OK;
     }
 
     /* Install arch cache library */
     if (cacheArchLibInit(textMode, dataMode) != OK)
     {
+        historyLogStr((void *)cacheLibInit, "cacheLibInit", "Failed to initialize cacheArchLib", 0);
         return ERROR;
     }
 
@@ -68,11 +48,9 @@ STATUS cacheLibInit(CACHE_MODE textMode, CACHE_MODE dataMode)
  *
  * RETURNS: OK or ERROR
  ******************************************************************************/
-
 STATUS cacheEnable(CACHE_TYPE cache)
 {
     historyLogStr((void*)cacheEnable, "cacheEnable", "Entry %d", cache);
-
     return CACHE_ENABLE(cache);
 }
 
@@ -81,10 +59,10 @@ STATUS cacheEnable(CACHE_TYPE cache)
  *
  * RETURNS: OK or ERROR
  ******************************************************************************/
-
 STATUS cacheDisable(CACHE_TYPE cache)
 {
-  return CACHE_DISABLE(cache);
+    historyLogStr((void*)cacheDisable, "cacheDisable", "Entry %d", cache);
+    return CACHE_DISABLE(cache);
 }
 
 /*******************************************************************************
@@ -92,10 +70,10 @@ STATUS cacheDisable(CACHE_TYPE cache)
  *
  * RETURNS: OK or ERROR
  ******************************************************************************/
-
 STATUS cacheLock(CACHE_TYPE cache, void *addr, size_t bytes)
 {
-  return CACHE_LOCK(cache, addr, bytes);
+    historyLogStr((void*)cacheLock, "cacheLock", "Entry %d, 0x%x, %d", cache, addr, bytes);
+    return CACHE_LOCK(cache, addr, bytes);
 }
 
 /*******************************************************************************
@@ -103,10 +81,10 @@ STATUS cacheLock(CACHE_TYPE cache, void *addr, size_t bytes)
  *
  * RETURNS: OK or ERROR
  ******************************************************************************/
-
 STATUS cacheUnlock(CACHE_TYPE cache, void *addr, size_t bytes)
 {
-  return CACHE_UNLOCK(cache, addr, bytes);
+    historyLogStr((void*)cacheUnlock, "cacheUnlock", "Entry %d, 0x%x, %d", cache, addr, bytes);
+    return CACHE_UNLOCK(cache, addr, bytes);
 }
 
 /*******************************************************************************
@@ -114,10 +92,10 @@ STATUS cacheUnlock(CACHE_TYPE cache, void *addr, size_t bytes)
  *
  * RETURNS: OK
  ******************************************************************************/
-
 STATUS cacheFlush(CACHE_TYPE cache, void *addr, size_t bytes)
 {
-  return CACHE_FLUSH(cache, addr, bytes);
+    historyLogStr((void*)cacheFlush, "cacheFlush", "Entry %d, 0x%x, %d", cache, addr, bytes);
+    return CACHE_FLUSH(cache, addr, bytes);
 }
 
 /*******************************************************************************
@@ -125,10 +103,10 @@ STATUS cacheFlush(CACHE_TYPE cache, void *addr, size_t bytes)
  *
  * RETURNS: OK
  ******************************************************************************/
-
 STATUS cacheInvalidate(CACHE_TYPE cache, void *addr, size_t bytes)
 {
-  return CACHE_INVALIDATE(cache, addr, bytes);
+    historyLogStr((void*)cacheInvalidate, "cacheInvalidate", "Entry %d, 0x%x, %d", cache, addr, bytes);
+    return CACHE_INVALIDATE(cache, addr, bytes);
 }
 
 /*******************************************************************************
@@ -136,10 +114,10 @@ STATUS cacheInvalidate(CACHE_TYPE cache, void *addr, size_t bytes)
  *
  * RETURNS: OK or ERROR
  ******************************************************************************/
-
 STATUS cacheClear(CACHE_TYPE cache, void *addr, size_t bytes)
 {
-  return CACHE_CLEAR(cache, addr, bytes);
+    historyLogStr((void*)cacheClear, "cacheClear", "Entry %d, 0x%x, %d", cache, addr, bytes);
+    return CACHE_CLEAR(cache, addr, bytes);
 }
 
 /*******************************************************************************
@@ -147,10 +125,10 @@ STATUS cacheClear(CACHE_TYPE cache, void *addr, size_t bytes)
  *
  * RETURNS: OK
  ******************************************************************************/
-
 STATUS cacheTextUpdate(void *addr, size_t bytes)
 {
-  return CACHE_TEXT_UPDATE(addr, bytes);
+    historyLogStr((void*)cacheTextUpdate, "cacheTextUpdate", "Entry 0x%x, %d", addr, bytes);
+    return CACHE_TEXT_UPDATE(addr, bytes);
 }
 
 /*******************************************************************************
@@ -158,10 +136,10 @@ STATUS cacheTextUpdate(void *addr, size_t bytes)
  *
  * RETURNS: OK
  ******************************************************************************/
-
 STATUS cachePipeFlush(void)
 {
-  return CACHE_PIPE_FLUSH();
+    historyLogStr((void*)cachePipeFlush, "cachePipeFlush", "Entry");
+    return CACHE_PIPE_FLUSH();
 }
 
 /*******************************************************************************
@@ -169,10 +147,10 @@ STATUS cachePipeFlush(void)
  *
  * RETURNS: OK
  ******************************************************************************/
-
 STATUS cacheDrvFlush(CACHE_FUNCS *pFunc, void *addr, size_t bytes)
 {
-  return CACHE_DRV_FLUSH(pFunc, addr, bytes);
+    historyLogStr((void*)cacheDrvFlush, "cacheDrvFlush", "Entry 0x%x, 0x%x, %d", pFunc, addr, bytes);
+    return CACHE_DRV_FLUSH(pFunc, addr, bytes);
 }
 
 /*******************************************************************************
@@ -180,10 +158,10 @@ STATUS cacheDrvFlush(CACHE_FUNCS *pFunc, void *addr, size_t bytes)
  *
  * RETURNS: OK
  ******************************************************************************/
-
 STATUS cacheDrvInvalidate(CACHE_FUNCS *pFunc, void *addr, size_t bytes)
 {
-  return CACHE_DRV_INVALIDATE(pFunc, addr, bytes);
+    historyLogStr((void*)cacheDrvInvalidate, "cacheDrvInvalidate", "Entry 0x%x, 0x%x, %d", pFunc, addr, bytes);
+    return CACHE_DRV_INVALIDATE(pFunc, addr, bytes);
 }
 
 /*******************************************************************************
@@ -191,10 +169,10 @@ STATUS cacheDrvInvalidate(CACHE_FUNCS *pFunc, void *addr, size_t bytes)
  *
  * RETURNS: Physical address
  ******************************************************************************/
-
 void* cacheDrvVirtToPhys(CACHE_FUNCS *pFunc, void *addr)
 {
-  return CACHE_DRV_VIRT_TO_PHYS(pFunc, addr);
+    historyLogStr((void*)cacheDrvVirtToPhys, "cacheDrvVirtToPhys", "Entry 0x%x, 0x%x", pFunc, addr);
+    return CACHE_DRV_VIRT_TO_PHYS(pFunc, addr);
 }
 
 /*******************************************************************************
@@ -202,10 +180,10 @@ void* cacheDrvVirtToPhys(CACHE_FUNCS *pFunc, void *addr)
  *
  * RETURNS: Virtual address
  ******************************************************************************/
-
 void* cacheDrvPhysToVirt(CACHE_FUNCS *pFunc, void *addr)
 {
-  return CACHE_DRV_PHYS_TO_VIRT(pFunc, addr);
+    historyLogStr((void*)cacheDrvPhysToVirt, "cacheDrvPhysToVirt", "Entry 0x%x, 0x%x", pFunc, addr);
+    return CACHE_DRV_PHYS_TO_VIRT(pFunc, addr);
 }
 
 /*******************************************************************************
@@ -213,10 +191,10 @@ void* cacheDrvPhysToVirt(CACHE_FUNCS *pFunc, void *addr)
  *
  * RETURNS: TRUE or FALSE
  ******************************************************************************/
-
 BOOL cacheDrvIsWriteCoherent(CACHE_FUNCS *pFunc)
 {
-  return CACHE_DRV_IS_WRITE_COHERENT(pFunc);
+    historyLogStr((void*)cacheDrvIsWriteCoherent, "cacheDrvIsWriteCoherent", "Entry 0x%x", pFunc);
+    return CACHE_DRV_IS_WRITE_COHERENT(pFunc);
 }
 
 /*******************************************************************************
@@ -224,10 +202,10 @@ BOOL cacheDrvIsWriteCoherent(CACHE_FUNCS *pFunc)
  *
  * RETURNS: TRUE or FALSE
  ******************************************************************************/
-
 BOOL cacheDrvIsReadCoherent(CACHE_FUNCS *pFunc)
 {
-  return CACHE_DRV_IS_READ_COHERENT(pFunc);
+    historyLogStr((void*)cacheDrvIsReadCoherent, "cacheDrvIsReadCoherent", "Entry 0x%x", pFunc);
+    return CACHE_DRV_IS_READ_COHERENT(pFunc);
 }
 
 /*******************************************************************************
@@ -235,10 +213,10 @@ BOOL cacheDrvIsReadCoherent(CACHE_FUNCS *pFunc)
  *
  * RETURNS: OK
  ******************************************************************************/
-
 STATUS cacheDmaFlush(void *addr, size_t bytes)
 {
-  return CACHE_DMA_FLUSH(addr, bytes);
+    historyLogStr((void*)cacheDmaFlush, "cacheDmaFlush", "Entry 0x%x, %d", addr, bytes);
+    return CACHE_DMA_FLUSH(addr, bytes);
 }
 
 /*******************************************************************************
@@ -246,10 +224,10 @@ STATUS cacheDmaFlush(void *addr, size_t bytes)
  *
  * RETURNS: OK
  ******************************************************************************/
-
 STATUS cacheDmaInvalidate(void *addr, size_t bytes)
 {
-  return CACHE_DMA_INVALIDATE(addr, bytes);
+    historyLogStr((void*)cacheDmaInvalidate, "cacheDmaInvalidate", "Entry 0x%x, %d", addr, bytes);
+    return CACHE_DMA_INVALIDATE(addr, bytes);
 }
 
 /*******************************************************************************
@@ -257,10 +235,10 @@ STATUS cacheDmaInvalidate(void *addr, size_t bytes)
  *
  * RETURNS: Physical address
  ******************************************************************************/
-
 void* cacheDmaVirtToPhys(void *addr)
 {
-  return CACHE_DMA_VIRT_TO_PHYS(addr);
+    historyLogStr((void*)cacheDmaVirtToPhys, "cacheDmaVirtToPhys", "Entry 0x%x", addr);
+    return CACHE_DMA_VIRT_TO_PHYS(addr);
 }
 
 /*******************************************************************************
@@ -268,10 +246,10 @@ void* cacheDmaVirtToPhys(void *addr)
  *
  * RETURNS: Virtual address
  ******************************************************************************/
-
 void* cacheDmaPhysToVirt(void *addr)
 {
-  return CACHE_DMA_PHYS_TO_VIRT(addr);
+    historyLogStr((void*)cacheDmaPhysToVirt, "cacheDmaPhysToVirt", "Entry 0x%x",addr);
+    return CACHE_DMA_PHYS_TO_VIRT(addr);
 }
 
 /*******************************************************************************
@@ -279,10 +257,10 @@ void* cacheDmaPhysToVirt(void *addr)
  *
  * RETURNS: TRUE or FALSE
  ******************************************************************************/
-
 BOOL cacheDmaIsWriteCoherent(void)
 {
-  return CACHE_DMA_IS_WRITE_COHERENT();
+    historyLogStr((void*)cacheDmaIsWriteCoherent, "cacheDmaIsWriteCoherent", "Entry");
+    return CACHE_DMA_IS_WRITE_COHERENT();
 }
 
 /*******************************************************************************
@@ -290,10 +268,10 @@ BOOL cacheDmaIsWriteCoherent(void)
  *
  * RETURNS: TRUE or FALSE
  ******************************************************************************/
-
 BOOL cacheDmaIsReadCoherent(void)
 {
-  return CACHE_DMA_IS_READ_COHERENT();
+    historyLogStr((void*)cacheDmaIsReadCoherent, "cacheDmaIsReadCoherent", "Entry");
+    return CACHE_DMA_IS_READ_COHERENT();
 }
 
 /*******************************************************************************
@@ -301,10 +279,10 @@ BOOL cacheDmaIsReadCoherent(void)
  *
  * RETURNS: OK
  ******************************************************************************/
-
 STATUS cacheUsrFlush(void *addr, size_t bytes)
 {
-  return CACHE_USR_FLUSH(addr, bytes);
+    historyLogStr((void*)cacheUsrFlush, "cacheUsrFlush", "Entry 0x%x, %d", addr, bytes);
+    return CACHE_USR_FLUSH(addr, bytes);
 }
 
 /*******************************************************************************
@@ -312,10 +290,10 @@ STATUS cacheUsrFlush(void *addr, size_t bytes)
  *
  * RETURNS: OK
  ******************************************************************************/
-
 STATUS cacheUsrInvalidate(void *addr, size_t bytes)
 {
-  return CACHE_USR_INVALIDATE(addr, bytes);
+    historyLogStr((void*)cacheUsrInvalidate, "cacheUsrInvalidate", "Entry 0x%x, %d", addr, bytes);
+    return CACHE_USR_INVALIDATE(addr, bytes);
 }
 
 /*******************************************************************************
@@ -323,10 +301,10 @@ STATUS cacheUsrInvalidate(void *addr, size_t bytes)
  *
  * RETURNS: TRUE or FALSE
  ******************************************************************************/
-
 BOOL cacheUsrIsWriteCoherent(void)
 {
-  return CACHE_USR_IS_WRITE_COHERENT();
+    historyLogStr((void*)cacheUsrIsWriteCoherent, "cacheUsrIsWriteCoherent", "Entry");
+    return CACHE_USR_IS_WRITE_COHERENT();
 }
 
 /*******************************************************************************
@@ -334,10 +312,10 @@ BOOL cacheUsrIsWriteCoherent(void)
  *
  * RETURNS: TRUE or FALSE
  ******************************************************************************/
-
 BOOL cacheUsrIsReadCoherent(void)
 {
-  return CACHE_USR_IS_READ_COHERENT();
+    historyLogStr((void*)cacheUsrIsReadCoherent, "cacheUsrIsReadCoherent", "Entry");
+    return CACHE_USR_IS_READ_COHERENT();
 }
 
 /*******************************************************************************
@@ -345,46 +323,39 @@ BOOL cacheUsrIsReadCoherent(void)
  *
  * RETURNS: N/A
  ******************************************************************************/
-
 void cacheFuncsSet(void)
 {
-  /* If no cache or fully coherent cache */
-  if ( (cacheDataEnabled == FALSE) || (cacheDataMode & CACHE_SNOOP_ENABLE) ) {
+    historyLogStr((void*)cacheFuncsSet, "cacheFuncsSet", "Entry");
 
-    cacheUsrFunc = cacheNullFunc;
-    cacheDmaFunc = cacheNullFunc;
-    cacheDmaMallocFunc = (FUNCPTR) NULL;
-    cacheDmaFreeFunc = (FUNCPTR) NULL;
+    /* If no cache or fully coherent cache */
+    if ( (cacheDataEnabled == FALSE) || (cacheDataMode & CACHE_SNOOP_ENABLE) )
+    {
+        cacheUsrFunc = cacheNullFunc;
+        cacheDmaFunc = cacheNullFunc;
+        cacheDmaMallocFunc = (FUNCPTR)NULL;
+        cacheDmaFreeFunc = (FUNCPTR)NULL;
+    }
+    else
+    {
+        cacheUsrFunc.invalidateFunc = cacheLib.invalidateFunc;
+        cacheUsrFunc.flushFunc = cacheLib.flushFunc;
 
-  } /* End if no cache or fully coherent */
-
-  /* Else cache or not fully coherent */
-  else {
-
-    cacheUsrFunc.invalidateFunc = cacheLib.invalidateFunc;
-    cacheUsrFunc.flushFunc = cacheLib.flushFunc;
-
-    /* If mmu is avaliable */
-    if (cacheMmuAvailable) {
-
-      cacheDmaFunc.flushFunc = (FUNCPTR) NULL;
-      cacheDmaFunc.invalidateFunc = (FUNCPTR) NULL;
-      cacheDmaFunc.virtToPhysFunc = cacheLib.dmaVirtToPhysFunc;
-      cacheDmaFunc.physToVirtFunc = cacheLib.dmaPhysToVirtFunc;
-      cacheDmaMallocFunc = cacheLib.dmaMallocFunc;
-      cacheDmaFreeFunc = cacheLib.dmaFreeFunc;
-
-    } /* End if mmu is avilable */
-
-    /* Else mmu not available */
-    else {
-
-      cacheDmaFunc = cacheUsrFunc;
-      cacheDmaMallocFunc = (FUNCPTR) NULL;
-      cacheDmaFreeFunc = (FUNCPTR) NULL;
-
-    } /* End else mmu not available */
-
-  } /* End else cache or not fully coherent */
+        /* If mmu is avaliable */
+        if (cacheMmuAvailable)
+        {
+            cacheDmaFunc.flushFunc = (FUNCPTR) NULL;
+            cacheDmaFunc.invalidateFunc = (FUNCPTR) NULL;
+            cacheDmaFunc.virtToPhysFunc = cacheLib.dmaVirtToPhysFunc;
+            cacheDmaFunc.physToVirtFunc = cacheLib.dmaPhysToVirtFunc;
+            cacheDmaMallocFunc = cacheLib.dmaMallocFunc;
+            cacheDmaFreeFunc = cacheLib.dmaFreeFunc;
+        }
+        else
+        {
+            cacheDmaFunc = cacheUsrFunc;
+            cacheDmaMallocFunc = (FUNCPTR) NULL;
+            cacheDmaFreeFunc = (FUNCPTR) NULL;
+        }
+    }
+    historyLogStr((void*)cacheFuncsSet, "cacheFuncsSet", "Exit");
 }
-

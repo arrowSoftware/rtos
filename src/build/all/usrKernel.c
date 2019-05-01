@@ -41,9 +41,6 @@
 #include <rtos/kernTickLib.h>
 #include "config.h"
 
-/* Defines */
-
-/* Imports */
 IMPORT Q_HEAD kernActiveQ;
 IMPORT Q_HEAD kernTickQ;
 IMPORT Q_HEAD kernReadyQ;
@@ -51,22 +48,16 @@ extern STATUS taskShowInit(void);
 extern STATUS mmuLibInit(int pageSize);
 extern void printExc(char *fmt, ARG arg0, ARG arg1, ARG arg2, ARG arg3, ARG arg4);
 
-/* Locals */
-
-/* Globals */
 #ifdef INCLUDE_CONSTANT_RDY_Q
 DL_LIST kernReadyLst[256];
 unsigned kernReadyBmp[8];
 #endif /* INCLUDE_CONSTANT_RDY_Q */
-
-/* Functions */
 
 /*******************************************************************************
  * userKernelInit - Initialize user kernel
  *
  * RETURNS: N/A
  ******************************************************************************/
-
 void usrKernelInit(void)
 {
     historyLogStr((void*)usrKernelInit, "usrKernelInit", "Entry", 0);
