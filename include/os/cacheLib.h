@@ -88,8 +88,8 @@ typedef struct {
  * RETURNS: OK or ERROR
  ******************************************************************************/
 
-#define CACHE_ENABLE(cache)						       \
-	( (cacheLib.enableFunc == NULL) ? (ERROR) :			       \
+#define CACHE_ENABLE(cache) \
+	( (cacheLib.enableFunc == NULL) ? (ERROR) : \
 	  ( (*cacheLib.enableFunc) ((cache)) ) )
 
 /*******************************************************************************

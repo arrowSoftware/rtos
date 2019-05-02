@@ -70,6 +70,7 @@
 #include <usr/usrLib.h>
 #include <usr/usrFsLib.h>
 #include "../../drv/serial/serial.c"
+#include "util/logging.h"
 
 #define MEM_POOL_START_ADRS FREE_RAM_ADRS
 
@@ -146,6 +147,8 @@ void usrInit(void)
 #endif /* INCLUDE_STDIO */
 
     historyLogStr((void*)usrInit, "usrInit", "Entry", 0);
+    logging *logger = logging::getLogger();
+    logger->info((void*)usrInit, "Entry",0);
     sysHwInit0();
 
 #ifdef INCLUDE_CACHE_SUPPORT
