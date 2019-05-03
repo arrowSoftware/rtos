@@ -23,13 +23,13 @@ endif
 
 %.o: %.c
 	@mkdir -p $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)
-	$(CC) $(CFLAGS) $(INCFLAGS) $(DFLAGS) -c $^ -o $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)/$@
-	$(AR) $(ARFLAGS) $(RTOS_BASE)/lib/$(CPU)/lib$(LIB_TGT).a $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)/$@
+	$(CC) $(CFLAGS) $(INCFLAGS) $(DFLAGS) -c $^ -o $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)/$@ || exit
+	$(AR) $(ARFLAGS) $(RTOS_BASE)/lib/$(CPU)/lib$(LIB_TGT).a $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)/$@ || exit
 
 %.o: %.cpp
 	@mkdir -p $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)
-	$(CC) $(CFLAGS) $(INCFLAGS) $(DFLAGS) -c $^ -o $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)/$@
-	$(AR) $(ARFLAGS) $(RTOS_BASE)/lib/$(CPU)/lib$(LIB_TGT).a $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)/$@
+	$(CC) $(CFLAGS) $(INCFLAGS) $(DFLAGS) -c $^ -o $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)/$@ || exit
+	$(AR) $(ARFLAGS) $(RTOS_BASE)/lib/$(CPU)/lib$(LIB_TGT).a $(RTOS_BASE)/lib/$(CPU)/$(LIB_TGT)/$@ || exit
 
 #
 # Added $(OBJS) to list of dependencies to cover case when a directory

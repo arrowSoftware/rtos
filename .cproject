@@ -29,7 +29,7 @@
             			
             <storageModule moduleId="cdtBuildSystem" version="4.0.0">
                 				
-                <configuration buildProperties="" id="cdt.managedbuild.toolchain.gnu.macosx.base.1973454877" name="Default" parent="org.eclipse.cdt.build.core.emptycfg">
+                <configuration buildProperties="" id="cdt.managedbuild.toolchain.gnu.macosx.base.1973454877" name="Default" optionalBuildProperties="" parent="org.eclipse.cdt.build.core.emptycfg">
                     					
                     <folderInfo id="cdt.managedbuild.toolchain.gnu.macosx.base.1973454877.89525311" name="/" resourcePath="">
                         						
@@ -39,17 +39,35 @@
                             							
                             <builder id="cdt.managedbuild.target.gnu.builder.macosx.base.243964484" managedBuildOn="false" name="Gnu Make Builder.Default" superClass="cdt.managedbuild.target.gnu.builder.macosx.base"/>
                             							
-                            <tool id="cdt.managedbuild.tool.macosx.c.linker.macosx.base.1326872278" name="MacOS X C Linker" superClass="cdt.managedbuild.tool.macosx.c.linker.macosx.base"/>
+                            <tool id="cdt.managedbuild.tool.macosx.c.linker.macosx.base.1326872278" name="MacOS X C Linker" superClass="cdt.managedbuild.tool.macosx.c.linker.macosx.base">
+                                								
+                                <inputType id="cdt.managedbuild.tool.macosx.c.linker.input.1165953007" superClass="cdt.managedbuild.tool.macosx.c.linker.input">
+                                    									
+                                    <additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+                                    									
+                                    <additionalInput kind="additionalinput" paths="$(LIBS)"/>
+                                    								
+                                </inputType>
+                                							
+                            </tool>
                             							
                             <tool id="cdt.managedbuild.tool.macosx.cpp.linker.macosx.base.862538812" name="MacOS X C++ Linker" superClass="cdt.managedbuild.tool.macosx.cpp.linker.macosx.base"/>
                             							
-                            <tool id="cdt.managedbuild.tool.gnu.assembler.macosx.base.354700304" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.macosx.base"/>
+                            <tool id="cdt.managedbuild.tool.gnu.assembler.macosx.base.354700304" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.macosx.base">
+                                								
+                                <inputType id="cdt.managedbuild.tool.gnu.assembler.input.1318776867" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+                                							
+                            </tool>
                             							
                             <tool id="cdt.managedbuild.tool.gnu.archiver.macosx.base.231100107" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.macosx.base"/>
                             							
                             <tool id="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.base.1297074313" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.base"/>
                             							
-                            <tool id="cdt.managedbuild.tool.gnu.c.compiler.macosx.base.802718643" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.macosx.base"/>
+                            <tool id="cdt.managedbuild.tool.gnu.c.compiler.macosx.base.802718643" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.macosx.base">
+                                								
+                                <inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.2098835855" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+                                							
+                            </tool>
                             						
                         </toolChain>
                         					
@@ -78,5 +96,7 @@
     </storageModule>
     	
     <storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+    	
+    <storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
     
 </cproject>

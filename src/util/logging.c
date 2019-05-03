@@ -1,6 +1,7 @@
 #include "util/logging.h"
 #include <string.h>
 #include <stdio.h>
+#include <time.h>
 
 void log_init(void)
 {
