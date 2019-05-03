@@ -19,26 +19,33 @@ typedef struct
 {
     int logNumber;
     loglevel_t loglevel;
-    struct tm time;
+    int m_time;
     void *function;
-    const char buffer[1024];
+    const char *funcName;
+    const char buffer[80];
 } logDetail_t;
 
 void log_init(void);
-static void log_log(loglevel_t argLevel, void *argFunc, const char *argFormat, va_list args);
-void log_critical(void *argFunc, const char *argMessage, ...);
-void log_error(void *argFunc, const char *argMessage, ...);
-void log_warning(void *argFunc, const char *argMessage, ...);
-void log_info(void *argFunc, const char *argMessage, ...);
-void log_debug(void *argFunc, const char *argMessage, ...);
+static void log_log(loglevel_t argLevel, void *argFunc, const char *argFuncName, const char *argFormat, va_list args);
+void _log_critical(void *argFunc, const char *funcName, const char *argMessage, ...);
+void _log_error(void *argFunc, const char *funcName, const char *argMessage, ...);
+void _log_warning(void *argFunc, const char *funcName, const char *argMessage, ...);
+void _log_info(void *argFunc, const char *funcName, const char *argMessage, ...);
+void _log_debug(void *argFunc, const char *funcName, const char *argMessage, ...);
 int log_show(int argNumLogs);
+const char *log_levelToStr(loglevel_t argLevel);
 loglevel_t log_setLevel(loglevel_t argLevel);
 
-time_t log_rawtime;
-struct tm *log_timeInfo;
+#define log_critical(func, format, ...) _log_critical((void*)func, #func, format, ##__VA_ARGS__);
+#define log_error(func, format, ...) _log_error((void*)func, #func, format, ##__VA_ARGS__);
+#define log_warning(func, format, ...) _log_warning((void*)func, #func, format, ##__VA_ARGS__);
+#define log_info(func, format, ...) _log_info((void*)func, #func, format, ##__VA_ARGS__);
+#define log_debug(func, format, ...) _log_debug((void*)func, #func, format, ##__VA_ARGS__);
 
-logDetail_t *log_detailBuf[5000];
+int log_initTime;
+logDetail_t log_detailBuf[500];
 int log_count;
+int running_count;
 loglevel_t log_activeLevel;
 
 #endif /* INCLUDE_UTIL_LOGGING_H_ */

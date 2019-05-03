@@ -34,6 +34,7 @@
 #include <arch/intArchLib.h>
 #include <arch/sysArchLib.h>
 #include <arch/excArchLib.h>
+#include "util/logging.h"
 
 /* Imports */
 IMPORT u_int8_t		excCallTbl[];
@@ -67,7 +68,7 @@ STATUS excVecInit(void)
 {
     register int vecNum;
 
-    historyLogStr((void*)excVecInit, "excVecInit", "Entry", 0);
+    log_debug(excVecInit, "Entry", 0);
 
     /* Clear interrupt table */
     for (vecNum = LOW_VEC; vecNum <= HIGH_VEC; ++vecNum)
@@ -84,7 +85,7 @@ STATUS excVecInit(void)
                    programError(vecNum) ? sysCsExc : sysCsInt);
     }
 
-    historyLogStr((void*)excVecInit, "excVecInit", "Exit", 0);
+    log_debug(excVecInit, "Exit", 0);
 
     return OK;
 }

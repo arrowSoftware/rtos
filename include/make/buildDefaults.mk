@@ -11,7 +11,7 @@ GDB    = i386-elf-gdb
 # $(ADDED_*FLAGS) is to come from the Makefile.
 # $(EXTRA_*FLAGS) is to come from the command line.
 
-CFLAGS   = -nostdinc -fno-builtin -m32 -fno-stack-protector $(ADDED_CFLAGS) $(EXTRA_CFLAGS)
+CFLAGS   = -nostdinc -fno-builtin -m32 -fno-stack-protector $(ADDED_CFLAGS) $(EXTRA_CFLAGS) -g
 INCFLAGS = -I$(RTOS_BASE)/include -I$(RTOS_BASE)/src $(ADDED_INCFLAGS) $(EXTRA_INCFLAGS)
 DFLAGS   = -DCPU=$(CPU) $(ADDED_DFLAGS) $(EXTRA_DFLAGS)
 ARFLAGS  = -r

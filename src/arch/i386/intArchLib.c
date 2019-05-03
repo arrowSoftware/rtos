@@ -30,7 +30,7 @@
 #include <arch/excArchLib.h>
 #include <arch/i386/sysI386Lib.h>
 #include <arch/intArchLib.h>
-#include <util/historyLog.h>
+#include "util/logging.h"
 
 extern void intVBRSet(FUNCPTR *baseAddress);
 extern void kernIntEnt(void);
@@ -91,7 +91,7 @@ LOCAL u_int8_t intConnectCode[] =
 *******************************************************************************/
 void intVecBaseSet(FUNCPTR *baseAddr)
 {
-    historyLogStr((void*)intVecBaseSet, "intVecBaseSet", "Entry(0x%x)", baseAddr);
+    log_debug(intVecBaseSet, "Entry(0x%x)", baseAddr);
 
     u_int8_t idt[6];
     u_int8_t *p = idt;
@@ -100,13 +100,13 @@ void intVecBaseSet(FUNCPTR *baseAddr)
     intVecBase = baseAddr;
 
     /* Setup idt descriptor pointer */
-    *(u_int16_t *) p = 0x07ff;
-    *(u_int32_t *) (p + 2) = (u_int32_t) baseAddr;
+    *(u_int16_t *)p = 0x07ff;
+    *(u_int32_t *)(p + 2) = (u_int32_t) baseAddr;
 
     /* Call external assembly function to update IDT */
-    intVBRSet((FUNCPTR *) idt);
+    intVBRSet((FUNCPTR *)idt);
 
-    historyLogStr((void*)intVecBaseSet, "intVecBaseSet", "Exit", 0);
+    log_debug(intVecBaseSet, "Exit", 0);
 }
 
 /*******************************************************************************

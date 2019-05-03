@@ -12,7 +12,7 @@ OBJS     = excALib.o excArchLib.o intALib.o intArchLib.o kernALib.o memcpy.o \
            elfArchLib.o
 LIB_TGT  = arch
 CPU      = PENTIUM2
-CFLAGS   = -nostdinc -fno-builtin -m32 -fno-stack-protector -Wall
+CFLAGS   = -nostdinc -fno-builtin -m32 -fno-stack-protector -Wall -g
 ASMFLAGS = -nostdinc -fno-builtin -m32
 INCFLAGS = -I$(RTOS_BASE)/include -I$(RTOS_BASE)/src
 DFLAGS   = -DCPU=$(CPU)
