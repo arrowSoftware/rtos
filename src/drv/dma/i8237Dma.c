@@ -31,7 +31,7 @@
 /* Defines */
 
 /* Imports */
-IMPORT void sysDelay(void);
+IMPORT int sysDelay(void);
 
 /* Locals */
 LOCAL int dma1PageReg[] = {

@@ -7,7 +7,7 @@
 #include <util/qPrioLib.h>
 #include <util/qPriBmpLib.h>
 #include <util/qFifoLib.h>
-#include <util/historyLog.h>
+#include "util/logging.h"
 #include <rtos/taskLib.h>
 #include <rtos/kernLib.h>
 #include <rtos/kernQLib.h>
@@ -80,8 +80,7 @@ void kernelInit(FUNCPTR rootFunc,
     char *pRootStkBase;
     int level;
 
-    historyLogStr((void *)kernelInit,
-                  "kernelInit",
+    log_debug(kernelInit,
                   "Entry: 0x%x, %d, 0x%x, 0x%x, %d, %d",
                   rootFunc, rootMemSize, pMemPoolStart,
                   pMemPoolEnd, intStackSize, lockOutLevel);
@@ -178,7 +177,7 @@ void kernelInit(FUNCPTR rootFunc,
     /* Start the root task */
     taskActivate (rootTaskId);
 
-    historyLogStr((void *)kernelInit, "kernelInit", "Exit", 0);
+    log_debug(kernelInit, "Exit", 0);
 }
 
 /*******************************************************************************
