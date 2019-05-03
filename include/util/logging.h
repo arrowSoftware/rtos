@@ -3,6 +3,7 @@
 
 #include <stdarg.h>
 #include <sys/time.h>
+#include <time.h>
 
 typedef enum
 {
@@ -18,7 +19,7 @@ typedef struct
 {
     int logNumber;
     loglevel_t loglevel;
-    struct timeval timeval;
+    struct tm time;
     void *function;
     const char buffer[1024];
 } logDetail_t;
@@ -33,7 +34,9 @@ void log_debug(void *argFunc, const char *argMessage, ...);
 int log_show(int argNumLogs);
 loglevel_t log_setLevel(loglevel_t argLevel);
 
-struct timeval log_startTime;
+time_t log_rawtime;
+struct tm *log_timeInfo;
+
 logDetail_t *log_detailBuf[5000];
 int log_count;
 loglevel_t log_activeLevel;

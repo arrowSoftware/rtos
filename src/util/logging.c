@@ -6,7 +6,8 @@
 void log_init(void)
 {
     memset(log_detailBuf, 0x0, sizeof(log_detailBuf));
-    gettimeofday(&log_startTime, 0);
+    time( &log_rawtime );
+    log_timeInfo = localtime( &log_rawtime );
 }
 
 void log_log(loglevel_t argLevel,
@@ -14,6 +15,8 @@ void log_log(loglevel_t argLevel,
              const char *argFormat,
              va_list args)
 {
+    time_t temp;
+
     if (log_count >= 5000)
     {
         log_count = 0;
@@ -22,7 +25,8 @@ void log_log(loglevel_t argLevel,
 
     log_detailBuf[log_count]->logNumber++;
     log_detailBuf[log_count]->loglevel = argLevel;
-    gettimeofday(&log_detailBuf[log_count]->timeval, 0);
+    time(&temp);
+    log_detailBuf[log_count]->time = localtime(&temp);
     log_detailBuf[log_count]->function = argFunc;
     vsprintf((char*)log_detailBuf[log_count]->buffer, argFormat, args);
     log_count++;
@@ -75,7 +79,7 @@ int log_show(int argNumLogs)
     {
         printf("%d-%d-%d-0x%x(%s)\n", log_detailBuf[log_count]->logNumber,
                                       log_detailBuf[log_count]->loglevel,
-                                      log_detailBuf[log_count]->timeval.tv_sec,
+                                      log_detailBuf[log_count]->time.tm_sec,
                                       log_detailBuf[log_count]->function,
                                       log_detailBuf[log_count]->buffer);
     }
