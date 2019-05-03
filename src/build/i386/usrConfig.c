@@ -192,7 +192,6 @@ void usrRoot(char *pMemPoolStart, unsigned memPoolSize)
 {
     char ttyName[20];
     int i;
-    int len;
 
     log_debug(usrRoot, "Entry: 0x%x, %d", pMemPoolStart, memPoolSize);
 
@@ -271,9 +270,8 @@ void usrRoot(char *pMemPoolStart, unsigned memPoolSize)
         {
             /* Create name for device */
             strcpy(ttyName, "/pcConsole/");
-            len = strlen(ttyName);
-            ttyName[len] = i + '0';
-            ttyName[len + 1] = EOS;
+            ttyName[strlen(ttyName)] = i + '0';
+            ttyName[strlen(ttyName) + 1] = EOS;
 
             /* Create device */
             pcConDevCreate(ttyName, i, 512, 512);

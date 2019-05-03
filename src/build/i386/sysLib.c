@@ -156,10 +156,10 @@ PHYS_MEM_DESC sysPhysMemDesc[] = {
   /* Application memory */
   {
     /* Virtual address */
-    (void *) LOCAL_MEM_LOCAL_ADRS + LOCAL_MEM_SIZE_OS,
+    (void *) ((unsigned long)LOCAL_MEM_LOCAL_ADRS + (unsigned long)LOCAL_MEM_SIZE_OS),
 
     /* Physical address */
-    (void *) LOCAL_MEM_LOCAL_ADRS + LOCAL_MEM_SIZE_OS,
+    (void *) ((unsigned long)LOCAL_MEM_LOCAL_ADRS + (unsigned long)LOCAL_MEM_SIZE_OS),
 
     /* Length */
     LOCAL_MEM_SIZE - LOCAL_MEM_SIZE_OS,
@@ -270,11 +270,13 @@ void sysHwInit2(void)
  * RETURNS: N/A
  ******************************************************************************/
 
-void sysDelay(void)
+int sysDelay(void)
 {
   char c;
 
   c = sysInByte(UNUSED_ISA_IO_ADDRESS);
+
+  return c;
 }
 
 /*******************************************************************************

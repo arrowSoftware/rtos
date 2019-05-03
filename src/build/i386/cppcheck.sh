@@ -1,0 +1,19 @@
+cppcheck --enable=all --force --check-config \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/arch  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/drv  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/fs  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/io  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/net  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/netinet  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/oldfs  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/os  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/private  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/rtos  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/sys  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/tools  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/types  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/ugl  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/usr  \
+-I/Users/tyler/Documents/Projects/osDevelopment/rtos/include/util  \
+. -ipcDemo.c
