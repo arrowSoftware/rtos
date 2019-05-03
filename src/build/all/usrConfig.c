@@ -147,8 +147,8 @@ void usrInit(void)
 #endif /* INCLUDE_STDIO */
 
     historyLogStr((void*)usrInit, "usrInit", "Entry", 0);
-    logging *logger = logging::getLogger();
-    logger->info((void*)usrInit, "Entry",0);
+    log_init();
+    log_info((void*)usrInit, "Entry",0);
     sysHwInit0();
 
 #ifdef INCLUDE_CACHE_SUPPORT

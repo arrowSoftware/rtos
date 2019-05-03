@@ -2,49 +2,40 @@
 #define INCLUDE_UTIL_LOGGING_H_
 
 #include <stdarg.h>
+#include <sys/time.h>
 
-class logging
+typedef enum
 {
-    public:
-        typedef enum
-        {
-            CRITICAL = 50,
-            ERROR = 40,
-            WARNING = 30,
-            INFO = 20,
-            DEBUG = 10,
-            NOTSET = 0
-        } loglevel_t;
+    LOG_CRITICAL = 50,
+    LOG_ERROR = 40,
+    LOG_WARNING = 30,
+    LOG_INFO = 20,
+    LOG_DEBUG = 10,
+    LOG_NOTSET = 0
+} loglevel_t;
 
-        typedef struct
-        {
-            int m_logNumber;
-            loglevel_t m_loglevel;
-            struct timeval m_timeval;
-            void *m_function;
-            const char m_buffer[1024];
-        } logDetail_t;
+typedef struct
+{
+    int logNumber;
+    loglevel_t loglevel;
+    struct timeval timeval;
+    void *function;
+    const char buffer[1024];
+} logDetail_t;
 
-        static logging *getLogger(void);
-        void shutdown(void);
+void log_init(void);
+static void log_log(loglevel_t argLevel, void *argFunc, const char *argFormat, va_list args);
+void log_critical(void *argFunc, const char *argMessage, ...);
+void log_error(void *argFunc, const char *argMessage, ...);
+void log_warning(void *argFunc, const char *argMessage, ...);
+void log_info(void *argFunc, const char *argMessage, ...);
+void log_debug(void *argFunc, const char *argMessage, ...);
+int log_show(int argNumLogs);
+loglevel_t log_setLevel(loglevel_t argLevel);
 
-        void log(loglevel_t argLevel, void *argFunc, const char *argFormat, va_list args);
-        void critical(void *argFunc, const char *argMessage, ...);
-        void error(void *argFunc, const char *argMessage, ...);
-        void warning(void *argFunc, const char *argMessage, ...);
-        void info(void *argFunc, const char *argMessage, ...);
-        void debug(void *argFunc, const char *argMessage, ...);
-
-        struct timeval startTime;
-        logDetail_t *logDetail[5000];
-        int logCount;
-        loglevel_t logLevel;
-
-    private:
-        logging(void);
-        ~logging(void);
-        static logging *defaultlogger;
-
-};
+struct timeval log_startTime;
+logDetail_t *log_detailBuf[5000];
+int log_count;
+loglevel_t log_activeLevel;
 
 #endif /* INCLUDE_UTIL_LOGGING_H_ */
