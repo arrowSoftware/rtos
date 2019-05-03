@@ -55,6 +55,10 @@ typedef struct
 \n""")
 # Add the extern lines.
 for line in data:
+    if "symTblAll" in line or "../../" in line:
+        continue
+    if len(line.strip()) == 0:
+        continue
     if (line.split()[1] == 'T' or line.split()[1] == 'W' or line.split()[1] == 'V' ) and "x86." not in line:
         outputFile.write("extern int %s();\n" % line.split()[2])
         symTblAllSize = symTblAllSize + 1
@@ -73,6 +77,10 @@ SYMBOL symTblAll[%d] =
 
 # Add the array initializers.
 for line in data:
+    if "symTblAll" in line or "../../" in line:
+        continue
+    if len(line.strip()) == 0:
+        continue
     if (line.split()[1] == 'T' or line.split()[1] == 'W' or line.split()[1] == 'V' ) and "x86." not in line:
         outputFile.write("    {NULL, \"_%s\", (char*)%s, 0, (N_TEXT | N_EXT)},\n" % (line.split()[2], line.split()[2]))
     elif (line.split()[1] == 'D' or line.split()[1] == 'R'):

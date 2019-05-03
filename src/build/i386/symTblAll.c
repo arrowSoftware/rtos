@@ -22,6 +22,73 @@ typedef struct
     SYM_TYPE type;
 } SYMBOL;
 
+extern int TylerGajewski;
+extern int __assert();
+extern int __ctype;
+extern int __daysSinceEpoch();
+extern int __divdi3();
+extern int __generateTime();
+extern int __getDay();
+extern int __getDstInfo();
+extern int __getLocale();
+extern int __getMonth();
+extern int __getTime();
+extern int __getZoneInfo();
+extern int __julday();
+extern int __loctime;
+extern int __ltostr();
+extern int __qdivrem();
+extern int __sclose();
+extern int __sflags();
+extern int __sflush();
+extern int __sfvwrite();
+extern int __smakebuf();
+extern int __sread();
+extern int __srefill();
+extern int __srget();
+extern int __sseek();
+extern int __stderr();
+extern int __stdin();
+extern int __stdout();
+extern int __submore();
+extern int __swbuf();
+extern int __swrite();
+extern int __swsetup();
+extern int __tmNormalize();
+extern int __tmValidate();
+extern int __udivdi3();
+extern int __ultostr();
+extern int __umoddi3();
+extern int __weekOfYear();
+extern int _clockRealtime;
+extern int _func_excBaseHook;
+extern int _func_excInfoShow;
+extern int _func_excIntHook;
+extern int _func_excJobAdd;
+extern int _func_excPanicHook;
+extern int _func_logMsg;
+extern int _func_selWakeupAll;
+extern int _func_selWakeupListInit;
+extern int _func_selWakeupListTerminate;
+extern int _func_sigExcKill;
+extern int _func_sigTimeoutRecalc;
+extern int _func_sigprocmask;
+extern int _func_symFindSymbol;
+extern int _func_symNameGet;
+extern int _func_symTypeGet;
+extern int _func_symValueGet;
+extern int _func_taskRegsShowFunc;
+extern int _pNetBufCollect;
+extern int _pNetPoolFuncTable;
+extern int _randseed;
+extern int _setjmpSetup();
+extern int _sigCtxLoad();
+extern int _sigCtxRetValueSet();
+extern int _sigCtxSave();
+extern int _sigCtxSetup();
+extern int _sigCtxStackEnd();
+extern int _sigfaulttable;
+extern int _strto_l();
 extern int abs();
 extern int accept();
 extern int actStart;
@@ -31,7 +98,6 @@ extern int addTaskVars();
 extern int addToHistory();
 extern int animTreshold;
 extern int asprintf();
-extern int __assert();
 extern int assertExpr();
 extern int assertLibInit();
 extern int atoi();
@@ -48,8 +114,8 @@ extern int bsdSockFunc;
 extern int bsdSockLibAdd();
 extern int bss;
 extern int buf;
-extern int buf_getblk();
 extern int bufHead;
+extern int buf_getblk();
 extern int bwrite();
 extern int cacheArchLibInit();
 extern int cacheClear();
@@ -121,9 +187,14 @@ extern int cd();
 extern int cfree();
 extern int charTable;
 extern int chdir();
-extern int check_file();
 extern int checkStack();
+extern int check_file();
 extern int checksum();
+extern int clBlkCount;
+extern int clBlkId;
+extern int clBufCount;
+extern int clDescTable;
+extern int clDescTableNumEntries;
 extern int classCreate();
 extern int classDestroy();
 extern int classInit();
@@ -132,18 +203,12 @@ extern int classList();
 extern int classShow();
 extern int classShowConnect();
 extern int classShowInit();
-extern int clBlkCount;
-extern int clBlkId;
-extern int clBufCount;
-extern int clDescTable;
-extern int clDescTableNumEntries;
-extern int clock_gettime();
 extern int clockLibInit();
-extern int _clockRealtime;
+extern int clock_gettime();
 extern int clock_settime();
 extern int close();
-extern int closedir();
 extern int closeFile();
+extern int closedir();
 extern int code();
 extern int connect();
 extern int connectWithTimeout();
@@ -154,31 +219,28 @@ extern int copy();
 extern int creat();
 extern int creatConnect();
 extern int createDib();
-extern int created_modules;
-extern int created_tasks;
 extern int createFile();
 extern int createHook();
-extern int __ctype;
+extern int created_modules;
+extern int created_tasks;
 extern int currVmContext;
 extern int cwd;
 extern int d();
 extern int data;
-extern int __daysSinceEpoch();
 extern int debugLibInit();
 extern int decAnimTreshold();
 extern int defaultTaskId;
 extern int deleteClBlk();
-extern int deleted_tasks;
 extern int deleteHook();
 extern int deleteMblk();
 extern int deleteTuple();
+extern int deleted_tasks;
 extern int demo();
 extern int demoRead();
 extern int demoWrite();
 extern int devs();
 extern int dirList();
 extern int div();
-extern int __divdi3();
 extern int div_r();
 extern int dllAdd();
 extern int dllCount();
@@ -187,9 +249,9 @@ extern int dllInit();
 extern int dllInsert();
 extern int dllRemove();
 extern int dmaSetup();
+extern int domainShow();
 extern int domaininit();
 extern int domains;
-extern int domainShow();
 extern int dosDirHdlrsList;
 extern int dosDirLibInit();
 extern int dosDirSemOptions;
@@ -263,14 +325,14 @@ extern int fdDevCreate();
 extern int fdDrvInit();
 extern int fdIntCount;
 extern int fdMutexSem;
-extern int fdopen();
-extern int fdprintf();
 extern int fdRetry;
 extern int fdSemSeconds;
 extern int fdSyncSem;
 extern int fdTimeout;
 extern int fdWdId;
 extern int fdWdSeconds;
+extern int fdopen();
+extern int fdprintf();
 extern int feof();
 extern int ferror();
 extern int fflush();
@@ -279,14 +341,14 @@ extern int ffsMsb();
 extern int fgetc();
 extern int fgets();
 extern int file;
+extern int fileRename();
+extern int fileStat();
 extern int filealloc();
 extern int fileclose();
 extern int fileincref();
 extern int fileinit();
 extern int fileread();
-extern int fileRename();
 extern int filestat();
-extern int fileStat();
 extern int filewrite();
 extern int fill_file();
 extern int first();
@@ -298,67 +360,42 @@ extern int font8x16;
 extern int font8x16Height;
 extern int font8x16Width;
 extern int fopen();
-extern int fpathconf();
 extern int fpClassId;
+extern int fpathconf();
 extern int fprintf();
 extern int fputc();
 extern int fread();
 extern int free();
-extern int freeblock;
 extern int freeGfx();
+extern int freeblock;
 extern int freeinode;
-extern int fscanf();
 extern int fsEventUtilInit();
-extern int fsfd;
 extern int fsPathAddedEventRaise();
 extern int fsPathAddedEventSetup();
-extern int fstat();
-extern int fs_test();
 extern int fsWaitForPath();
+extern int fs_test();
+extern int fscanf();
+extern int fsfd;
+extern int fstat();
 extern int ftruncate();
-extern int _func_excBaseHook;
-extern int _func_excInfoShow;
-extern int _func_excIntHook;
-extern int _func_excJobAdd;
-extern int _func_excPanicHook;
-extern int _func_logMsg;
-extern int _func_selWakeupAll;
-extern int _func_selWakeupListInit;
-extern int _func_selWakeupListTerminate;
-extern int _func_sigExcKill;
-extern int _func_sigprocmask;
-extern int _func_sigTimeoutRecalc;
-extern int _func_symFindSymbol;
-extern int _func_symNameGet;
-extern int _func_symTypeGet;
-extern int _func_symValueGet;
-extern int _func_taskRegsShowFunc;
 extern int fwrite();
-extern int __generateTime();
 extern int genExc();
+extern int getExcVal();
+extern int getTaskVar();
 extern int getc();
 extern int getchar();
 extern int getcwd();
-extern int __getDay();
-extern int __getDstInfo();
 extern int getenv();
-extern int getExcVal();
-extern int __getLocale();
-extern int __getMonth();
 extern int getpeername();
 extern int gets();
 extern int getsockname();
 extern int getsockopt();
-extern int getTaskVar();
-extern int __getTime();
-extern int __getZoneInfo();
 extern int gfxDevId;
 extern int globalEnvNEntries;
 extern int globalEnvTableSize;
 extern int globalPageBlockTable;
 extern int handleKill();
 extern int hashClassId;
-extern int hashinit();
 extern int hashKeyCmp();
 extern int hashKeyStringCmp();
 extern int hashLibInit();
@@ -371,80 +408,75 @@ extern int hashTableInit();
 extern int hashTablePut();
 extern int hashTableRemove();
 extern int hashTableTerminate();
+extern int hashinit();
 extern int help();
 extern int helpDemo();
 extern int historyCount;
 extern int historyData;
 extern int historyDump();
+extern int historyHeader();
 extern int historyInit();
 extern int historyInitialized;
 extern int historyLog();
+extern int historyLogStr();
 extern int historySize;
 extern int i();
 extern int i2b();
 extern int ialloc();
 extern int iappend();
 extern int icmpCfgParams;
+extern int icmpLibInit();
 extern int icmp_error();
 extern int icmp_input();
-extern int icmpLibInit();
 extern int icmpmask;
 extern int icmpmaskrepl;
 extern int icmpstat;
 extern int idecref();
 extern int ifAddrAdd();
-extern int ifafree();
+extern int ifIndexAlloc();
+extern int ifIndexToIfp();
+extern int ifIndexVerify();
+extern int ifLibInit();
+extern int ifShow();
+extern int if_attach();
+extern int if_down();
+extern int if_qflush();
+extern int if_slowtimo();
+extern int if_up();
 extern int ifa_ifwithaddr();
 extern int ifa_ifwithaf();
 extern int ifa_ifwithdstaddr();
 extern int ifa_ifwithnet();
 extern int ifa_ifwithroute();
+extern int ifafree();
 extern int ifaof_ifpforaddr();
-extern int if_attach();
 extern int ifconf();
-extern int if_down();
-extern int ifIndexAlloc();
-extern int ifIndexToIfp();
-extern int ifIndexVerify();
 extern int ifioctl();
-extern int ifLibInit();
 extern int ifnet;
-extern int if_qflush();
 extern int ifqmaxlen;
-extern int ifShow();
-extern int if_slowtimo();
 extern int ifunit();
-extern int if_up();
 extern int iget();
 extern int iincref();
 extern int iinit();
 extern int ilock();
 extern int inAddRoute();
+extern int inLibInit();
+extern int inLogAddr();
+extern int inLogSock();
+extern int inSetAddr();
 extern int in_addrwithif();
 extern int in_broadcast();
 extern int in_canforward();
-extern int incAnimTreshold();
 extern int in_cksum();
 extern int in_control();
-extern int inet_addr();
-extern int inetctlerrmap;
-extern int inetdomain;
-extern int inetLibInit();
-extern int inet_ntoa_b();
-extern int inetsw;
 extern int in_ifaddr;
 extern int in_ifinit();
 extern int in_ifscrub();
 extern int in_ifwithaddr();
 extern int in_interfaces;
-extern int init();
-extern int inLibInit();
 extern int in_localaddr();
-extern int inLogAddr();
-extern int inLogSock();
 extern int in_losing();
 extern int in_netof();
-extern int inode;
 extern int in_pcballoc();
 extern int in_pcbbind();
 extern int in_pcbchghash();
@@ -459,11 +491,20 @@ extern int in_pcblookuphash();
 extern int in_pcbnotify();
 extern int in_pcbrehash();
 extern int in_pcbremhash();
-extern int input_ipaddr;
-extern int inSetAddr();
 extern int in_setpeeraddr();
 extern int in_setsockaddr();
 extern int in_socktrim();
+extern int incAnimTreshold();
+extern int inetLibInit();
+extern int inet_addr();
+extern int inet_ntoa_b();
+extern int inetctlerrmap;
+extern int inetdomain;
+extern int inetsw;
+extern int init();
+extern int init_serial();
+extern int inode;
+extern int input_ipaddr;
 extern int insque();
 extern int installHandler();
 extern int intCallTbl;
@@ -489,13 +530,15 @@ extern int intVecSet2();
 extern int intVecSetEnt;
 extern int intVecSetExit;
 extern int ioConnect();
-extern int ioctl();
 extern int ioDefPathCat();
 extern int ioDefPathGet();
 extern int ioDefPathSet();
 extern int ioGlobalStdGet();
 extern int ioGlobalStdSet();
 extern int ioHelp();
+extern int ioTaskStdGet();
+extern int ioTaskStdSet();
+extern int ioctl();
 extern int iosClose();
 extern int iosCreate();
 extern int iosDefaultPath;
@@ -508,6 +551,7 @@ extern int iosDevList;
 extern int iosDevShow();
 extern int iosDrvInstall();
 extern int iosDrvRemove();
+extern int iosDrvShow();
 extern int iosDrvTable;
 extern int iosFdDevFind();
 extern int iosFdFree();
@@ -515,6 +559,7 @@ extern int iosFdFreeHook;
 extern int iosFdNew();
 extern int iosFdNewHook;
 extern int iosFdSet();
+extern int iosFdShow();
 extern int iosFdTable;
 extern int iosFdValue();
 extern int iosIoctl();
@@ -526,39 +571,38 @@ extern int iosOpen();
 extern int iosRead();
 extern int iosShowInit();
 extern int iosWrite();
-extern int ioTaskStdGet();
-extern int ioTaskStdSet();
 extern int ipCfgParams;
+extern int ipLibInit();
+extern int ipRead();
 extern int ip_ctloutput();
 extern int ip_defttl;
 extern int ip_dooptions();
 extern int ip_drain();
 extern int ip_flags;
 extern int ip_forward();
-extern int ipforward_rt;
-extern int ipfragttl;
 extern int ip_freef();
 extern int ip_freemoptions();
 extern int ip_getmoptions();
 extern int ip_id;
-extern int ipintr();
-extern int ipintrq;
-extern int ipLibInit();
 extern int ip_nhops;
 extern int ip_optcopy();
 extern int ip_output();
 extern int ip_pcbopts();
-extern int ipprintfs;
 extern int ip_protox;
-extern int ipq;
-extern int ipqmaxlen;
-extern int ipRead();
 extern int ip_rtaddr();
 extern int ip_slowtimo();
-extern int ipstat;
 extern int ip_stripoptions();
+extern int ipforward_rt;
+extern int ipfragttl;
+extern int ipintr();
+extern int ipintrq;
+extern int ipprintfs;
+extern int ipq;
+extern int ipqmaxlen;
+extern int ipstat;
 extern int iptime();
 extern int iput();
+extern int is_transmit_empty();
 extern int isalnum();
 extern int isalpha();
 extern int isatty();
@@ -576,7 +620,6 @@ extern int itox();
 extern int itrunc();
 extern int iunlock();
 extern int iupdate();
-extern int __julday();
 extern int kbdAction;
 extern int kbdEnhanced;
 extern int kbdHrdInit();
@@ -584,11 +627,6 @@ extern int kbdIntr();
 extern int kbdMap;
 extern int kernAbsTicks;
 extern int kernActiveQ;
-extern int kernelInit();
-extern int kernelIsIdle;
-extern int kernelState;
-extern int kernelTimeSlice();
-extern int kernelVersion();
 extern int kernExcStkCnt;
 extern int kernExit();
 extern int kernHookSwap();
@@ -616,6 +654,11 @@ extern int kernTickLibInit();
 extern int kernTickQ;
 extern int kernTicks;
 extern int kernVersion;
+extern int kernelInit();
+extern int kernelIsIdle;
+extern int kernelState;
+extern int kernelTimeSlice();
+extern int kernelVersion();
 extern int kill();
 extern int ld();
 extern int ldCommonMatchAll;
@@ -629,11 +672,11 @@ extern int lexStateTable;
 extern int linki();
 extern int listAdd();
 extern int listCount();
-extern int listen();
 extern int listGet();
 extern int listInit();
 extern int listInsert();
 extern int listRemove();
+extern int listen();
 extern int lkup();
 extern int ll();
 extern int llr();
@@ -652,7 +695,6 @@ extern int loadSyncFunc;
 extern int loattach();
 extern int localtime();
 extern int localtime_r();
-extern int __loctime;
 extern int logFdAdd();
 extern int logFdDelete();
 extern int logLibInit();
@@ -661,6 +703,19 @@ extern int logTaskId;
 extern int logTaskOptions;
 extern int logTaskPriority;
 extern int logTaskStackSize;
+extern int log_activeLevel;
+extern int log_count;
+extern int _log_critical();
+extern int _log_debug();
+extern int log_detailBuf;
+extern int _log_error();
+extern int _log_info();
+extern int log_init();
+extern int log_initTime;
+extern int log_levelToStr();
+extern int log_setLevel();
+extern int log_show();
+extern int _log_warning();
 extern int loif;
 extern int longjmp();
 extern int looutput();
@@ -668,34 +723,30 @@ extern int ls();
 extern int lseek();
 extern int lsr();
 extern int lstat();
-extern int __ltostr();
 extern int m();
+extern int mBlkClCount;
+extern int mBlkClId;
+extern int mBlkCount;
+extern int mBlkId;
+extern int mClBlkConfig;
 extern int m_adj();
+extern int m_cat();
+extern int m_get();
+extern int m_gethdr();
+extern int m_prepend();
+extern int m_pullup();
 extern int malloc();
 extern int max_hdr;
 extern int max_linkhdr;
 extern int max_protohdr;
 extern int mb_alloc();
 extern int mb_free();
-extern int mBlkClCount;
-extern int mBlkClId;
-extern int mBlkCount;
-extern int mBlkId;
 extern int mbufLibInit();
-extern int m_cat();
-extern int mClBlkConfig;
-extern int memalign();
 extern int memAutosize();
-extern int memccpy();
-extern int memchr();
-extern int memcmp();
-extern int memcpy();
-extern int memcpyw();
 extern int memDefaultAlignment;
 extern int memHeapPart;
 extern int memHeapPartId;
 extern int memLibInit();
-extern int memmove();
 extern int memPartAddToPool();
 extern int memPartAlignedAlloc();
 extern int memPartAlloc();
@@ -714,8 +765,6 @@ extern int memPartRealloc();
 extern int memPartSemInitFunc;
 extern int memPartShow();
 extern int memRestoreTestAddr();
-extern int memset();
-extern int memsetw();
 extern int memShowInit();
 extern int memSysPartId;
 extern int memSysPartition;
@@ -723,9 +772,16 @@ extern int memTop;
 extern int memTopPhys;
 extern int memVerifyTestPattern();
 extern int memWriteTestPattern();
+extern int memalign();
+extern int memccpy();
+extern int memchr();
+extern int memcmp();
+extern int memcpy();
+extern int memcpyw();
+extern int memmove();
+extern int memset();
+extern int memsetw();
 extern int messageListener();
-extern int m_get();
-extern int m_gethdr();
 extern int miscLibInit();
 extern int mkdir();
 extern int mkfs();
@@ -780,8 +836,6 @@ extern int mountBufsCreate();
 extern int mountCreate();
 extern int mountLock();
 extern int mountUnlock();
-extern int m_prepend();
-extern int m_pullup();
 extern int msgListen();
 extern int msgQClassId;
 extern int msgQCreate();
@@ -808,8 +862,8 @@ extern int netBufLibInit();
 extern int netClBlkFree();
 extern int netClBlkGet();
 extern int netClFree();
-extern int netClient();
 extern int netClPoolIdGet();
+extern int netClient();
 extern int netClusterGet();
 extern int netJobAdd();
 extern int netLibInit();
@@ -854,40 +908,49 @@ extern int objShow();
 extern int ofile;
 extern int open();
 extern int openConnect();
-extern int opendir();
 extern int openFile();
 extern int openInternal();
+extern int opendir();
+extern int pBgBmp;
+extern int pBgDib;
+extern int pDbBmp;
+extern int pDblBmp;
+extern int pFgBmp;
+extern int pFgDib;
+extern int pFglBmp;
+extern int pKernExcStkBase;
+extern int pKernExcStkEnd;
+extern int pRootMemStart;
+extern int pRootMount;
+extern int pRootSyncer;
+extern int pSaveBmp;
+extern int pSavelBmp;
+extern int pSockFdMap;
+extern int pSysGdt;
 extern int panic();
 extern int panicHookFunc;
 extern int panicSuspend;
 extern int pathCondense();
-extern int pathconf();
 extern int pathCwdLen();
 extern int pathLibInit();
 extern int pathPrependCwd();
 extern int pathSplit();
+extern int pathconf();
 extern int pause();
-extern int pBgBmp;
-extern int pBgDib;
 extern int pbuf;
 extern int pc();
 extern int pcConDev;
 extern int pcConDevCreate();
 extern int pcConDrvInit();
 extern int pcConDrvNumber();
-extern int pDbBmp;
-extern int pDblBmp;
 extern int period();
+extern int periodRun();
 extern int periodicState;
 extern int periodicTaskId;
 extern int periodicValue;
-extern int periodRun();
 extern int pfctlinput();
 extern int pffindproto();
 extern int pffindtype();
-extern int pFgBmp;
-extern int pFgDib;
-extern int pFglBmp;
 extern int pinballClut;
 extern int pinballData;
 extern int pinballHeight;
@@ -898,26 +961,15 @@ extern int pipeDevCreate();
 extern int pipeDevDelete();
 extern int pipeDrvInit();
 extern int pipeDrvMsgQOptions;
-extern int pKernExcStkBase;
-extern int pKernExcStkEnd;
-extern int _pNetBufCollect;
-extern int _pNetPoolFuncTable;
 extern int ppGlobalEnviron;
-extern int print_blk();
+extern int prTask();
 extern int printErr();
 extern int printExc();
-extern int printf();
-extern int print_inode();
 extern int printLocalStatus();
 extern int printLogo();
-extern int pRootMemStart;
-extern int pRootMount;
-extern int pRootSyncer;
-extern int prTask();
-extern int pSaveBmp;
-extern int pSavelBmp;
-extern int pSockFdMap;
-extern int pSysGdt;
+extern int print_blk();
+extern int print_inode();
+extern int printf();
 extern int putc();
 extern int putchar();
 extern int putenv();
@@ -926,7 +978,6 @@ extern int pwd();
 extern int qAdvance();
 extern int qCreate();
 extern int qDestroy();
-extern int __qdivrem();
 extern int qEach();
 extern int qExpired();
 extern int qFifoClassId;
@@ -955,30 +1006,30 @@ extern int ramdsk_deinit();
 extern int ramdsk_init();
 extern int ramdsk_rw();
 extern int rand();
-extern int _randseed;
 extern int rasterOp;
 extern int rasterOpAnd();
 extern int rasterOpCopy();
 extern int rasterOpOr();
 extern int rasterOpXor();
+extern int rawIpLibInit();
+extern int rawLibInit();
+extern int rawList;
+extern int rawSocketConnect();
+extern int rawSocketNew();
 extern int raw_attach();
 extern int raw_detach();
 extern int raw_disconnect();
 extern int raw_input();
-extern int rawipCfgParams;
-extern int rawIpLibInit();
-extern int rawLibInit();
-extern int rawList;
 extern int raw_recvspace;
 extern int raw_sendspace;
-extern int rawSocketConnect();
-extern int rawSocketNew();
 extern int raw_usrreq();
+extern int rawipCfgParams;
 extern int read();
+extern int readSelect();
+extern int read_serial();
 extern int readdir();
 extern int readi();
 extern int readlink();
-extern int readSelect();
 extern int realloc();
 extern int receiveMessage();
 extern int recv();
@@ -1030,29 +1081,27 @@ extern int rn_walktree_from();
 extern int rootClassId;
 extern int rootMemNBytes;
 extern int rootTaskId;
-extern int route_cb;
 extern int routeLibInit();
 extern int routeShow();
-extern int rsect();
+extern int route_cb;
 extern int rsPeriodicTask();
+extern int rsect();
 extern int rt11FsDevInit();
 extern int rt11FsFdMutexOptions;
 extern int rt11FsLibInit();
 extern int rt11FsMaxFiles;
 extern int rt11FsReadyChange();
 extern int rt11FsVolMutexOptions;
+extern int rtIfaceMsgHook;
+extern int rtMissMsgHook;
+extern int rtNewAddrMsgHook;
+extern int rt_setgate();
+extern int rt_tables;
 extern int rtalloc();
 extern int rtalloc1();
 extern int rtfree();
-extern int rtIfaceMsgHook;
 extern int rtinit();
 extern int rtioctl();
-extern int rtMissMsgHook;
-extern int rtNewAddrMsgHook;
-extern int rtosballClut;
-extern int rtosballData;
-extern int rtosballHeight;
-extern int rtosballWidth;
 extern int rtosDelay();
 extern int rtosDelete();
 extern int rtosPendQFlush();
@@ -1072,12 +1121,16 @@ extern int rtosTickAnnounce();
 extern int rtosUndelay();
 extern int rtosWdCancel();
 extern int rtosWdStart();
+extern int rtosballClut;
+extern int rtosballData;
+extern int rtosballHeight;
+extern int rtosballWidth;
 extern int rtredirect();
 extern int rtrequest();
 extern int rtrequestAddEqui();
-extern int rt_setgate();
-extern int rt_tables;
+extern int running_count;
 extern int sb;
+extern int sb_max;
 extern int sbappend();
 extern int sbappendaddr();
 extern int sbappendrecord();
@@ -1085,20 +1138,13 @@ extern int sbcompress();
 extern int sbdrop();
 extern int sbdroprecord();
 extern int sbflush();
-extern int sb_max;
 extern int sbrelease();
 extern int sbreserve();
 extern int sbseldequeue();
 extern int sbwait();
 extern int sbwakeup();
 extern int scanf();
-extern int __sclose();
 extern int second();
-extern int select();
-extern int selectLibInit();
-extern int selectLibInitDelete();
-extern int selfRestarter();
-extern int selfSignal();
 extern int selNodeAdd();
 extern int selNodeDelete();
 extern int selWakeup();
@@ -1107,9 +1153,13 @@ extern int selWakeupListInit();
 extern int selWakeupListLen();
 extern int selWakeupListTerminate();
 extern int selWakeupType();
+extern int select();
+extern int selectLibInit();
+extern int selectLibInitDelete();
+extern int selfRestarter();
+extern int selfSignal();
 extern int sem;
 extern int sem2;
-extern int semaphoreListener();
 extern int semBCoreInit();
 extern int semBCreate();
 extern int semBGive();
@@ -1122,11 +1172,11 @@ extern int semCCreate();
 extern int semCGive();
 extern int semCGiveDefer();
 extern int semCInit();
+extern int semCLibInit();
+extern int semCTake();
 extern int semClass;
 extern int semClassId;
-extern int semCLibInit();
 extern int semCreate();
-extern int semCTake();
 extern int semDelete();
 extern int semDestroy();
 extern int semEvRegister();
@@ -1152,13 +1202,13 @@ extern int semMTake();
 extern int semQFlush();
 extern int semQFlushDefer();
 extern int semQInit();
-extern int semReaderTake();
 extern int semRWCreate();
 extern int semRWDowngrade();
 extern int semRWInit();
 extern int semRWLibInit();
 extern int semRWUpgrade();
 extern int semRWUpgradeForce();
+extern int semReaderTake();
 extern int semShow();
 extern int semShowInit();
 extern int semTake();
@@ -1166,29 +1216,33 @@ extern int semTakeTable;
 extern int semTerminate();
 extern int semUse();
 extern int semWriterTake();
+extern int semaphoreListener();
 extern int send();
 extern int sendMessage();
-extern int sendmsg();
 extern int sendQSignal();
 extern int sendSignal();
+extern int sendmsg();
 extern int sendto();
+extern int serialGetBaud();
+extern int serialSetBaud();
+extern int serial_configure_baud_rate();
+extern int serial_configure_line();
+extern int serial_is_transmit_fifo_empty();
+extern int serial_received();
+extern int serial_test();
 extern int setAbortChar();
 extern int setActivePage();
 extern int setActiveStart();
-extern int setjmp();
-extern int _setjmpSetup();
 extern int setLabel();
 extern int setPalette();
 extern int setPixel();
 extern int setPixelInt();
-extern int setsockopt();
 extern int setTaskVar();
-extern int setvbuf();
 extern int setVisiblePage();
 extern int setVisibleStart();
-extern int __sflags();
-extern int __sflush();
-extern int __sfvwrite();
+extern int setjmp();
+extern int setsockopt();
+extern int setvbuf();
 extern int shell();
 extern int shellLibInit();
 extern int shellLock();
@@ -1209,24 +1263,18 @@ extern int showInfo();
 extern int showSysTime();
 extern int showTaskVars();
 extern int shutdown();
-extern int sigaction();
-extern int sigaddset();
-extern int _sigCtxLoad();
-extern int _sigCtxRetValueSet();
-extern int _sigCtxSave();
-extern int _sigCtxSetup();
-extern int _sigCtxStackEnd();
-extern int sigdelset();
-extern int sigemptyset();
-extern int _sigfaulttable;
-extern int sigfillset();
-extern int sigismember();
 extern int sigLibInit();
-extern int signal();
 extern int sigPendDestroy();
-extern int sigpending();
 extern int sigPendInit();
 extern int sigPendKill();
+extern int sigaction();
+extern int sigaddset();
+extern int sigdelset();
+extern int sigemptyset();
+extern int sigfillset();
+extern int sigismember();
+extern int signal();
+extern int sigpending();
 extern int sigprocmask();
 extern int sigqueue();
 extern int sigqueueInit();
@@ -1246,17 +1294,17 @@ extern int sllPutAtHead();
 extern int sllPutAtTail();
 extern int sllRemove();
 extern int slowFill();
-extern int __smakebuf();
 extern int snprintf();
+extern int soLibInit();
 extern int soabort();
 extern int soaccept();
 extern int sobind();
 extern int socantrcvmore();
 extern int socantsendmore();
-extern int socket();
 extern int sockFdtosockFunc();
 extern int sockLibInit();
 extern int sockMapAdd();
+extern int socket();
 extern int soclose();
 extern int soconnect();
 extern int soconnect2();
@@ -1269,7 +1317,6 @@ extern int soisconnected();
 extern int soisconnecting();
 extern int soisdisconnected();
 extern int soisdisconnecting();
-extern int soLibInit();
 extern int solisten();
 extern int somaxconn;
 extern int sonewconn();
@@ -1285,35 +1332,25 @@ extern int sosetopt();
 extern int soshutdown();
 extern int sowakeup();
 extern int sp();
-extern int splimp();
-extern int splMutexOptions;
-extern int splnet();
-extern int splTaskId;
-extern int splx();
-extern int sprintf();
 extern int spTaskOptions;
 extern int spTaskPriority;
 extern int spTaskStackSize;
+extern int splMutexOptions;
+extern int splTaskId;
+extern int splimp();
+extern int splnet();
+extern int splx();
+extern int sprintf();
 extern int srand();
-extern int __sread();
-extern int __srefill();
-extern int __srget();
 extern int sscanf();
-extern int __sseek();
-extern int standTable;
-extern int standTableInit();
-extern int standTableSize;
 extern int startWd();
 extern int stat();
 extern int stati();
-extern int __stderr();
-extern int __stdin();
 extern int stdioFp();
 extern int stdioFpCreate();
 extern int stdioFpDestroy();
 extern int stdioFpInit();
 extern int stdioLibInit();
-extern int __stdout();
 extern int strcat();
 extern int strchr();
 extern int strcmp();
@@ -1331,18 +1368,13 @@ extern int strspn();
 extern int strstr();
 extern int strtok();
 extern int strtok_r();
-extern int _strto_l();
 extern int strtol();
 extern int strtoul();
-extern int __submore();
 extern int subnetsarelocal;
 extern int swapHook();
 extern int swapped_tasks;
-extern int __swbuf();
-extern int switched_tasks;
 extern int switchHook();
-extern int __swrite();
-extern int __swsetup();
+extern int switched_tasks;
 extern int symAdd();
 extern int symCreate();
 extern int symDemo;
@@ -1354,7 +1386,6 @@ extern int symFindSymbol();
 extern int symGroupDefault;
 extern int symInit();
 extern int symLibInit();
-extern int symlink();
 extern int symNameGet();
 extern int symRemove();
 extern int symShow();
@@ -1368,11 +1399,9 @@ extern int symTableDestroy();
 extern int symTableInit();
 extern int symTableRemove();
 extern int symTableTerminate();
-extern int symTblAllInit();
-extern int symTblAllSize;
 extern int symTypeGet();
 extern int symValueGet();
-extern int sys_chdir();
+extern int symlink();
 extern int sysClDescTable;
 extern int sysClDescTableNumEntries;
 extern int sysClockConnect();
@@ -1381,24 +1410,23 @@ extern int sysClockEnable();
 extern int sysClockInt();
 extern int sysClockRateGet();
 extern int sysClockRateSet();
-extern int sys_close();
 extern int sysCsExc;
 extern int sysCsInt;
 extern int sysCsSuper;
 extern int sysDelay();
-extern int sys_dup();
 extern int sysFdBuf;
 extern int sysFdBufSize;
-extern int sys_fstat();
 extern int sysGdt();
 extern int sysGdtr();
 extern int sysHwInit();
 extern int sysHwInit0();
 extern int sysHwInit2();
 extern int sysInByte();
-extern int sysInit();
 extern int sysInLong();
 extern int sysInLongString();
+extern int sysInWord();
+extern int sysInWordString();
+extern int sysInit();
 extern int sysIntDisablePIC();
 extern int sysIntEnablePIC();
 extern int sysIntIdtType;
@@ -1408,15 +1436,9 @@ extern int sysIntLock();
 extern int sysIntMask1;
 extern int sysIntMask2;
 extern int sysIntUnlock();
-extern int sysInWord();
-extern int sysInWordString();
-extern int sys_link();
 extern int sysLoadGdt();
 extern int sysMclBlkConfig;
 extern int sysMemTop();
-extern int sys_mkdir();
-extern int sys_mknod();
-extern int sys_open();
 extern int sysOutByte();
 extern int sysOutLong();
 extern int sysOutLongString();
@@ -1425,12 +1447,20 @@ extern int sysOutWordString();
 extern int sysPhysMemDesc;
 extern int sysPhysMemDescNumEntries;
 extern int sysPhysMemTop();
-extern int sys_read();
 extern int sysReboot();
 extern int sysSymTable;
-extern int sys_unlink();
 extern int sysVectorIRQ0;
 extern int sysWait();
+extern int sys_chdir();
+extern int sys_close();
+extern int sys_dup();
+extern int sys_fstat();
+extern int sys_link();
+extern int sys_mkdir();
+extern int sys_mknod();
+extern int sys_open();
+extern int sys_read();
+extern int sys_unlink();
 extern int sys_write();
 extern int taskActivate();
 extern int taskArgGet();
@@ -1439,15 +1469,15 @@ extern int taskClassId;
 extern int taskCreat();
 extern int taskCreateHookAdd();
 extern int taskCreateHookDelete();
-extern int taskCreateHooks;
 extern int taskCreateHookShow();
+extern int taskCreateHooks;
 extern int taskDelay();
 extern int taskDelete();
 extern int taskDeleteForce();
 extern int taskDeleteHookAdd();
 extern int taskDeleteHookDelete();
-extern int taskDeleteHooks;
 extern int taskDeleteHookShow();
+extern int taskDeleteHooks;
 extern int taskDestroy();
 extern int taskExit();
 extern int taskHiPrio();
@@ -1456,23 +1486,23 @@ extern int taskHookShowInit();
 extern int taskIdCurrent;
 extern int taskIdDefault();
 extern int taskIdFigure();
-extern int taskIdle();
 extern int taskIdListGet();
 extern int taskIdListSort();
 extern int taskIdSelf();
 extern int taskIdVerify();
+extern int taskIdle();
 extern int taskInfoGet();
 extern int taskInit();
 extern int taskLibInit();
-extern int taskLock();
 extern int taskLoPrio();
+extern int taskLock();
 extern int taskName();
 extern int taskNameToId();
 extern int taskOptionsSet();
 extern int taskOptionsString();
+extern int taskPrioTest();
 extern int taskPriorityGet();
 extern int taskPrioritySet();
-extern int taskPrioTest();
 extern int taskRegName;
 extern int taskRegsFmt;
 extern int taskRegsFormat;
@@ -1493,13 +1523,13 @@ extern int taskSwapHookAdd();
 extern int taskSwapHookAttach();
 extern int taskSwapHookDelete();
 extern int taskSwapHookDetach();
-extern int taskSwapHooks;
 extern int taskSwapHookShow();
+extern int taskSwapHooks;
 extern int taskSwapReference;
 extern int taskSwitchHookAdd();
 extern int taskSwitchHookDelete();
-extern int taskSwitchHooks;
 extern int taskSwitchHookShow();
+extern int taskSwitchHooks;
 extern int taskTcb();
 extern int taskTerminate();
 extern int taskUndelay();
@@ -1512,17 +1542,21 @@ extern int taskVarInfo();
 extern int taskVarLibInit();
 extern int taskVarSet();
 extern int tcbinfo;
+extern int tcpCfgParams;
+extern int tcpClient();
+extern int tcpLibInit();
+extern int tcpOutRsts;
+extern int tcpRandFunc;
+extern int tcpServer();
 extern int tcp_attach();
 extern int tcp_backoff;
 extern int tcp_canceltimers();
-extern int tcpCfgParams;
-extern int tcpClient();
 extern int tcp_close();
 extern int tcp_ctlinput();
 extern int tcp_ctloutput();
 extern int tcp_disconnect();
-extern int tcp_dooptions();
 extern int tcp_do_rfc1323;
+extern int tcp_dooptions();
 extern int tcp_drain();
 extern int tcp_drop();
 extern int tcp_fasttimo();
@@ -1533,7 +1567,6 @@ extern int tcp_keepidle;
 extern int tcp_keepinit;
 extern int tcp_keepintvl;
 extern int tcp_last_inpcb;
-extern int tcpLibInit();
 extern int tcp_maxidle;
 extern int tcp_maxpersistidle;
 extern int tcp_msl;
@@ -1544,41 +1577,38 @@ extern int tcp_notify();
 extern int tcp_now;
 extern int tcp_outflags;
 extern int tcp_output();
-extern int tcpOutRsts;
 extern int tcp_pcbhashsize;
 extern int tcp_pulloutofband();
 extern int tcp_quench();
-extern int tcpRandFunc;
 extern int tcp_reass();
 extern int tcp_recvspace;
 extern int tcp_respond();
-extern int tcprexmtthresh;
 extern int tcp_rttdflt;
 extern int tcp_saveti;
 extern int tcp_sendspace;
-extern int tcpServer();
 extern int tcp_setpersist();
 extern int tcp_slowtimo();
-extern int tcpstat;
 extern int tcp_template();
 extern int tcp_timers();
 extern int tcp_totbackoff;
 extern int tcp_usrclosed();
 extern int tcp_usrreq();
 extern int tcp_xmit_timer();
+extern int tcprexmtthresh;
+extern int tcpstat;
 extern int td();
-extern int test_blkdev();
-extern int test_filename();
 extern int testGfx();
 extern int testGfxLo();
 extern int testGfxLoInt();
 extern int testGfxLoLin();
-extern int test_inode();
 extern int testIo();
 extern int testJmp();
 extern int testPrintf();
 extern int testStdio();
 extern int testSymbols();
+extern int test_blkdev();
+extern int test_filename();
+extern int test_inode();
 extern int ti();
 extern int tick64Get();
 extern int tick64Set();
@@ -1586,8 +1616,6 @@ extern int tickGet();
 extern int tickSet();
 extern int time();
 extern int timeLibInit();
-extern int __tmNormalize();
-extern int __tmValidate();
 extern int toggleDoubleBuffer();
 extern int tolower();
 extern int toupper();
@@ -1607,24 +1635,22 @@ extern int ttyMonitorTrapSet();
 extern int ttyRead();
 extern int ttyWrite();
 extern int tyler();
-extern int TylerGajewski;
 extern int udbinfo;
-extern int __udivdi3();
 extern int udpCfgParams;
 extern int udpCheck();
 extern int udpClient();
-extern int udp_ctlinput();
 extern int udpDoCkSumRcv;
 extern int udpDoCkSumSnd;
+extern int udpLibInit();
+extern int udpServer();
+extern int udp_ctlinput();
 extern int udp_in;
 extern int udp_input();
 extern int udp_last_inpcb;
-extern int udpLibInit();
 extern int udp_output();
 extern int udp_pcbhashsize;
-extern int udpServer();
-extern int udpstat;
 extern int udp_usrreq();
+extern int udpstat;
 extern int uglBitmapCreate();
 extern int uglBitmapDestroy();
 extern int uglClutGet();
@@ -1691,8 +1717,6 @@ extern int uglVgaXBitmapDestroy();
 extern int uglVgaXBitmapWrite();
 extern int uglVgaXPixelSet();
 extern int uiomove();
-extern int __ultostr();
-extern int __umoddi3();
 extern int ungetc();
 extern int unixDomain;
 extern int unixDomainLibInit();
@@ -1750,9 +1774,9 @@ extern int vmStateGet();
 extern int vmStateSet();
 extern int vmTranslate();
 extern int vnodeLock();
+extern int vnodeUnlock();
 extern int vnodesCreate();
 extern int vnodesDelete();
-extern int vnodeUnlock();
 extern int vprintf();
 extern int vscanf();
 extern int vsnprintf();
@@ -1767,15 +1791,16 @@ extern int wdDestroy();
 extern int wdFire();
 extern int wdId;
 extern int wdInit();
-extern int wdir();
 extern int wdLibInit();
 extern int wdShow();
 extern int wdShowInit();
 extern int wdStart();
 extern int wdTerminate();
-extern int __weekOfYear();
+extern int wdir();
 extern int winode();
 extern int write();
+extern int write_serial();
+extern int write_serial_str();
 extern int writei();
 extern int wsect();
 extern int xbdAttach();
@@ -1802,23 +1827,76 @@ extern int yyparse();
 extern int yystart();
 extern int zeroes;
 extern int zeroin_addr;
-extern void iosFdShow();
-extern void iosDrvShow();
-extern void write_serial(char a);
-extern void serialGetBaud();
-extern void serialSetBaud();
-extern void serial_test();
-extern void write_serial_str();
 
-SYMBOL symTblAll[1785] =
+SYMBOL symTblAll[1808] =
 {
-    {NULL, "_write_serial_str", (char*)write_serial_str, 0, (N_TEXT | N_EXT)},
-    {NULL, "_serial_test", (char*)serial_test, 0, (N_TEXT | N_EXT)},
-    {NULL, "_serialGetBaud", (char*)serialGetBaud, 0, (N_TEXT | N_EXT)},
-    {NULL, "_serialSetBaud", (char*)serialSetBaud, 0, (N_TEXT | N_EXT)},
-    {NULL, "_write_serial", (char*)write_serial, 0, (N_TEXT | N_EXT)},
-    {NULL, "_iosFdShow", (char*)iosFdShow, 0, (N_TEXT | N_EXT)},
-    {NULL, "_iosDrvShow", (char*)iosDrvShow, 0, (N_TEXT | N_EXT)},
+    {NULL, "_TylerGajewski", (char*)&TylerGajewski, 0, (N_DATA | N_EXT)},
+    {NULL, "___assert", (char*)__assert, 0, (N_TEXT | N_EXT)},
+    {NULL, "___ctype", (char*)&__ctype, 0, (N_DATA | N_EXT)},
+    {NULL, "___daysSinceEpoch", (char*)__daysSinceEpoch, 0, (N_TEXT | N_EXT)},
+    {NULL, "___divdi3", (char*)__divdi3, 0, (N_TEXT | N_EXT)},
+    {NULL, "___generateTime", (char*)__generateTime, 0, (N_TEXT | N_EXT)},
+    {NULL, "___getDay", (char*)__getDay, 0, (N_TEXT | N_EXT)},
+    {NULL, "___getDstInfo", (char*)__getDstInfo, 0, (N_TEXT | N_EXT)},
+    {NULL, "___getLocale", (char*)__getLocale, 0, (N_TEXT | N_EXT)},
+    {NULL, "___getMonth", (char*)__getMonth, 0, (N_TEXT | N_EXT)},
+    {NULL, "___getTime", (char*)__getTime, 0, (N_TEXT | N_EXT)},
+    {NULL, "___getZoneInfo", (char*)__getZoneInfo, 0, (N_TEXT | N_EXT)},
+    {NULL, "___julday", (char*)__julday, 0, (N_TEXT | N_EXT)},
+    {NULL, "___loctime", (char*)&__loctime, 0, (N_DATA | N_EXT)},
+    {NULL, "___ltostr", (char*)__ltostr, 0, (N_TEXT | N_EXT)},
+    {NULL, "___qdivrem", (char*)__qdivrem, 0, (N_TEXT | N_EXT)},
+    {NULL, "___sclose", (char*)__sclose, 0, (N_TEXT | N_EXT)},
+    {NULL, "___sflags", (char*)__sflags, 0, (N_TEXT | N_EXT)},
+    {NULL, "___sflush", (char*)__sflush, 0, (N_TEXT | N_EXT)},
+    {NULL, "___sfvwrite", (char*)__sfvwrite, 0, (N_TEXT | N_EXT)},
+    {NULL, "___smakebuf", (char*)__smakebuf, 0, (N_TEXT | N_EXT)},
+    {NULL, "___sread", (char*)__sread, 0, (N_TEXT | N_EXT)},
+    {NULL, "___srefill", (char*)__srefill, 0, (N_TEXT | N_EXT)},
+    {NULL, "___srget", (char*)__srget, 0, (N_TEXT | N_EXT)},
+    {NULL, "___sseek", (char*)__sseek, 0, (N_TEXT | N_EXT)},
+    {NULL, "___stderr", (char*)__stderr, 0, (N_TEXT | N_EXT)},
+    {NULL, "___stdin", (char*)__stdin, 0, (N_TEXT | N_EXT)},
+    {NULL, "___stdout", (char*)__stdout, 0, (N_TEXT | N_EXT)},
+    {NULL, "___submore", (char*)__submore, 0, (N_TEXT | N_EXT)},
+    {NULL, "___swbuf", (char*)__swbuf, 0, (N_TEXT | N_EXT)},
+    {NULL, "___swrite", (char*)__swrite, 0, (N_TEXT | N_EXT)},
+    {NULL, "___swsetup", (char*)__swsetup, 0, (N_TEXT | N_EXT)},
+    {NULL, "___tmNormalize", (char*)__tmNormalize, 0, (N_TEXT | N_EXT)},
+    {NULL, "___tmValidate", (char*)__tmValidate, 0, (N_TEXT | N_EXT)},
+    {NULL, "___udivdi3", (char*)__udivdi3, 0, (N_TEXT | N_EXT)},
+    {NULL, "___ultostr", (char*)__ultostr, 0, (N_TEXT | N_EXT)},
+    {NULL, "___umoddi3", (char*)__umoddi3, 0, (N_TEXT | N_EXT)},
+    {NULL, "___weekOfYear", (char*)__weekOfYear, 0, (N_TEXT | N_EXT)},
+    {NULL, "__clockRealtime", (char*)&_clockRealtime, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_excBaseHook", (char*)&_func_excBaseHook, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_excInfoShow", (char*)&_func_excInfoShow, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_excIntHook", (char*)&_func_excIntHook, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_excJobAdd", (char*)&_func_excJobAdd, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_excPanicHook", (char*)&_func_excPanicHook, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_logMsg", (char*)&_func_logMsg, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_selWakeupAll", (char*)&_func_selWakeupAll, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_selWakeupListInit", (char*)&_func_selWakeupListInit, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_selWakeupListTerminate", (char*)&_func_selWakeupListTerminate, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_sigExcKill", (char*)&_func_sigExcKill, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_sigTimeoutRecalc", (char*)&_func_sigTimeoutRecalc, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_sigprocmask", (char*)&_func_sigprocmask, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_symFindSymbol", (char*)&_func_symFindSymbol, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_symNameGet", (char*)&_func_symNameGet, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_symTypeGet", (char*)&_func_symTypeGet, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_symValueGet", (char*)&_func_symValueGet, 0, (N_BSS | N_EXT)},
+    {NULL, "__func_taskRegsShowFunc", (char*)&_func_taskRegsShowFunc, 0, (N_BSS | N_EXT)},
+    {NULL, "__pNetBufCollect", (char*)&_pNetBufCollect, 0, (N_BSS | N_EXT)},
+    {NULL, "__pNetPoolFuncTable", (char*)&_pNetPoolFuncTable, 0, (N_DATA | N_EXT)},
+    {NULL, "__randseed", (char*)&_randseed, 0, (N_DATA | N_EXT)},
+    {NULL, "__setjmpSetup", (char*)_setjmpSetup, 0, (N_TEXT | N_EXT)},
+    {NULL, "__sigCtxLoad", (char*)_sigCtxLoad, 0, (N_TEXT | N_EXT)},
+    {NULL, "__sigCtxRetValueSet", (char*)_sigCtxRetValueSet, 0, (N_TEXT | N_EXT)},
+    {NULL, "__sigCtxSave", (char*)_sigCtxSave, 0, (N_TEXT | N_EXT)},
+    {NULL, "__sigCtxSetup", (char*)_sigCtxSetup, 0, (N_TEXT | N_EXT)},
+    {NULL, "__sigCtxStackEnd", (char*)_sigCtxStackEnd, 0, (N_TEXT | N_EXT)},
+    {NULL, "__sigfaulttable", (char*)&_sigfaulttable, 0, (N_DATA | N_EXT)},
+    {NULL, "__strto_l", (char*)_strto_l, 0, (N_TEXT | N_EXT)},
     {NULL, "_abs", (char*)abs, 0, (N_TEXT | N_EXT)},
     {NULL, "_accept", (char*)accept, 0, (N_TEXT | N_EXT)},
     {NULL, "_actStart", (char*)&actStart, 0, (N_BSS | N_EXT)},
@@ -1828,7 +1906,6 @@ SYMBOL symTblAll[1785] =
     {NULL, "_addToHistory", (char*)addToHistory, 0, (N_TEXT | N_EXT)},
     {NULL, "_animTreshold", (char*)&animTreshold, 0, (N_BSS | N_EXT)},
     {NULL, "_asprintf", (char*)asprintf, 0, (N_TEXT | N_EXT)},
-    {NULL, "___assert", (char*)__assert, 0, (N_TEXT | N_EXT)},
     {NULL, "_assertExpr", (char*)assertExpr, 0, (N_TEXT | N_EXT)},
     {NULL, "_assertLibInit", (char*)assertLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_atoi", (char*)atoi, 0, (N_TEXT | N_EXT)},
@@ -1845,8 +1922,8 @@ SYMBOL symTblAll[1785] =
     {NULL, "_bsdSockLibAdd", (char*)bsdSockLibAdd, 0, (N_TEXT | N_EXT)},
     {NULL, "_bss", (char*)&bss, 0, (N_BSS | N_EXT)},
     {NULL, "_buf", (char*)&buf, 0, (N_BSS | N_EXT)},
-    {NULL, "_buf_getblk", (char*)buf_getblk, 0, (N_TEXT | N_EXT)},
     {NULL, "_bufHead", (char*)&bufHead, 0, (N_BSS | N_EXT)},
+    {NULL, "_buf_getblk", (char*)buf_getblk, 0, (N_TEXT | N_EXT)},
     {NULL, "_bwrite", (char*)bwrite, 0, (N_TEXT | N_EXT)},
     {NULL, "_cacheArchLibInit", (char*)cacheArchLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_cacheClear", (char*)cacheClear, 0, (N_TEXT | N_EXT)},
@@ -1918,9 +1995,14 @@ SYMBOL symTblAll[1785] =
     {NULL, "_cfree", (char*)cfree, 0, (N_TEXT | N_EXT)},
     {NULL, "_charTable", (char*)&charTable, 0, (N_DATA | N_EXT)},
     {NULL, "_chdir", (char*)chdir, 0, (N_TEXT | N_EXT)},
-    {NULL, "_check_file", (char*)check_file, 0, (N_TEXT | N_EXT)},
     {NULL, "_checkStack", (char*)checkStack, 0, (N_TEXT | N_EXT)},
+    {NULL, "_check_file", (char*)check_file, 0, (N_TEXT | N_EXT)},
     {NULL, "_checksum", (char*)checksum, 0, (N_TEXT | N_EXT)},
+    {NULL, "_clBlkCount", (char*)&clBlkCount, 0, (N_BSS | N_EXT)},
+    {NULL, "_clBlkId", (char*)&clBlkId, 0, (N_BSS | N_EXT)},
+    {NULL, "_clBufCount", (char*)&clBufCount, 0, (N_BSS | N_EXT)},
+    {NULL, "_clDescTable", (char*)&clDescTable, 0, (N_DATA | N_EXT)},
+    {NULL, "_clDescTableNumEntries", (char*)&clDescTableNumEntries, 0, (N_BSS | N_EXT)},
     {NULL, "_classCreate", (char*)classCreate, 0, (N_TEXT | N_EXT)},
     {NULL, "_classDestroy", (char*)classDestroy, 0, (N_TEXT | N_EXT)},
     {NULL, "_classInit", (char*)classInit, 0, (N_TEXT | N_EXT)},
@@ -1929,18 +2011,12 @@ SYMBOL symTblAll[1785] =
     {NULL, "_classShow", (char*)classShow, 0, (N_TEXT | N_EXT)},
     {NULL, "_classShowConnect", (char*)classShowConnect, 0, (N_TEXT | N_EXT)},
     {NULL, "_classShowInit", (char*)classShowInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_clBlkCount", (char*)&clBlkCount, 0, (N_BSS | N_EXT)},
-    {NULL, "_clBlkId", (char*)&clBlkId, 0, (N_BSS | N_EXT)},
-    {NULL, "_clBufCount", (char*)&clBufCount, 0, (N_BSS | N_EXT)},
-    {NULL, "_clDescTable", (char*)&clDescTable, 0, (N_DATA | N_EXT)},
-    {NULL, "_clDescTableNumEntries", (char*)&clDescTableNumEntries, 0, (N_BSS | N_EXT)},
-    {NULL, "_clock_gettime", (char*)clock_gettime, 0, (N_TEXT | N_EXT)},
     {NULL, "_clockLibInit", (char*)clockLibInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "__clockRealtime", (char*)&_clockRealtime, 0, (N_BSS | N_EXT)},
+    {NULL, "_clock_gettime", (char*)clock_gettime, 0, (N_TEXT | N_EXT)},
     {NULL, "_clock_settime", (char*)clock_settime, 0, (N_TEXT | N_EXT)},
     {NULL, "_close", (char*)close, 0, (N_TEXT | N_EXT)},
-    {NULL, "_closedir", (char*)closedir, 0, (N_TEXT | N_EXT)},
     {NULL, "_closeFile", (char*)closeFile, 0, (N_TEXT | N_EXT)},
+    {NULL, "_closedir", (char*)closedir, 0, (N_TEXT | N_EXT)},
     {NULL, "_code", (char*)code, 0, (N_TEXT | N_EXT)},
     {NULL, "_connect", (char*)connect, 0, (N_TEXT | N_EXT)},
     {NULL, "_connectWithTimeout", (char*)connectWithTimeout, 0, (N_TEXT | N_EXT)},
@@ -1951,31 +2027,28 @@ SYMBOL symTblAll[1785] =
     {NULL, "_creat", (char*)creat, 0, (N_TEXT | N_EXT)},
     {NULL, "_creatConnect", (char*)creatConnect, 0, (N_TEXT | N_EXT)},
     {NULL, "_createDib", (char*)createDib, 0, (N_TEXT | N_EXT)},
-    {NULL, "_created_modules", (char*)&created_modules, 0, (N_BSS | N_EXT)},
-    {NULL, "_created_tasks", (char*)&created_tasks, 0, (N_BSS | N_EXT)},
     {NULL, "_createFile", (char*)createFile, 0, (N_TEXT | N_EXT)},
     {NULL, "_createHook", (char*)createHook, 0, (N_TEXT | N_EXT)},
-    {NULL, "___ctype", (char*)&__ctype, 0, (N_DATA | N_EXT)},
+    {NULL, "_created_modules", (char*)&created_modules, 0, (N_BSS | N_EXT)},
+    {NULL, "_created_tasks", (char*)&created_tasks, 0, (N_BSS | N_EXT)},
     {NULL, "_currVmContext", (char*)&currVmContext, 0, (N_BSS | N_EXT)},
     {NULL, "_cwd", (char*)&cwd, 0, (N_BSS | N_EXT)},
     {NULL, "_d", (char*)d, 0, (N_TEXT | N_EXT)},
     {NULL, "_data", (char*)&data, 0, (N_DATA | N_EXT)},
-    {NULL, "___daysSinceEpoch", (char*)__daysSinceEpoch, 0, (N_TEXT | N_EXT)},
     {NULL, "_debugLibInit", (char*)debugLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_decAnimTreshold", (char*)decAnimTreshold, 0, (N_TEXT | N_EXT)},
     {NULL, "_defaultTaskId", (char*)&defaultTaskId, 0, (N_BSS | N_EXT)},
     {NULL, "_deleteClBlk", (char*)deleteClBlk, 0, (N_TEXT | N_EXT)},
-    {NULL, "_deleted_tasks", (char*)&deleted_tasks, 0, (N_BSS | N_EXT)},
     {NULL, "_deleteHook", (char*)deleteHook, 0, (N_TEXT | N_EXT)},
     {NULL, "_deleteMblk", (char*)deleteMblk, 0, (N_TEXT | N_EXT)},
     {NULL, "_deleteTuple", (char*)deleteTuple, 0, (N_TEXT | N_EXT)},
+    {NULL, "_deleted_tasks", (char*)&deleted_tasks, 0, (N_BSS | N_EXT)},
     {NULL, "_demo", (char*)demo, 0, (N_TEXT | N_EXT)},
     {NULL, "_demoRead", (char*)demoRead, 0, (N_TEXT | N_EXT)},
     {NULL, "_demoWrite", (char*)demoWrite, 0, (N_TEXT | N_EXT)},
     {NULL, "_devs", (char*)devs, 0, (N_TEXT | N_EXT)},
     {NULL, "_dirList", (char*)dirList, 0, (N_TEXT | N_EXT)},
     {NULL, "_div", (char*)div, 0, (N_TEXT | N_EXT)},
-    {NULL, "___divdi3", (char*)__divdi3, 0, (N_TEXT | N_EXT)},
     {NULL, "_div_r", (char*)div_r, 0, (N_TEXT | N_EXT)},
     {NULL, "_dllAdd", (char*)dllAdd, 0, (N_TEXT | N_EXT)},
     {NULL, "_dllCount", (char*)dllCount, 0, (N_TEXT | N_EXT)},
@@ -1984,9 +2057,9 @@ SYMBOL symTblAll[1785] =
     {NULL, "_dllInsert", (char*)dllInsert, 0, (N_TEXT | N_EXT)},
     {NULL, "_dllRemove", (char*)dllRemove, 0, (N_TEXT | N_EXT)},
     {NULL, "_dmaSetup", (char*)dmaSetup, 0, (N_TEXT | N_EXT)},
+    {NULL, "_domainShow", (char*)domainShow, 0, (N_TEXT | N_EXT)},
     {NULL, "_domaininit", (char*)domaininit, 0, (N_TEXT | N_EXT)},
     {NULL, "_domains", (char*)&domains, 0, (N_BSS | N_EXT)},
-    {NULL, "_domainShow", (char*)domainShow, 0, (N_TEXT | N_EXT)},
     {NULL, "_dosDirHdlrsList", (char*)&dosDirHdlrsList, 0, (N_BSS | N_EXT)},
     {NULL, "_dosDirLibInit", (char*)dosDirLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_dosDirSemOptions", (char*)&dosDirSemOptions, 0, (N_DATA | N_EXT)},
@@ -2060,14 +2133,14 @@ SYMBOL symTblAll[1785] =
     {NULL, "_fdDrvInit", (char*)fdDrvInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_fdIntCount", (char*)&fdIntCount, 0, (N_BSS | N_EXT)},
     {NULL, "_fdMutexSem", (char*)&fdMutexSem, 0, (N_BSS | N_EXT)},
-    {NULL, "_fdopen", (char*)fdopen, 0, (N_TEXT | N_EXT)},
-    {NULL, "_fdprintf", (char*)fdprintf, 0, (N_TEXT | N_EXT)},
     {NULL, "_fdRetry", (char*)&fdRetry, 0, (N_DATA | N_EXT)},
     {NULL, "_fdSemSeconds", (char*)&fdSemSeconds, 0, (N_DATA | N_EXT)},
     {NULL, "_fdSyncSem", (char*)&fdSyncSem, 0, (N_BSS | N_EXT)},
     {NULL, "_fdTimeout", (char*)&fdTimeout, 0, (N_DATA | N_EXT)},
     {NULL, "_fdWdId", (char*)&fdWdId, 0, (N_BSS | N_EXT)},
     {NULL, "_fdWdSeconds", (char*)&fdWdSeconds, 0, (N_DATA | N_EXT)},
+    {NULL, "_fdopen", (char*)fdopen, 0, (N_TEXT | N_EXT)},
+    {NULL, "_fdprintf", (char*)fdprintf, 0, (N_TEXT | N_EXT)},
     {NULL, "_feof", (char*)feof, 0, (N_TEXT | N_EXT)},
     {NULL, "_ferror", (char*)ferror, 0, (N_TEXT | N_EXT)},
     {NULL, "_fflush", (char*)fflush, 0, (N_TEXT | N_EXT)},
@@ -2076,14 +2149,14 @@ SYMBOL symTblAll[1785] =
     {NULL, "_fgetc", (char*)fgetc, 0, (N_TEXT | N_EXT)},
     {NULL, "_fgets", (char*)fgets, 0, (N_TEXT | N_EXT)},
     {NULL, "_file", (char*)&file, 0, (N_BSS | N_EXT)},
+    {NULL, "_fileRename", (char*)fileRename, 0, (N_TEXT | N_EXT)},
+    {NULL, "_fileStat", (char*)fileStat, 0, (N_TEXT | N_EXT)},
     {NULL, "_filealloc", (char*)filealloc, 0, (N_TEXT | N_EXT)},
     {NULL, "_fileclose", (char*)fileclose, 0, (N_TEXT | N_EXT)},
     {NULL, "_fileincref", (char*)fileincref, 0, (N_TEXT | N_EXT)},
     {NULL, "_fileinit", (char*)fileinit, 0, (N_TEXT | N_EXT)},
     {NULL, "_fileread", (char*)fileread, 0, (N_TEXT | N_EXT)},
-    {NULL, "_fileRename", (char*)fileRename, 0, (N_TEXT | N_EXT)},
     {NULL, "_filestat", (char*)filestat, 0, (N_TEXT | N_EXT)},
-    {NULL, "_fileStat", (char*)fileStat, 0, (N_TEXT | N_EXT)},
     {NULL, "_filewrite", (char*)filewrite, 0, (N_TEXT | N_EXT)},
     {NULL, "_fill_file", (char*)fill_file, 0, (N_TEXT | N_EXT)},
     {NULL, "_first", (char*)first, 0, (N_TEXT | N_EXT)},
@@ -2095,67 +2168,42 @@ SYMBOL symTblAll[1785] =
     {NULL, "_font8x16Height", (char*)&font8x16Height, 0, (N_DATA | N_EXT)},
     {NULL, "_font8x16Width", (char*)&font8x16Width, 0, (N_DATA | N_EXT)},
     {NULL, "_fopen", (char*)fopen, 0, (N_TEXT | N_EXT)},
-    {NULL, "_fpathconf", (char*)fpathconf, 0, (N_TEXT | N_EXT)},
     {NULL, "_fpClassId", (char*)&fpClassId, 0, (N_DATA | N_EXT)},
+    {NULL, "_fpathconf", (char*)fpathconf, 0, (N_TEXT | N_EXT)},
     {NULL, "_fprintf", (char*)fprintf, 0, (N_TEXT | N_EXT)},
     {NULL, "_fputc", (char*)fputc, 0, (N_TEXT | N_EXT)},
     {NULL, "_fread", (char*)fread, 0, (N_TEXT | N_EXT)},
     {NULL, "_free", (char*)free, 0, (N_TEXT | N_EXT)},
-    {NULL, "_freeblock", (char*)&freeblock, 0, (N_BSS | N_EXT)},
     {NULL, "_freeGfx", (char*)freeGfx, 0, (N_TEXT | N_EXT)},
+    {NULL, "_freeblock", (char*)&freeblock, 0, (N_BSS | N_EXT)},
     {NULL, "_freeinode", (char*)&freeinode, 0, (N_DATA | N_EXT)},
-    {NULL, "_fscanf", (char*)fscanf, 0, (N_TEXT | N_EXT)},
     {NULL, "_fsEventUtilInit", (char*)fsEventUtilInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_fsfd", (char*)&fsfd, 0, (N_BSS | N_EXT)},
     {NULL, "_fsPathAddedEventRaise", (char*)fsPathAddedEventRaise, 0, (N_TEXT | N_EXT)},
     {NULL, "_fsPathAddedEventSetup", (char*)fsPathAddedEventSetup, 0, (N_TEXT | N_EXT)},
-    {NULL, "_fstat", (char*)fstat, 0, (N_TEXT | N_EXT)},
-    {NULL, "_fs_test", (char*)fs_test, 0, (N_TEXT | N_EXT)},
     {NULL, "_fsWaitForPath", (char*)fsWaitForPath, 0, (N_TEXT | N_EXT)},
+    {NULL, "_fs_test", (char*)fs_test, 0, (N_TEXT | N_EXT)},
+    {NULL, "_fscanf", (char*)fscanf, 0, (N_TEXT | N_EXT)},
+    {NULL, "_fsfd", (char*)&fsfd, 0, (N_BSS | N_EXT)},
+    {NULL, "_fstat", (char*)fstat, 0, (N_TEXT | N_EXT)},
     {NULL, "_ftruncate", (char*)ftruncate, 0, (N_TEXT | N_EXT)},
-    {NULL, "__func_excBaseHook", (char*)&_func_excBaseHook, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_excInfoShow", (char*)&_func_excInfoShow, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_excIntHook", (char*)&_func_excIntHook, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_excJobAdd", (char*)&_func_excJobAdd, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_excPanicHook", (char*)&_func_excPanicHook, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_logMsg", (char*)&_func_logMsg, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_selWakeupAll", (char*)&_func_selWakeupAll, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_selWakeupListInit", (char*)&_func_selWakeupListInit, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_selWakeupListTerminate", (char*)&_func_selWakeupListTerminate, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_sigExcKill", (char*)&_func_sigExcKill, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_sigprocmask", (char*)&_func_sigprocmask, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_sigTimeoutRecalc", (char*)&_func_sigTimeoutRecalc, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_symFindSymbol", (char*)&_func_symFindSymbol, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_symNameGet", (char*)&_func_symNameGet, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_symTypeGet", (char*)&_func_symTypeGet, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_symValueGet", (char*)&_func_symValueGet, 0, (N_BSS | N_EXT)},
-    {NULL, "__func_taskRegsShowFunc", (char*)&_func_taskRegsShowFunc, 0, (N_BSS | N_EXT)},
     {NULL, "_fwrite", (char*)fwrite, 0, (N_TEXT | N_EXT)},
-    {NULL, "___generateTime", (char*)__generateTime, 0, (N_TEXT | N_EXT)},
     {NULL, "_genExc", (char*)genExc, 0, (N_TEXT | N_EXT)},
+    {NULL, "_getExcVal", (char*)getExcVal, 0, (N_TEXT | N_EXT)},
+    {NULL, "_getTaskVar", (char*)getTaskVar, 0, (N_TEXT | N_EXT)},
     {NULL, "_getc", (char*)getc, 0, (N_TEXT | N_EXT)},
     {NULL, "_getchar", (char*)getchar, 0, (N_TEXT | N_EXT)},
     {NULL, "_getcwd", (char*)getcwd, 0, (N_TEXT | N_EXT)},
-    {NULL, "___getDay", (char*)__getDay, 0, (N_TEXT | N_EXT)},
-    {NULL, "___getDstInfo", (char*)__getDstInfo, 0, (N_TEXT | N_EXT)},
     {NULL, "_getenv", (char*)getenv, 0, (N_TEXT | N_EXT)},
-    {NULL, "_getExcVal", (char*)getExcVal, 0, (N_TEXT | N_EXT)},
-    {NULL, "___getLocale", (char*)__getLocale, 0, (N_TEXT | N_EXT)},
-    {NULL, "___getMonth", (char*)__getMonth, 0, (N_TEXT | N_EXT)},
     {NULL, "_getpeername", (char*)getpeername, 0, (N_TEXT | N_EXT)},
     {NULL, "_gets", (char*)gets, 0, (N_TEXT | N_EXT)},
     {NULL, "_getsockname", (char*)getsockname, 0, (N_TEXT | N_EXT)},
     {NULL, "_getsockopt", (char*)getsockopt, 0, (N_TEXT | N_EXT)},
-    {NULL, "_getTaskVar", (char*)getTaskVar, 0, (N_TEXT | N_EXT)},
-    {NULL, "___getTime", (char*)__getTime, 0, (N_TEXT | N_EXT)},
-    {NULL, "___getZoneInfo", (char*)__getZoneInfo, 0, (N_TEXT | N_EXT)},
     {NULL, "_gfxDevId", (char*)&gfxDevId, 0, (N_BSS | N_EXT)},
     {NULL, "_globalEnvNEntries", (char*)&globalEnvNEntries, 0, (N_BSS | N_EXT)},
     {NULL, "_globalEnvTableSize", (char*)&globalEnvTableSize, 0, (N_BSS | N_EXT)},
     {NULL, "_globalPageBlockTable", (char*)&globalPageBlockTable, 0, (N_BSS | N_EXT)},
     {NULL, "_handleKill", (char*)handleKill, 0, (N_TEXT | N_EXT)},
     {NULL, "_hashClassId", (char*)&hashClassId, 0, (N_DATA | N_EXT)},
-    {NULL, "_hashinit", (char*)hashinit, 0, (N_TEXT | N_EXT)},
     {NULL, "_hashKeyCmp", (char*)hashKeyCmp, 0, (N_TEXT | N_EXT)},
     {NULL, "_hashKeyStringCmp", (char*)hashKeyStringCmp, 0, (N_TEXT | N_EXT)},
     {NULL, "_hashLibInit", (char*)hashLibInit, 0, (N_TEXT | N_EXT)},
@@ -2168,80 +2216,75 @@ SYMBOL symTblAll[1785] =
     {NULL, "_hashTablePut", (char*)hashTablePut, 0, (N_TEXT | N_EXT)},
     {NULL, "_hashTableRemove", (char*)hashTableRemove, 0, (N_TEXT | N_EXT)},
     {NULL, "_hashTableTerminate", (char*)hashTableTerminate, 0, (N_TEXT | N_EXT)},
+    {NULL, "_hashinit", (char*)hashinit, 0, (N_TEXT | N_EXT)},
     {NULL, "_help", (char*)help, 0, (N_TEXT | N_EXT)},
     {NULL, "_helpDemo", (char*)helpDemo, 0, (N_TEXT | N_EXT)},
     {NULL, "_historyCount", (char*)&historyCount, 0, (N_BSS | N_EXT)},
     {NULL, "_historyData", (char*)&historyData, 0, (N_BSS | N_EXT)},
     {NULL, "_historyDump", (char*)historyDump, 0, (N_TEXT | N_EXT)},
+    {NULL, "_historyHeader", (char*)historyHeader, 0, (N_TEXT | N_EXT)},
     {NULL, "_historyInit", (char*)historyInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_historyInitialized", (char*)&historyInitialized, 0, (N_BSS | N_EXT)},
     {NULL, "_historyLog", (char*)historyLog, 0, (N_TEXT | N_EXT)},
+    {NULL, "_historyLogStr", (char*)historyLogStr, 0, (N_TEXT | N_EXT)},
     {NULL, "_historySize", (char*)&historySize, 0, (N_DATA | N_EXT)},
     {NULL, "_i", (char*)i, 0, (N_TEXT | N_EXT)},
     {NULL, "_i2b", (char*)i2b, 0, (N_TEXT | N_EXT)},
     {NULL, "_ialloc", (char*)ialloc, 0, (N_TEXT | N_EXT)},
     {NULL, "_iappend", (char*)iappend, 0, (N_TEXT | N_EXT)},
     {NULL, "_icmpCfgParams", (char*)&icmpCfgParams, 0, (N_BSS | N_EXT)},
+    {NULL, "_icmpLibInit", (char*)icmpLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_icmp_error", (char*)icmp_error, 0, (N_TEXT | N_EXT)},
     {NULL, "_icmp_input", (char*)icmp_input, 0, (N_TEXT | N_EXT)},
-    {NULL, "_icmpLibInit", (char*)icmpLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_icmpmask", (char*)&icmpmask, 0, (N_BSS | N_EXT)},
     {NULL, "_icmpmaskrepl", (char*)&icmpmaskrepl, 0, (N_BSS | N_EXT)},
     {NULL, "_icmpstat", (char*)&icmpstat, 0, (N_BSS | N_EXT)},
     {NULL, "_idecref", (char*)idecref, 0, (N_TEXT | N_EXT)},
     {NULL, "_ifAddrAdd", (char*)ifAddrAdd, 0, (N_TEXT | N_EXT)},
-    {NULL, "_ifafree", (char*)ifafree, 0, (N_TEXT | N_EXT)},
+    {NULL, "_ifIndexAlloc", (char*)ifIndexAlloc, 0, (N_TEXT | N_EXT)},
+    {NULL, "_ifIndexToIfp", (char*)ifIndexToIfp, 0, (N_TEXT | N_EXT)},
+    {NULL, "_ifIndexVerify", (char*)ifIndexVerify, 0, (N_TEXT | N_EXT)},
+    {NULL, "_ifLibInit", (char*)ifLibInit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_ifShow", (char*)ifShow, 0, (N_TEXT | N_EXT)},
+    {NULL, "_if_attach", (char*)if_attach, 0, (N_TEXT | N_EXT)},
+    {NULL, "_if_down", (char*)if_down, 0, (N_TEXT | N_EXT)},
+    {NULL, "_if_qflush", (char*)if_qflush, 0, (N_TEXT | N_EXT)},
+    {NULL, "_if_slowtimo", (char*)if_slowtimo, 0, (N_TEXT | N_EXT)},
+    {NULL, "_if_up", (char*)if_up, 0, (N_TEXT | N_EXT)},
     {NULL, "_ifa_ifwithaddr", (char*)ifa_ifwithaddr, 0, (N_TEXT | N_EXT)},
     {NULL, "_ifa_ifwithaf", (char*)ifa_ifwithaf, 0, (N_TEXT | N_EXT)},
     {NULL, "_ifa_ifwithdstaddr", (char*)ifa_ifwithdstaddr, 0, (N_TEXT | N_EXT)},
     {NULL, "_ifa_ifwithnet", (char*)ifa_ifwithnet, 0, (N_TEXT | N_EXT)},
     {NULL, "_ifa_ifwithroute", (char*)ifa_ifwithroute, 0, (N_TEXT | N_EXT)},
+    {NULL, "_ifafree", (char*)ifafree, 0, (N_TEXT | N_EXT)},
     {NULL, "_ifaof_ifpforaddr", (char*)ifaof_ifpforaddr, 0, (N_TEXT | N_EXT)},
-    {NULL, "_if_attach", (char*)if_attach, 0, (N_TEXT | N_EXT)},
     {NULL, "_ifconf", (char*)ifconf, 0, (N_TEXT | N_EXT)},
-    {NULL, "_if_down", (char*)if_down, 0, (N_TEXT | N_EXT)},
-    {NULL, "_ifIndexAlloc", (char*)ifIndexAlloc, 0, (N_TEXT | N_EXT)},
-    {NULL, "_ifIndexToIfp", (char*)ifIndexToIfp, 0, (N_TEXT | N_EXT)},
-    {NULL, "_ifIndexVerify", (char*)ifIndexVerify, 0, (N_TEXT | N_EXT)},
     {NULL, "_ifioctl", (char*)ifioctl, 0, (N_TEXT | N_EXT)},
-    {NULL, "_ifLibInit", (char*)ifLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_ifnet", (char*)&ifnet, 0, (N_BSS | N_EXT)},
-    {NULL, "_if_qflush", (char*)if_qflush, 0, (N_TEXT | N_EXT)},
     {NULL, "_ifqmaxlen", (char*)&ifqmaxlen, 0, (N_BSS | N_EXT)},
-    {NULL, "_ifShow", (char*)ifShow, 0, (N_TEXT | N_EXT)},
-    {NULL, "_if_slowtimo", (char*)if_slowtimo, 0, (N_TEXT | N_EXT)},
     {NULL, "_ifunit", (char*)ifunit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_if_up", (char*)if_up, 0, (N_TEXT | N_EXT)},
     {NULL, "_iget", (char*)iget, 0, (N_TEXT | N_EXT)},
     {NULL, "_iincref", (char*)iincref, 0, (N_TEXT | N_EXT)},
     {NULL, "_iinit", (char*)iinit, 0, (N_TEXT | N_EXT)},
     {NULL, "_ilock", (char*)ilock, 0, (N_TEXT | N_EXT)},
     {NULL, "_inAddRoute", (char*)inAddRoute, 0, (N_TEXT | N_EXT)},
+    {NULL, "_inLibInit", (char*)inLibInit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_inLogAddr", (char*)inLogAddr, 0, (N_TEXT | N_EXT)},
+    {NULL, "_inLogSock", (char*)inLogSock, 0, (N_TEXT | N_EXT)},
+    {NULL, "_inSetAddr", (char*)inSetAddr, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_addrwithif", (char*)in_addrwithif, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_broadcast", (char*)in_broadcast, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_canforward", (char*)in_canforward, 0, (N_TEXT | N_EXT)},
-    {NULL, "_incAnimTreshold", (char*)incAnimTreshold, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_cksum", (char*)in_cksum, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_control", (char*)in_control, 0, (N_TEXT | N_EXT)},
-    {NULL, "_inet_addr", (char*)inet_addr, 0, (N_TEXT | N_EXT)},
-    {NULL, "_inetctlerrmap", (char*)&inetctlerrmap, 0, (N_DATA | N_EXT)},
-    {NULL, "_inetdomain", (char*)&inetdomain, 0, (N_DATA | N_EXT)},
-    {NULL, "_inetLibInit", (char*)inetLibInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_inet_ntoa_b", (char*)inet_ntoa_b, 0, (N_TEXT | N_EXT)},
-    {NULL, "_inetsw", (char*)&inetsw, 0, (N_DATA | N_EXT)},
     {NULL, "_in_ifaddr", (char*)&in_ifaddr, 0, (N_BSS | N_EXT)},
     {NULL, "_in_ifinit", (char*)in_ifinit, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_ifscrub", (char*)in_ifscrub, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_ifwithaddr", (char*)in_ifwithaddr, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_interfaces", (char*)&in_interfaces, 0, (N_BSS | N_EXT)},
-    {NULL, "_init", (char*)init, 0, (N_TEXT | N_EXT)},
-    {NULL, "_inLibInit", (char*)inLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_localaddr", (char*)in_localaddr, 0, (N_TEXT | N_EXT)},
-    {NULL, "_inLogAddr", (char*)inLogAddr, 0, (N_TEXT | N_EXT)},
-    {NULL, "_inLogSock", (char*)inLogSock, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_losing", (char*)in_losing, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_netof", (char*)in_netof, 0, (N_TEXT | N_EXT)},
-    {NULL, "_inode", (char*)&inode, 0, (N_BSS | N_EXT)},
     {NULL, "_in_pcballoc", (char*)in_pcballoc, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_pcbbind", (char*)in_pcbbind, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_pcbchghash", (char*)in_pcbchghash, 0, (N_TEXT | N_EXT)},
@@ -2256,11 +2299,20 @@ SYMBOL symTblAll[1785] =
     {NULL, "_in_pcbnotify", (char*)in_pcbnotify, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_pcbrehash", (char*)in_pcbrehash, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_pcbremhash", (char*)in_pcbremhash, 0, (N_TEXT | N_EXT)},
-    {NULL, "_input_ipaddr", (char*)&input_ipaddr, 0, (N_BSS | N_EXT)},
-    {NULL, "_inSetAddr", (char*)inSetAddr, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_setpeeraddr", (char*)in_setpeeraddr, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_setsockaddr", (char*)in_setsockaddr, 0, (N_TEXT | N_EXT)},
     {NULL, "_in_socktrim", (char*)in_socktrim, 0, (N_TEXT | N_EXT)},
+    {NULL, "_incAnimTreshold", (char*)incAnimTreshold, 0, (N_TEXT | N_EXT)},
+    {NULL, "_inetLibInit", (char*)inetLibInit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_inet_addr", (char*)inet_addr, 0, (N_TEXT | N_EXT)},
+    {NULL, "_inet_ntoa_b", (char*)inet_ntoa_b, 0, (N_TEXT | N_EXT)},
+    {NULL, "_inetctlerrmap", (char*)&inetctlerrmap, 0, (N_DATA | N_EXT)},
+    {NULL, "_inetdomain", (char*)&inetdomain, 0, (N_DATA | N_EXT)},
+    {NULL, "_inetsw", (char*)&inetsw, 0, (N_DATA | N_EXT)},
+    {NULL, "_init", (char*)init, 0, (N_TEXT | N_EXT)},
+    {NULL, "_init_serial", (char*)init_serial, 0, (N_TEXT | N_EXT)},
+    {NULL, "_inode", (char*)&inode, 0, (N_BSS | N_EXT)},
+    {NULL, "_input_ipaddr", (char*)&input_ipaddr, 0, (N_BSS | N_EXT)},
     {NULL, "_insque", (char*)insque, 0, (N_TEXT | N_EXT)},
     {NULL, "_installHandler", (char*)installHandler, 0, (N_TEXT | N_EXT)},
     {NULL, "_intCallTbl", (char*)&intCallTbl, 0, (N_BSS | N_EXT)},
@@ -2286,13 +2338,15 @@ SYMBOL symTblAll[1785] =
     {NULL, "_intVecSetEnt", (char*)&intVecSetEnt, 0, (N_BSS | N_EXT)},
     {NULL, "_intVecSetExit", (char*)&intVecSetExit, 0, (N_BSS | N_EXT)},
     {NULL, "_ioConnect", (char*)ioConnect, 0, (N_TEXT | N_EXT)},
-    {NULL, "_ioctl", (char*)ioctl, 0, (N_TEXT | N_EXT)},
     {NULL, "_ioDefPathCat", (char*)ioDefPathCat, 0, (N_TEXT | N_EXT)},
     {NULL, "_ioDefPathGet", (char*)ioDefPathGet, 0, (N_TEXT | N_EXT)},
     {NULL, "_ioDefPathSet", (char*)ioDefPathSet, 0, (N_TEXT | N_EXT)},
     {NULL, "_ioGlobalStdGet", (char*)ioGlobalStdGet, 0, (N_TEXT | N_EXT)},
     {NULL, "_ioGlobalStdSet", (char*)ioGlobalStdSet, 0, (N_TEXT | N_EXT)},
     {NULL, "_ioHelp", (char*)ioHelp, 0, (N_TEXT | N_EXT)},
+    {NULL, "_ioTaskStdGet", (char*)ioTaskStdGet, 0, (N_TEXT | N_EXT)},
+    {NULL, "_ioTaskStdSet", (char*)ioTaskStdSet, 0, (N_TEXT | N_EXT)},
+    {NULL, "_ioctl", (char*)ioctl, 0, (N_TEXT | N_EXT)},
     {NULL, "_iosClose", (char*)iosClose, 0, (N_TEXT | N_EXT)},
     {NULL, "_iosCreate", (char*)iosCreate, 0, (N_TEXT | N_EXT)},
     {NULL, "_iosDefaultPath", (char*)&iosDefaultPath, 0, (N_BSS | N_EXT)},
@@ -2305,6 +2359,7 @@ SYMBOL symTblAll[1785] =
     {NULL, "_iosDevShow", (char*)iosDevShow, 0, (N_TEXT | N_EXT)},
     {NULL, "_iosDrvInstall", (char*)iosDrvInstall, 0, (N_TEXT | N_EXT)},
     {NULL, "_iosDrvRemove", (char*)iosDrvRemove, 0, (N_TEXT | N_EXT)},
+    {NULL, "_iosDrvShow", (char*)iosDrvShow, 0, (N_TEXT | N_EXT)},
     {NULL, "_iosDrvTable", (char*)&iosDrvTable, 0, (N_BSS | N_EXT)},
     {NULL, "_iosFdDevFind", (char*)iosFdDevFind, 0, (N_TEXT | N_EXT)},
     {NULL, "_iosFdFree", (char*)iosFdFree, 0, (N_TEXT | N_EXT)},
@@ -2312,6 +2367,7 @@ SYMBOL symTblAll[1785] =
     {NULL, "_iosFdNew", (char*)iosFdNew, 0, (N_TEXT | N_EXT)},
     {NULL, "_iosFdNewHook", (char*)&iosFdNewHook, 0, (N_BSS | N_EXT)},
     {NULL, "_iosFdSet", (char*)iosFdSet, 0, (N_TEXT | N_EXT)},
+    {NULL, "_iosFdShow", (char*)iosFdShow, 0, (N_TEXT | N_EXT)},
     {NULL, "_iosFdTable", (char*)&iosFdTable, 0, (N_BSS | N_EXT)},
     {NULL, "_iosFdValue", (char*)iosFdValue, 0, (N_TEXT | N_EXT)},
     {NULL, "_iosIoctl", (char*)iosIoctl, 0, (N_TEXT | N_EXT)},
@@ -2323,39 +2379,38 @@ SYMBOL symTblAll[1785] =
     {NULL, "_iosRead", (char*)iosRead, 0, (N_TEXT | N_EXT)},
     {NULL, "_iosShowInit", (char*)iosShowInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_iosWrite", (char*)iosWrite, 0, (N_TEXT | N_EXT)},
-    {NULL, "_ioTaskStdGet", (char*)ioTaskStdGet, 0, (N_TEXT | N_EXT)},
-    {NULL, "_ioTaskStdSet", (char*)ioTaskStdSet, 0, (N_TEXT | N_EXT)},
     {NULL, "_ipCfgParams", (char*)&ipCfgParams, 0, (N_DATA | N_EXT)},
+    {NULL, "_ipLibInit", (char*)ipLibInit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_ipRead", (char*)ipRead, 0, (N_TEXT | N_EXT)},
     {NULL, "_ip_ctloutput", (char*)ip_ctloutput, 0, (N_TEXT | N_EXT)},
     {NULL, "_ip_defttl", (char*)&ip_defttl, 0, (N_DATA | N_EXT)},
     {NULL, "_ip_dooptions", (char*)ip_dooptions, 0, (N_TEXT | N_EXT)},
     {NULL, "_ip_drain", (char*)ip_drain, 0, (N_TEXT | N_EXT)},
     {NULL, "_ip_flags", (char*)&ip_flags, 0, (N_DATA | N_EXT)},
     {NULL, "_ip_forward", (char*)ip_forward, 0, (N_TEXT | N_EXT)},
-    {NULL, "_ipforward_rt", (char*)&ipforward_rt, 0, (N_BSS | N_EXT)},
-    {NULL, "_ipfragttl", (char*)&ipfragttl, 0, (N_DATA | N_EXT)},
     {NULL, "_ip_freef", (char*)ip_freef, 0, (N_TEXT | N_EXT)},
     {NULL, "_ip_freemoptions", (char*)ip_freemoptions, 0, (N_TEXT | N_EXT)},
     {NULL, "_ip_getmoptions", (char*)ip_getmoptions, 0, (N_TEXT | N_EXT)},
     {NULL, "_ip_id", (char*)&ip_id, 0, (N_BSS | N_EXT)},
-    {NULL, "_ipintr", (char*)ipintr, 0, (N_TEXT | N_EXT)},
-    {NULL, "_ipintrq", (char*)&ipintrq, 0, (N_BSS | N_EXT)},
-    {NULL, "_ipLibInit", (char*)ipLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_ip_nhops", (char*)&ip_nhops, 0, (N_BSS | N_EXT)},
     {NULL, "_ip_optcopy", (char*)ip_optcopy, 0, (N_TEXT | N_EXT)},
     {NULL, "_ip_output", (char*)ip_output, 0, (N_TEXT | N_EXT)},
     {NULL, "_ip_pcbopts", (char*)ip_pcbopts, 0, (N_TEXT | N_EXT)},
-    {NULL, "_ipprintfs", (char*)&ipprintfs, 0, (N_BSS | N_EXT)},
     {NULL, "_ip_protox", (char*)&ip_protox, 0, (N_BSS | N_EXT)},
-    {NULL, "_ipq", (char*)&ipq, 0, (N_BSS | N_EXT)},
-    {NULL, "_ipqmaxlen", (char*)&ipqmaxlen, 0, (N_DATA | N_EXT)},
-    {NULL, "_ipRead", (char*)ipRead, 0, (N_TEXT | N_EXT)},
     {NULL, "_ip_rtaddr", (char*)ip_rtaddr, 0, (N_TEXT | N_EXT)},
     {NULL, "_ip_slowtimo", (char*)ip_slowtimo, 0, (N_TEXT | N_EXT)},
-    {NULL, "_ipstat", (char*)&ipstat, 0, (N_BSS | N_EXT)},
     {NULL, "_ip_stripoptions", (char*)ip_stripoptions, 0, (N_TEXT | N_EXT)},
+    {NULL, "_ipforward_rt", (char*)&ipforward_rt, 0, (N_BSS | N_EXT)},
+    {NULL, "_ipfragttl", (char*)&ipfragttl, 0, (N_DATA | N_EXT)},
+    {NULL, "_ipintr", (char*)ipintr, 0, (N_TEXT | N_EXT)},
+    {NULL, "_ipintrq", (char*)&ipintrq, 0, (N_BSS | N_EXT)},
+    {NULL, "_ipprintfs", (char*)&ipprintfs, 0, (N_BSS | N_EXT)},
+    {NULL, "_ipq", (char*)&ipq, 0, (N_BSS | N_EXT)},
+    {NULL, "_ipqmaxlen", (char*)&ipqmaxlen, 0, (N_DATA | N_EXT)},
+    {NULL, "_ipstat", (char*)&ipstat, 0, (N_BSS | N_EXT)},
     {NULL, "_iptime", (char*)iptime, 0, (N_TEXT | N_EXT)},
     {NULL, "_iput", (char*)iput, 0, (N_TEXT | N_EXT)},
+    {NULL, "_is_transmit_empty", (char*)is_transmit_empty, 0, (N_TEXT | N_EXT)},
     {NULL, "_isalnum", (char*)isalnum, 0, (N_TEXT | N_EXT)},
     {NULL, "_isalpha", (char*)isalpha, 0, (N_TEXT | N_EXT)},
     {NULL, "_isatty", (char*)isatty, 0, (N_TEXT | N_EXT)},
@@ -2373,7 +2428,6 @@ SYMBOL symTblAll[1785] =
     {NULL, "_itrunc", (char*)itrunc, 0, (N_TEXT | N_EXT)},
     {NULL, "_iunlock", (char*)iunlock, 0, (N_TEXT | N_EXT)},
     {NULL, "_iupdate", (char*)iupdate, 0, (N_TEXT | N_EXT)},
-    {NULL, "___julday", (char*)__julday, 0, (N_TEXT | N_EXT)},
     {NULL, "_kbdAction", (char*)&kbdAction, 0, (N_DATA | N_EXT)},
     {NULL, "_kbdEnhanced", (char*)&kbdEnhanced, 0, (N_DATA | N_EXT)},
     {NULL, "_kbdHrdInit", (char*)kbdHrdInit, 0, (N_TEXT | N_EXT)},
@@ -2381,11 +2435,6 @@ SYMBOL symTblAll[1785] =
     {NULL, "_kbdMap", (char*)&kbdMap, 0, (N_DATA | N_EXT)},
     {NULL, "_kernAbsTicks", (char*)&kernAbsTicks, 0, (N_BSS | N_EXT)},
     {NULL, "_kernActiveQ", (char*)&kernActiveQ, 0, (N_BSS | N_EXT)},
-    {NULL, "_kernelInit", (char*)kernelInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_kernelIsIdle", (char*)&kernelIsIdle, 0, (N_BSS | N_EXT)},
-    {NULL, "_kernelState", (char*)&kernelState, 0, (N_BSS | N_EXT)},
-    {NULL, "_kernelTimeSlice", (char*)kernelTimeSlice, 0, (N_TEXT | N_EXT)},
-    {NULL, "_kernelVersion", (char*)kernelVersion, 0, (N_TEXT | N_EXT)},
     {NULL, "_kernExcStkCnt", (char*)&kernExcStkCnt, 0, (N_BSS | N_EXT)},
     {NULL, "_kernExit", (char*)kernExit, 0, (N_TEXT | N_EXT)},
     {NULL, "_kernHookSwap", (char*)kernHookSwap, 0, (N_TEXT | N_EXT)},
@@ -2413,6 +2462,11 @@ SYMBOL symTblAll[1785] =
     {NULL, "_kernTickQ", (char*)&kernTickQ, 0, (N_BSS | N_EXT)},
     {NULL, "_kernTicks", (char*)&kernTicks, 0, (N_BSS | N_EXT)},
     {NULL, "_kernVersion", (char*)&kernVersion, 0, (N_DATA | N_EXT)},
+    {NULL, "_kernelInit", (char*)kernelInit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_kernelIsIdle", (char*)&kernelIsIdle, 0, (N_BSS | N_EXT)},
+    {NULL, "_kernelState", (char*)&kernelState, 0, (N_BSS | N_EXT)},
+    {NULL, "_kernelTimeSlice", (char*)kernelTimeSlice, 0, (N_TEXT | N_EXT)},
+    {NULL, "_kernelVersion", (char*)kernelVersion, 0, (N_TEXT | N_EXT)},
     {NULL, "_kill", (char*)kill, 0, (N_TEXT | N_EXT)},
     {NULL, "_ld", (char*)ld, 0, (N_TEXT | N_EXT)},
     {NULL, "_ldCommonMatchAll", (char*)&ldCommonMatchAll, 0, (N_DATA | N_EXT)},
@@ -2426,11 +2480,11 @@ SYMBOL symTblAll[1785] =
     {NULL, "_linki", (char*)linki, 0, (N_TEXT | N_EXT)},
     {NULL, "_listAdd", (char*)listAdd, 0, (N_TEXT | N_EXT)},
     {NULL, "_listCount", (char*)listCount, 0, (N_TEXT | N_EXT)},
-    {NULL, "_listen", (char*)listen, 0, (N_TEXT | N_EXT)},
     {NULL, "_listGet", (char*)listGet, 0, (N_TEXT | N_EXT)},
     {NULL, "_listInit", (char*)listInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_listInsert", (char*)listInsert, 0, (N_TEXT | N_EXT)},
     {NULL, "_listRemove", (char*)listRemove, 0, (N_TEXT | N_EXT)},
+    {NULL, "_listen", (char*)listen, 0, (N_TEXT | N_EXT)},
     {NULL, "_lkup", (char*)lkup, 0, (N_TEXT | N_EXT)},
     {NULL, "_ll", (char*)ll, 0, (N_TEXT | N_EXT)},
     {NULL, "_llr", (char*)llr, 0, (N_TEXT | N_EXT)},
@@ -2449,7 +2503,6 @@ SYMBOL symTblAll[1785] =
     {NULL, "_loattach", (char*)loattach, 0, (N_TEXT | N_EXT)},
     {NULL, "_localtime", (char*)localtime, 0, (N_TEXT | N_EXT)},
     {NULL, "_localtime_r", (char*)localtime_r, 0, (N_TEXT | N_EXT)},
-    {NULL, "___loctime", (char*)&__loctime, 0, (N_DATA | N_EXT)},
     {NULL, "_logFdAdd", (char*)logFdAdd, 0, (N_TEXT | N_EXT)},
     {NULL, "_logFdDelete", (char*)logFdDelete, 0, (N_TEXT | N_EXT)},
     {NULL, "_logLibInit", (char*)logLibInit, 0, (N_TEXT | N_EXT)},
@@ -2458,6 +2511,19 @@ SYMBOL symTblAll[1785] =
     {NULL, "_logTaskOptions", (char*)&logTaskOptions, 0, (N_DATA | N_EXT)},
     {NULL, "_logTaskPriority", (char*)&logTaskPriority, 0, (N_BSS | N_EXT)},
     {NULL, "_logTaskStackSize", (char*)&logTaskStackSize, 0, (N_DATA | N_EXT)},
+    {NULL, "_log_activeLevel", (char*)&log_activeLevel, 0, (N_BSS | N_EXT)},
+    {NULL, "_log_count", (char*)&log_count, 0, (N_BSS | N_EXT)},
+    {NULL, "__log_critical", (char*)_log_critical, 0, (N_TEXT | N_EXT)},
+    {NULL, "__log_debug", (char*)_log_debug, 0, (N_TEXT | N_EXT)},
+    {NULL, "_log_detailBuf", (char*)&log_detailBuf, 0, (N_BSS | N_EXT)},
+    {NULL, "__log_error", (char*)_log_error, 0, (N_TEXT | N_EXT)},
+    {NULL, "__log_info", (char*)_log_info, 0, (N_TEXT | N_EXT)},
+    {NULL, "_log_init", (char*)log_init, 0, (N_TEXT | N_EXT)},
+    {NULL, "_log_initTime", (char*)&log_initTime, 0, (N_BSS | N_EXT)},
+    {NULL, "_log_levelToStr", (char*)log_levelToStr, 0, (N_TEXT | N_EXT)},
+    {NULL, "_log_setLevel", (char*)log_setLevel, 0, (N_TEXT | N_EXT)},
+    {NULL, "_log_show", (char*)log_show, 0, (N_TEXT | N_EXT)},
+    {NULL, "__log_warning", (char*)_log_warning, 0, (N_TEXT | N_EXT)},
     {NULL, "_loif", (char*)&loif, 0, (N_BSS | N_EXT)},
     {NULL, "_longjmp", (char*)longjmp, 0, (N_TEXT | N_EXT)},
     {NULL, "_looutput", (char*)looutput, 0, (N_TEXT | N_EXT)},
@@ -2465,34 +2531,30 @@ SYMBOL symTblAll[1785] =
     {NULL, "_lseek", (char*)lseek, 0, (N_TEXT | N_EXT)},
     {NULL, "_lsr", (char*)lsr, 0, (N_TEXT | N_EXT)},
     {NULL, "_lstat", (char*)lstat, 0, (N_TEXT | N_EXT)},
-    {NULL, "___ltostr", (char*)__ltostr, 0, (N_TEXT | N_EXT)},
     {NULL, "_m", (char*)m, 0, (N_TEXT | N_EXT)},
+    {NULL, "_mBlkClCount", (char*)&mBlkClCount, 0, (N_BSS | N_EXT)},
+    {NULL, "_mBlkClId", (char*)&mBlkClId, 0, (N_BSS | N_EXT)},
+    {NULL, "_mBlkCount", (char*)&mBlkCount, 0, (N_BSS | N_EXT)},
+    {NULL, "_mBlkId", (char*)&mBlkId, 0, (N_BSS | N_EXT)},
+    {NULL, "_mClBlkConfig", (char*)&mClBlkConfig, 0, (N_DATA | N_EXT)},
     {NULL, "_m_adj", (char*)m_adj, 0, (N_TEXT | N_EXT)},
+    {NULL, "_m_cat", (char*)m_cat, 0, (N_TEXT | N_EXT)},
+    {NULL, "_m_get", (char*)m_get, 0, (N_TEXT | N_EXT)},
+    {NULL, "_m_gethdr", (char*)m_gethdr, 0, (N_TEXT | N_EXT)},
+    {NULL, "_m_prepend", (char*)m_prepend, 0, (N_TEXT | N_EXT)},
+    {NULL, "_m_pullup", (char*)m_pullup, 0, (N_TEXT | N_EXT)},
     {NULL, "_malloc", (char*)malloc, 0, (N_TEXT | N_EXT)},
     {NULL, "_max_hdr", (char*)&max_hdr, 0, (N_BSS | N_EXT)},
     {NULL, "_max_linkhdr", (char*)&max_linkhdr, 0, (N_BSS | N_EXT)},
     {NULL, "_max_protohdr", (char*)&max_protohdr, 0, (N_BSS | N_EXT)},
     {NULL, "_mb_alloc", (char*)mb_alloc, 0, (N_TEXT | N_EXT)},
     {NULL, "_mb_free", (char*)mb_free, 0, (N_TEXT | N_EXT)},
-    {NULL, "_mBlkClCount", (char*)&mBlkClCount, 0, (N_BSS | N_EXT)},
-    {NULL, "_mBlkClId", (char*)&mBlkClId, 0, (N_BSS | N_EXT)},
-    {NULL, "_mBlkCount", (char*)&mBlkCount, 0, (N_BSS | N_EXT)},
-    {NULL, "_mBlkId", (char*)&mBlkId, 0, (N_BSS | N_EXT)},
     {NULL, "_mbufLibInit", (char*)mbufLibInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_m_cat", (char*)m_cat, 0, (N_TEXT | N_EXT)},
-    {NULL, "_mClBlkConfig", (char*)&mClBlkConfig, 0, (N_DATA | N_EXT)},
-    {NULL, "_memalign", (char*)memalign, 0, (N_TEXT | N_EXT)},
     {NULL, "_memAutosize", (char*)memAutosize, 0, (N_TEXT | N_EXT)},
-    {NULL, "_memccpy", (char*)memccpy, 0, (N_TEXT | N_EXT)},
-    {NULL, "_memchr", (char*)memchr, 0, (N_TEXT | N_EXT)},
-    {NULL, "_memcmp", (char*)memcmp, 0, (N_TEXT | N_EXT)},
-    {NULL, "_memcpy", (char*)memcpy, 0, (N_TEXT | N_EXT)},
-    {NULL, "_memcpyw", (char*)memcpyw, 0, (N_TEXT | N_EXT)},
     {NULL, "_memDefaultAlignment", (char*)&memDefaultAlignment, 0, (N_DATA | N_EXT)},
     {NULL, "_memHeapPart", (char*)&memHeapPart, 0, (N_BSS | N_EXT)},
     {NULL, "_memHeapPartId", (char*)&memHeapPartId, 0, (N_DATA | N_EXT)},
     {NULL, "_memLibInit", (char*)memLibInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_memmove", (char*)memmove, 0, (N_TEXT | N_EXT)},
     {NULL, "_memPartAddToPool", (char*)memPartAddToPool, 0, (N_TEXT | N_EXT)},
     {NULL, "_memPartAlignedAlloc", (char*)memPartAlignedAlloc, 0, (N_TEXT | N_EXT)},
     {NULL, "_memPartAlloc", (char*)memPartAlloc, 0, (N_TEXT | N_EXT)},
@@ -2511,8 +2573,6 @@ SYMBOL symTblAll[1785] =
     {NULL, "_memPartSemInitFunc", (char*)&memPartSemInitFunc, 0, (N_DATA | N_EXT)},
     {NULL, "_memPartShow", (char*)memPartShow, 0, (N_TEXT | N_EXT)},
     {NULL, "_memRestoreTestAddr", (char*)memRestoreTestAddr, 0, (N_TEXT | N_EXT)},
-    {NULL, "_memset", (char*)memset, 0, (N_TEXT | N_EXT)},
-    {NULL, "_memsetw", (char*)memsetw, 0, (N_TEXT | N_EXT)},
     {NULL, "_memShowInit", (char*)memShowInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_memSysPartId", (char*)&memSysPartId, 0, (N_DATA | N_EXT)},
     {NULL, "_memSysPartition", (char*)&memSysPartition, 0, (N_BSS | N_EXT)},
@@ -2520,9 +2580,16 @@ SYMBOL symTblAll[1785] =
     {NULL, "_memTopPhys", (char*)&memTopPhys, 0, (N_BSS | N_EXT)},
     {NULL, "_memVerifyTestPattern", (char*)memVerifyTestPattern, 0, (N_TEXT | N_EXT)},
     {NULL, "_memWriteTestPattern", (char*)memWriteTestPattern, 0, (N_TEXT | N_EXT)},
+    {NULL, "_memalign", (char*)memalign, 0, (N_TEXT | N_EXT)},
+    {NULL, "_memccpy", (char*)memccpy, 0, (N_TEXT | N_EXT)},
+    {NULL, "_memchr", (char*)memchr, 0, (N_TEXT | N_EXT)},
+    {NULL, "_memcmp", (char*)memcmp, 0, (N_TEXT | N_EXT)},
+    {NULL, "_memcpy", (char*)memcpy, 0, (N_TEXT | N_EXT)},
+    {NULL, "_memcpyw", (char*)memcpyw, 0, (N_TEXT | N_EXT)},
+    {NULL, "_memmove", (char*)memmove, 0, (N_TEXT | N_EXT)},
+    {NULL, "_memset", (char*)memset, 0, (N_TEXT | N_EXT)},
+    {NULL, "_memsetw", (char*)memsetw, 0, (N_TEXT | N_EXT)},
     {NULL, "_messageListener", (char*)messageListener, 0, (N_TEXT | N_EXT)},
-    {NULL, "_m_get", (char*)m_get, 0, (N_TEXT | N_EXT)},
-    {NULL, "_m_gethdr", (char*)m_gethdr, 0, (N_TEXT | N_EXT)},
     {NULL, "_miscLibInit", (char*)miscLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_mkdir", (char*)mkdir, 0, (N_TEXT | N_EXT)},
     {NULL, "_mkfs", (char*)mkfs, 0, (N_TEXT | N_EXT)},
@@ -2577,8 +2644,6 @@ SYMBOL symTblAll[1785] =
     {NULL, "_mountCreate", (char*)mountCreate, 0, (N_TEXT | N_EXT)},
     {NULL, "_mountLock", (char*)mountLock, 0, (N_TEXT | N_EXT)},
     {NULL, "_mountUnlock", (char*)mountUnlock, 0, (N_TEXT | N_EXT)},
-    {NULL, "_m_prepend", (char*)m_prepend, 0, (N_TEXT | N_EXT)},
-    {NULL, "_m_pullup", (char*)m_pullup, 0, (N_TEXT | N_EXT)},
     {NULL, "_msgListen", (char*)msgListen, 0, (N_TEXT | N_EXT)},
     {NULL, "_msgQClassId", (char*)&msgQClassId, 0, (N_DATA | N_EXT)},
     {NULL, "_msgQCreate", (char*)msgQCreate, 0, (N_TEXT | N_EXT)},
@@ -2605,8 +2670,8 @@ SYMBOL symTblAll[1785] =
     {NULL, "_netClBlkFree", (char*)netClBlkFree, 0, (N_TEXT | N_EXT)},
     {NULL, "_netClBlkGet", (char*)netClBlkGet, 0, (N_TEXT | N_EXT)},
     {NULL, "_netClFree", (char*)netClFree, 0, (N_TEXT | N_EXT)},
-    {NULL, "_netClient", (char*)netClient, 0, (N_TEXT | N_EXT)},
     {NULL, "_netClPoolIdGet", (char*)netClPoolIdGet, 0, (N_TEXT | N_EXT)},
+    {NULL, "_netClient", (char*)netClient, 0, (N_TEXT | N_EXT)},
     {NULL, "_netClusterGet", (char*)netClusterGet, 0, (N_TEXT | N_EXT)},
     {NULL, "_netJobAdd", (char*)netJobAdd, 0, (N_TEXT | N_EXT)},
     {NULL, "_netLibInit", (char*)netLibInit, 0, (N_TEXT | N_EXT)},
@@ -2651,40 +2716,49 @@ SYMBOL symTblAll[1785] =
     {NULL, "_ofile", (char*)&ofile, 0, (N_BSS | N_EXT)},
     {NULL, "_open", (char*)open, 0, (N_TEXT | N_EXT)},
     {NULL, "_openConnect", (char*)openConnect, 0, (N_TEXT | N_EXT)},
-    {NULL, "_opendir", (char*)opendir, 0, (N_TEXT | N_EXT)},
     {NULL, "_openFile", (char*)openFile, 0, (N_TEXT | N_EXT)},
     {NULL, "_openInternal", (char*)openInternal, 0, (N_TEXT | N_EXT)},
+    {NULL, "_opendir", (char*)opendir, 0, (N_TEXT | N_EXT)},
+    {NULL, "_pBgBmp", (char*)&pBgBmp, 0, (N_BSS | N_EXT)},
+    {NULL, "_pBgDib", (char*)&pBgDib, 0, (N_BSS | N_EXT)},
+    {NULL, "_pDbBmp", (char*)&pDbBmp, 0, (N_BSS | N_EXT)},
+    {NULL, "_pDblBmp", (char*)&pDblBmp, 0, (N_BSS | N_EXT)},
+    {NULL, "_pFgBmp", (char*)&pFgBmp, 0, (N_BSS | N_EXT)},
+    {NULL, "_pFgDib", (char*)&pFgDib, 0, (N_BSS | N_EXT)},
+    {NULL, "_pFglBmp", (char*)&pFglBmp, 0, (N_BSS | N_EXT)},
+    {NULL, "_pKernExcStkBase", (char*)&pKernExcStkBase, 0, (N_BSS | N_EXT)},
+    {NULL, "_pKernExcStkEnd", (char*)&pKernExcStkEnd, 0, (N_BSS | N_EXT)},
+    {NULL, "_pRootMemStart", (char*)&pRootMemStart, 0, (N_BSS | N_EXT)},
+    {NULL, "_pRootMount", (char*)&pRootMount, 0, (N_BSS | N_EXT)},
+    {NULL, "_pRootSyncer", (char*)&pRootSyncer, 0, (N_BSS | N_EXT)},
+    {NULL, "_pSaveBmp", (char*)&pSaveBmp, 0, (N_BSS | N_EXT)},
+    {NULL, "_pSavelBmp", (char*)&pSavelBmp, 0, (N_BSS | N_EXT)},
+    {NULL, "_pSockFdMap", (char*)&pSockFdMap, 0, (N_BSS | N_EXT)},
+    {NULL, "_pSysGdt", (char*)&pSysGdt, 0, (N_DATA | N_EXT)},
     {NULL, "_panic", (char*)panic, 0, (N_TEXT | N_EXT)},
     {NULL, "_panicHookFunc", (char*)&panicHookFunc, 0, (N_BSS | N_EXT)},
     {NULL, "_panicSuspend", (char*)&panicSuspend, 0, (N_DATA | N_EXT)},
     {NULL, "_pathCondense", (char*)pathCondense, 0, (N_TEXT | N_EXT)},
-    {NULL, "_pathconf", (char*)pathconf, 0, (N_TEXT | N_EXT)},
     {NULL, "_pathCwdLen", (char*)pathCwdLen, 0, (N_TEXT | N_EXT)},
     {NULL, "_pathLibInit", (char*)pathLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_pathPrependCwd", (char*)pathPrependCwd, 0, (N_TEXT | N_EXT)},
     {NULL, "_pathSplit", (char*)pathSplit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_pathconf", (char*)pathconf, 0, (N_TEXT | N_EXT)},
     {NULL, "_pause", (char*)pause, 0, (N_TEXT | N_EXT)},
-    {NULL, "_pBgBmp", (char*)&pBgBmp, 0, (N_BSS | N_EXT)},
-    {NULL, "_pBgDib", (char*)&pBgDib, 0, (N_BSS | N_EXT)},
     {NULL, "_pbuf", (char*)&pbuf, 0, (N_BSS | N_EXT)},
     {NULL, "_pc", (char*)pc, 0, (N_TEXT | N_EXT)},
     {NULL, "_pcConDev", (char*)&pcConDev, 0, (N_BSS | N_EXT)},
     {NULL, "_pcConDevCreate", (char*)pcConDevCreate, 0, (N_TEXT | N_EXT)},
     {NULL, "_pcConDrvInit", (char*)pcConDrvInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_pcConDrvNumber", (char*)pcConDrvNumber, 0, (N_TEXT | N_EXT)},
-    {NULL, "_pDbBmp", (char*)&pDbBmp, 0, (N_BSS | N_EXT)},
-    {NULL, "_pDblBmp", (char*)&pDblBmp, 0, (N_BSS | N_EXT)},
     {NULL, "_period", (char*)period, 0, (N_TEXT | N_EXT)},
+    {NULL, "_periodRun", (char*)periodRun, 0, (N_TEXT | N_EXT)},
     {NULL, "_periodicState", (char*)&periodicState, 0, (N_BSS | N_EXT)},
     {NULL, "_periodicTaskId", (char*)&periodicTaskId, 0, (N_BSS | N_EXT)},
     {NULL, "_periodicValue", (char*)&periodicValue, 0, (N_BSS | N_EXT)},
-    {NULL, "_periodRun", (char*)periodRun, 0, (N_TEXT | N_EXT)},
     {NULL, "_pfctlinput", (char*)pfctlinput, 0, (N_TEXT | N_EXT)},
     {NULL, "_pffindproto", (char*)pffindproto, 0, (N_TEXT | N_EXT)},
     {NULL, "_pffindtype", (char*)pffindtype, 0, (N_TEXT | N_EXT)},
-    {NULL, "_pFgBmp", (char*)&pFgBmp, 0, (N_BSS | N_EXT)},
-    {NULL, "_pFgDib", (char*)&pFgDib, 0, (N_BSS | N_EXT)},
-    {NULL, "_pFglBmp", (char*)&pFglBmp, 0, (N_BSS | N_EXT)},
     {NULL, "_pinballClut", (char*)&pinballClut, 0, (N_DATA | N_EXT)},
     {NULL, "_pinballData", (char*)&pinballData, 0, (N_DATA | N_EXT)},
     {NULL, "_pinballHeight", (char*)&pinballHeight, 0, (N_DATA | N_EXT)},
@@ -2695,26 +2769,15 @@ SYMBOL symTblAll[1785] =
     {NULL, "_pipeDevDelete", (char*)pipeDevDelete, 0, (N_TEXT | N_EXT)},
     {NULL, "_pipeDrvInit", (char*)pipeDrvInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_pipeDrvMsgQOptions", (char*)&pipeDrvMsgQOptions, 0, (N_BSS | N_EXT)},
-    {NULL, "_pKernExcStkBase", (char*)&pKernExcStkBase, 0, (N_BSS | N_EXT)},
-    {NULL, "_pKernExcStkEnd", (char*)&pKernExcStkEnd, 0, (N_BSS | N_EXT)},
-    {NULL, "__pNetBufCollect", (char*)&_pNetBufCollect, 0, (N_BSS | N_EXT)},
-    {NULL, "__pNetPoolFuncTable", (char*)&_pNetPoolFuncTable, 0, (N_DATA | N_EXT)},
     {NULL, "_ppGlobalEnviron", (char*)&ppGlobalEnviron, 0, (N_BSS | N_EXT)},
-    {NULL, "_print_blk", (char*)print_blk, 0, (N_TEXT | N_EXT)},
+    {NULL, "_prTask", (char*)prTask, 0, (N_TEXT | N_EXT)},
     {NULL, "_printErr", (char*)printErr, 0, (N_TEXT | N_EXT)},
     {NULL, "_printExc", (char*)printExc, 0, (N_TEXT | N_EXT)},
-    {NULL, "_printf", (char*)printf, 0, (N_TEXT | N_EXT)},
-    {NULL, "_print_inode", (char*)print_inode, 0, (N_TEXT | N_EXT)},
     {NULL, "_printLocalStatus", (char*)printLocalStatus, 0, (N_TEXT | N_EXT)},
     {NULL, "_printLogo", (char*)printLogo, 0, (N_TEXT | N_EXT)},
-    {NULL, "_pRootMemStart", (char*)&pRootMemStart, 0, (N_BSS | N_EXT)},
-    {NULL, "_pRootMount", (char*)&pRootMount, 0, (N_BSS | N_EXT)},
-    {NULL, "_pRootSyncer", (char*)&pRootSyncer, 0, (N_BSS | N_EXT)},
-    {NULL, "_prTask", (char*)prTask, 0, (N_TEXT | N_EXT)},
-    {NULL, "_pSaveBmp", (char*)&pSaveBmp, 0, (N_BSS | N_EXT)},
-    {NULL, "_pSavelBmp", (char*)&pSavelBmp, 0, (N_BSS | N_EXT)},
-    {NULL, "_pSockFdMap", (char*)&pSockFdMap, 0, (N_BSS | N_EXT)},
-    {NULL, "_pSysGdt", (char*)&pSysGdt, 0, (N_DATA | N_EXT)},
+    {NULL, "_print_blk", (char*)print_blk, 0, (N_TEXT | N_EXT)},
+    {NULL, "_print_inode", (char*)print_inode, 0, (N_TEXT | N_EXT)},
+    {NULL, "_printf", (char*)printf, 0, (N_TEXT | N_EXT)},
     {NULL, "_putc", (char*)putc, 0, (N_TEXT | N_EXT)},
     {NULL, "_putchar", (char*)putchar, 0, (N_TEXT | N_EXT)},
     {NULL, "_putenv", (char*)putenv, 0, (N_TEXT | N_EXT)},
@@ -2723,7 +2786,6 @@ SYMBOL symTblAll[1785] =
     {NULL, "_qAdvance", (char*)qAdvance, 0, (N_TEXT | N_EXT)},
     {NULL, "_qCreate", (char*)qCreate, 0, (N_TEXT | N_EXT)},
     {NULL, "_qDestroy", (char*)qDestroy, 0, (N_TEXT | N_EXT)},
-    {NULL, "___qdivrem", (char*)__qdivrem, 0, (N_TEXT | N_EXT)},
     {NULL, "_qEach", (char*)qEach, 0, (N_TEXT | N_EXT)},
     {NULL, "_qExpired", (char*)qExpired, 0, (N_TEXT | N_EXT)},
     {NULL, "_qFifoClassId", (char*)&qFifoClassId, 0, (N_DATA | N_EXT)},
@@ -2752,30 +2814,30 @@ SYMBOL symTblAll[1785] =
     {NULL, "_ramdsk_init", (char*)ramdsk_init, 0, (N_TEXT | N_EXT)},
     {NULL, "_ramdsk_rw", (char*)ramdsk_rw, 0, (N_TEXT | N_EXT)},
     {NULL, "_rand", (char*)rand, 0, (N_TEXT | N_EXT)},
-    {NULL, "__randseed", (char*)&_randseed, 0, (N_DATA | N_EXT)},
     {NULL, "_rasterOp", (char*)&rasterOp, 0, (N_DATA | N_EXT)},
     {NULL, "_rasterOpAnd", (char*)rasterOpAnd, 0, (N_TEXT | N_EXT)},
     {NULL, "_rasterOpCopy", (char*)rasterOpCopy, 0, (N_TEXT | N_EXT)},
     {NULL, "_rasterOpOr", (char*)rasterOpOr, 0, (N_TEXT | N_EXT)},
     {NULL, "_rasterOpXor", (char*)rasterOpXor, 0, (N_TEXT | N_EXT)},
+    {NULL, "_rawIpLibInit", (char*)rawIpLibInit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_rawLibInit", (char*)rawLibInit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_rawList", (char*)&rawList, 0, (N_BSS | N_EXT)},
+    {NULL, "_rawSocketConnect", (char*)rawSocketConnect, 0, (N_TEXT | N_EXT)},
+    {NULL, "_rawSocketNew", (char*)rawSocketNew, 0, (N_TEXT | N_EXT)},
     {NULL, "_raw_attach", (char*)raw_attach, 0, (N_TEXT | N_EXT)},
     {NULL, "_raw_detach", (char*)raw_detach, 0, (N_TEXT | N_EXT)},
     {NULL, "_raw_disconnect", (char*)raw_disconnect, 0, (N_TEXT | N_EXT)},
     {NULL, "_raw_input", (char*)raw_input, 0, (N_TEXT | N_EXT)},
-    {NULL, "_rawipCfgParams", (char*)&rawipCfgParams, 0, (N_DATA | N_EXT)},
-    {NULL, "_rawIpLibInit", (char*)rawIpLibInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_rawLibInit", (char*)rawLibInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_rawList", (char*)&rawList, 0, (N_BSS | N_EXT)},
     {NULL, "_raw_recvspace", (char*)&raw_recvspace, 0, (N_BSS | N_EXT)},
     {NULL, "_raw_sendspace", (char*)&raw_sendspace, 0, (N_BSS | N_EXT)},
-    {NULL, "_rawSocketConnect", (char*)rawSocketConnect, 0, (N_TEXT | N_EXT)},
-    {NULL, "_rawSocketNew", (char*)rawSocketNew, 0, (N_TEXT | N_EXT)},
     {NULL, "_raw_usrreq", (char*)raw_usrreq, 0, (N_TEXT | N_EXT)},
+    {NULL, "_rawipCfgParams", (char*)&rawipCfgParams, 0, (N_DATA | N_EXT)},
     {NULL, "_read", (char*)read, 0, (N_TEXT | N_EXT)},
+    {NULL, "_readSelect", (char*)readSelect, 0, (N_TEXT | N_EXT)},
+    {NULL, "_read_serial", (char*)read_serial, 0, (N_TEXT | N_EXT)},
     {NULL, "_readdir", (char*)readdir, 0, (N_TEXT | N_EXT)},
     {NULL, "_readi", (char*)readi, 0, (N_TEXT | N_EXT)},
     {NULL, "_readlink", (char*)readlink, 0, (N_TEXT | N_EXT)},
-    {NULL, "_readSelect", (char*)readSelect, 0, (N_TEXT | N_EXT)},
     {NULL, "_realloc", (char*)realloc, 0, (N_TEXT | N_EXT)},
     {NULL, "_receiveMessage", (char*)receiveMessage, 0, (N_TEXT | N_EXT)},
     {NULL, "_recv", (char*)recv, 0, (N_TEXT | N_EXT)},
@@ -2827,29 +2889,27 @@ SYMBOL symTblAll[1785] =
     {NULL, "_rootClassId", (char*)&rootClassId, 0, (N_DATA | N_EXT)},
     {NULL, "_rootMemNBytes", (char*)&rootMemNBytes, 0, (N_BSS | N_EXT)},
     {NULL, "_rootTaskId", (char*)&rootTaskId, 0, (N_BSS | N_EXT)},
-    {NULL, "_route_cb", (char*)&route_cb, 0, (N_BSS | N_EXT)},
     {NULL, "_routeLibInit", (char*)routeLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_routeShow", (char*)routeShow, 0, (N_TEXT | N_EXT)},
-    {NULL, "_rsect", (char*)rsect, 0, (N_TEXT | N_EXT)},
+    {NULL, "_route_cb", (char*)&route_cb, 0, (N_BSS | N_EXT)},
     {NULL, "_rsPeriodicTask", (char*)rsPeriodicTask, 0, (N_TEXT | N_EXT)},
+    {NULL, "_rsect", (char*)rsect, 0, (N_TEXT | N_EXT)},
     {NULL, "_rt11FsDevInit", (char*)rt11FsDevInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_rt11FsFdMutexOptions", (char*)&rt11FsFdMutexOptions, 0, (N_DATA | N_EXT)},
     {NULL, "_rt11FsLibInit", (char*)rt11FsLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_rt11FsMaxFiles", (char*)&rt11FsMaxFiles, 0, (N_BSS | N_EXT)},
     {NULL, "_rt11FsReadyChange", (char*)rt11FsReadyChange, 0, (N_TEXT | N_EXT)},
     {NULL, "_rt11FsVolMutexOptions", (char*)&rt11FsVolMutexOptions, 0, (N_DATA | N_EXT)},
+    {NULL, "_rtIfaceMsgHook", (char*)&rtIfaceMsgHook, 0, (N_BSS | N_EXT)},
+    {NULL, "_rtMissMsgHook", (char*)&rtMissMsgHook, 0, (N_BSS | N_EXT)},
+    {NULL, "_rtNewAddrMsgHook", (char*)&rtNewAddrMsgHook, 0, (N_BSS | N_EXT)},
+    {NULL, "_rt_setgate", (char*)rt_setgate, 0, (N_TEXT | N_EXT)},
+    {NULL, "_rt_tables", (char*)&rt_tables, 0, (N_BSS | N_EXT)},
     {NULL, "_rtalloc", (char*)rtalloc, 0, (N_TEXT | N_EXT)},
     {NULL, "_rtalloc1", (char*)rtalloc1, 0, (N_TEXT | N_EXT)},
     {NULL, "_rtfree", (char*)rtfree, 0, (N_TEXT | N_EXT)},
-    {NULL, "_rtIfaceMsgHook", (char*)&rtIfaceMsgHook, 0, (N_BSS | N_EXT)},
     {NULL, "_rtinit", (char*)rtinit, 0, (N_TEXT | N_EXT)},
     {NULL, "_rtioctl", (char*)rtioctl, 0, (N_TEXT | N_EXT)},
-    {NULL, "_rtMissMsgHook", (char*)&rtMissMsgHook, 0, (N_BSS | N_EXT)},
-    {NULL, "_rtNewAddrMsgHook", (char*)&rtNewAddrMsgHook, 0, (N_BSS | N_EXT)},
-    {NULL, "_rtosballClut", (char*)&rtosballClut, 0, (N_DATA | N_EXT)},
-    {NULL, "_rtosballData", (char*)&rtosballData, 0, (N_DATA | N_EXT)},
-    {NULL, "_rtosballHeight", (char*)&rtosballHeight, 0, (N_DATA | N_EXT)},
-    {NULL, "_rtosballWidth", (char*)&rtosballWidth, 0, (N_DATA | N_EXT)},
     {NULL, "_rtosDelay", (char*)rtosDelay, 0, (N_TEXT | N_EXT)},
     {NULL, "_rtosDelete", (char*)rtosDelete, 0, (N_TEXT | N_EXT)},
     {NULL, "_rtosPendQFlush", (char*)rtosPendQFlush, 0, (N_TEXT | N_EXT)},
@@ -2869,12 +2929,16 @@ SYMBOL symTblAll[1785] =
     {NULL, "_rtosUndelay", (char*)rtosUndelay, 0, (N_TEXT | N_EXT)},
     {NULL, "_rtosWdCancel", (char*)rtosWdCancel, 0, (N_TEXT | N_EXT)},
     {NULL, "_rtosWdStart", (char*)rtosWdStart, 0, (N_TEXT | N_EXT)},
+    {NULL, "_rtosballClut", (char*)&rtosballClut, 0, (N_DATA | N_EXT)},
+    {NULL, "_rtosballData", (char*)&rtosballData, 0, (N_DATA | N_EXT)},
+    {NULL, "_rtosballHeight", (char*)&rtosballHeight, 0, (N_DATA | N_EXT)},
+    {NULL, "_rtosballWidth", (char*)&rtosballWidth, 0, (N_DATA | N_EXT)},
     {NULL, "_rtredirect", (char*)rtredirect, 0, (N_TEXT | N_EXT)},
     {NULL, "_rtrequest", (char*)rtrequest, 0, (N_TEXT | N_EXT)},
     {NULL, "_rtrequestAddEqui", (char*)rtrequestAddEqui, 0, (N_TEXT | N_EXT)},
-    {NULL, "_rt_setgate", (char*)rt_setgate, 0, (N_TEXT | N_EXT)},
-    {NULL, "_rt_tables", (char*)&rt_tables, 0, (N_BSS | N_EXT)},
+    {NULL, "_running_count", (char*)&running_count, 0, (N_BSS | N_EXT)},
     {NULL, "_sb", (char*)&sb, 0, (N_BSS | N_EXT)},
+    {NULL, "_sb_max", (char*)&sb_max, 0, (N_DATA | N_EXT)},
     {NULL, "_sbappend", (char*)sbappend, 0, (N_TEXT | N_EXT)},
     {NULL, "_sbappendaddr", (char*)sbappendaddr, 0, (N_TEXT | N_EXT)},
     {NULL, "_sbappendrecord", (char*)sbappendrecord, 0, (N_TEXT | N_EXT)},
@@ -2882,20 +2946,13 @@ SYMBOL symTblAll[1785] =
     {NULL, "_sbdrop", (char*)sbdrop, 0, (N_TEXT | N_EXT)},
     {NULL, "_sbdroprecord", (char*)sbdroprecord, 0, (N_TEXT | N_EXT)},
     {NULL, "_sbflush", (char*)sbflush, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sb_max", (char*)&sb_max, 0, (N_DATA | N_EXT)},
     {NULL, "_sbrelease", (char*)sbrelease, 0, (N_TEXT | N_EXT)},
     {NULL, "_sbreserve", (char*)sbreserve, 0, (N_TEXT | N_EXT)},
     {NULL, "_sbseldequeue", (char*)sbseldequeue, 0, (N_TEXT | N_EXT)},
     {NULL, "_sbwait", (char*)sbwait, 0, (N_TEXT | N_EXT)},
     {NULL, "_sbwakeup", (char*)sbwakeup, 0, (N_TEXT | N_EXT)},
     {NULL, "_scanf", (char*)scanf, 0, (N_TEXT | N_EXT)},
-    {NULL, "___sclose", (char*)__sclose, 0, (N_TEXT | N_EXT)},
     {NULL, "_second", (char*)second, 0, (N_TEXT | N_EXT)},
-    {NULL, "_select", (char*)select, 0, (N_TEXT | N_EXT)},
-    {NULL, "_selectLibInit", (char*)selectLibInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_selectLibInitDelete", (char*)selectLibInitDelete, 0, (N_TEXT | N_EXT)},
-    {NULL, "_selfRestarter", (char*)selfRestarter, 0, (N_TEXT | N_EXT)},
-    {NULL, "_selfSignal", (char*)selfSignal, 0, (N_TEXT | N_EXT)},
     {NULL, "_selNodeAdd", (char*)selNodeAdd, 0, (N_TEXT | N_EXT)},
     {NULL, "_selNodeDelete", (char*)selNodeDelete, 0, (N_TEXT | N_EXT)},
     {NULL, "_selWakeup", (char*)selWakeup, 0, (N_TEXT | N_EXT)},
@@ -2904,9 +2961,13 @@ SYMBOL symTblAll[1785] =
     {NULL, "_selWakeupListLen", (char*)selWakeupListLen, 0, (N_TEXT | N_EXT)},
     {NULL, "_selWakeupListTerminate", (char*)selWakeupListTerminate, 0, (N_TEXT | N_EXT)},
     {NULL, "_selWakeupType", (char*)selWakeupType, 0, (N_TEXT | N_EXT)},
+    {NULL, "_select", (char*)select, 0, (N_TEXT | N_EXT)},
+    {NULL, "_selectLibInit", (char*)selectLibInit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_selectLibInitDelete", (char*)selectLibInitDelete, 0, (N_TEXT | N_EXT)},
+    {NULL, "_selfRestarter", (char*)selfRestarter, 0, (N_TEXT | N_EXT)},
+    {NULL, "_selfSignal", (char*)selfSignal, 0, (N_TEXT | N_EXT)},
     {NULL, "_sem", (char*)&sem, 0, (N_BSS | N_EXT)},
     {NULL, "_sem2", (char*)&sem2, 0, (N_BSS | N_EXT)},
-    {NULL, "_semaphoreListener", (char*)semaphoreListener, 0, (N_TEXT | N_EXT)},
     {NULL, "_semBCoreInit", (char*)semBCoreInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_semBCreate", (char*)semBCreate, 0, (N_TEXT | N_EXT)},
     {NULL, "_semBGive", (char*)semBGive, 0, (N_TEXT | N_EXT)},
@@ -2919,11 +2980,11 @@ SYMBOL symTblAll[1785] =
     {NULL, "_semCGive", (char*)semCGive, 0, (N_TEXT | N_EXT)},
     {NULL, "_semCGiveDefer", (char*)semCGiveDefer, 0, (N_TEXT | N_EXT)},
     {NULL, "_semCInit", (char*)semCInit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_semCLibInit", (char*)semCLibInit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_semCTake", (char*)semCTake, 0, (N_TEXT | N_EXT)},
     {NULL, "_semClass", (char*)&semClass, 0, (N_BSS | N_EXT)},
     {NULL, "_semClassId", (char*)&semClassId, 0, (N_DATA | N_EXT)},
-    {NULL, "_semCLibInit", (char*)semCLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_semCreate", (char*)semCreate, 0, (N_TEXT | N_EXT)},
-    {NULL, "_semCTake", (char*)semCTake, 0, (N_TEXT | N_EXT)},
     {NULL, "_semDelete", (char*)semDelete, 0, (N_TEXT | N_EXT)},
     {NULL, "_semDestroy", (char*)semDestroy, 0, (N_TEXT | N_EXT)},
     {NULL, "_semEvRegister", (char*)semEvRegister, 0, (N_TEXT | N_EXT)},
@@ -2949,13 +3010,13 @@ SYMBOL symTblAll[1785] =
     {NULL, "_semQFlush", (char*)semQFlush, 0, (N_TEXT | N_EXT)},
     {NULL, "_semQFlushDefer", (char*)semQFlushDefer, 0, (N_TEXT | N_EXT)},
     {NULL, "_semQInit", (char*)semQInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_semReaderTake", (char*)semReaderTake, 0, (N_TEXT | N_EXT)},
     {NULL, "_semRWCreate", (char*)semRWCreate, 0, (N_TEXT | N_EXT)},
     {NULL, "_semRWDowngrade", (char*)semRWDowngrade, 0, (N_TEXT | N_EXT)},
     {NULL, "_semRWInit", (char*)semRWInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_semRWLibInit", (char*)semRWLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_semRWUpgrade", (char*)semRWUpgrade, 0, (N_TEXT | N_EXT)},
     {NULL, "_semRWUpgradeForce", (char*)semRWUpgradeForce, 0, (N_TEXT | N_EXT)},
+    {NULL, "_semReaderTake", (char*)semReaderTake, 0, (N_TEXT | N_EXT)},
     {NULL, "_semShow", (char*)semShow, 0, (N_TEXT | N_EXT)},
     {NULL, "_semShowInit", (char*)semShowInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_semTake", (char*)semTake, 0, (N_TEXT | N_EXT)},
@@ -2963,29 +3024,33 @@ SYMBOL symTblAll[1785] =
     {NULL, "_semTerminate", (char*)semTerminate, 0, (N_TEXT | N_EXT)},
     {NULL, "_semUse", (char*)semUse, 0, (N_TEXT | N_EXT)},
     {NULL, "_semWriterTake", (char*)semWriterTake, 0, (N_TEXT | N_EXT)},
+    {NULL, "_semaphoreListener", (char*)semaphoreListener, 0, (N_TEXT | N_EXT)},
     {NULL, "_send", (char*)send, 0, (N_TEXT | N_EXT)},
     {NULL, "_sendMessage", (char*)sendMessage, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sendmsg", (char*)sendmsg, 0, (N_TEXT | N_EXT)},
     {NULL, "_sendQSignal", (char*)sendQSignal, 0, (N_TEXT | N_EXT)},
     {NULL, "_sendSignal", (char*)sendSignal, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sendmsg", (char*)sendmsg, 0, (N_TEXT | N_EXT)},
     {NULL, "_sendto", (char*)sendto, 0, (N_TEXT | N_EXT)},
+    {NULL, "_serialGetBaud", (char*)serialGetBaud, 0, (N_TEXT | N_EXT)},
+    {NULL, "_serialSetBaud", (char*)serialSetBaud, 0, (N_TEXT | N_EXT)},
+    {NULL, "_serial_configure_baud_rate", (char*)serial_configure_baud_rate, 0, (N_TEXT | N_EXT)},
+    {NULL, "_serial_configure_line", (char*)serial_configure_line, 0, (N_TEXT | N_EXT)},
+    {NULL, "_serial_is_transmit_fifo_empty", (char*)serial_is_transmit_fifo_empty, 0, (N_TEXT | N_EXT)},
+    {NULL, "_serial_received", (char*)serial_received, 0, (N_TEXT | N_EXT)},
+    {NULL, "_serial_test", (char*)serial_test, 0, (N_TEXT | N_EXT)},
     {NULL, "_setAbortChar", (char*)setAbortChar, 0, (N_TEXT | N_EXT)},
     {NULL, "_setActivePage", (char*)setActivePage, 0, (N_TEXT | N_EXT)},
     {NULL, "_setActiveStart", (char*)setActiveStart, 0, (N_TEXT | N_EXT)},
-    {NULL, "_setjmp", (char*)setjmp, 0, (N_TEXT | N_EXT)},
-    {NULL, "__setjmpSetup", (char*)_setjmpSetup, 0, (N_TEXT | N_EXT)},
     {NULL, "_setLabel", (char*)setLabel, 0, (N_TEXT | N_EXT)},
     {NULL, "_setPalette", (char*)setPalette, 0, (N_TEXT | N_EXT)},
     {NULL, "_setPixel", (char*)setPixel, 0, (N_TEXT | N_EXT)},
     {NULL, "_setPixelInt", (char*)setPixelInt, 0, (N_TEXT | N_EXT)},
-    {NULL, "_setsockopt", (char*)setsockopt, 0, (N_TEXT | N_EXT)},
     {NULL, "_setTaskVar", (char*)setTaskVar, 0, (N_TEXT | N_EXT)},
-    {NULL, "_setvbuf", (char*)setvbuf, 0, (N_TEXT | N_EXT)},
     {NULL, "_setVisiblePage", (char*)setVisiblePage, 0, (N_TEXT | N_EXT)},
     {NULL, "_setVisibleStart", (char*)setVisibleStart, 0, (N_TEXT | N_EXT)},
-    {NULL, "___sflags", (char*)__sflags, 0, (N_TEXT | N_EXT)},
-    {NULL, "___sflush", (char*)__sflush, 0, (N_TEXT | N_EXT)},
-    {NULL, "___sfvwrite", (char*)__sfvwrite, 0, (N_TEXT | N_EXT)},
+    {NULL, "_setjmp", (char*)setjmp, 0, (N_TEXT | N_EXT)},
+    {NULL, "_setsockopt", (char*)setsockopt, 0, (N_TEXT | N_EXT)},
+    {NULL, "_setvbuf", (char*)setvbuf, 0, (N_TEXT | N_EXT)},
     {NULL, "_shell", (char*)shell, 0, (N_TEXT | N_EXT)},
     {NULL, "_shellLibInit", (char*)shellLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_shellLock", (char*)shellLock, 0, (N_TEXT | N_EXT)},
@@ -3006,24 +3071,18 @@ SYMBOL symTblAll[1785] =
     {NULL, "_showSysTime", (char*)showSysTime, 0, (N_TEXT | N_EXT)},
     {NULL, "_showTaskVars", (char*)showTaskVars, 0, (N_TEXT | N_EXT)},
     {NULL, "_shutdown", (char*)shutdown, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sigaction", (char*)sigaction, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sigaddset", (char*)sigaddset, 0, (N_TEXT | N_EXT)},
-    {NULL, "__sigCtxLoad", (char*)_sigCtxLoad, 0, (N_TEXT | N_EXT)},
-    {NULL, "__sigCtxRetValueSet", (char*)_sigCtxRetValueSet, 0, (N_TEXT | N_EXT)},
-    {NULL, "__sigCtxSave", (char*)_sigCtxSave, 0, (N_TEXT | N_EXT)},
-    {NULL, "__sigCtxSetup", (char*)_sigCtxSetup, 0, (N_TEXT | N_EXT)},
-    {NULL, "__sigCtxStackEnd", (char*)_sigCtxStackEnd, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sigdelset", (char*)sigdelset, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sigemptyset", (char*)sigemptyset, 0, (N_TEXT | N_EXT)},
-    {NULL, "__sigfaulttable", (char*)&_sigfaulttable, 0, (N_DATA | N_EXT)},
-    {NULL, "_sigfillset", (char*)sigfillset, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sigismember", (char*)sigismember, 0, (N_TEXT | N_EXT)},
     {NULL, "_sigLibInit", (char*)sigLibInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_signal", (char*)signal, 0, (N_TEXT | N_EXT)},
     {NULL, "_sigPendDestroy", (char*)sigPendDestroy, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sigpending", (char*)sigpending, 0, (N_TEXT | N_EXT)},
     {NULL, "_sigPendInit", (char*)sigPendInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_sigPendKill", (char*)sigPendKill, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sigaction", (char*)sigaction, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sigaddset", (char*)sigaddset, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sigdelset", (char*)sigdelset, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sigemptyset", (char*)sigemptyset, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sigfillset", (char*)sigfillset, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sigismember", (char*)sigismember, 0, (N_TEXT | N_EXT)},
+    {NULL, "_signal", (char*)signal, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sigpending", (char*)sigpending, 0, (N_TEXT | N_EXT)},
     {NULL, "_sigprocmask", (char*)sigprocmask, 0, (N_TEXT | N_EXT)},
     {NULL, "_sigqueue", (char*)sigqueue, 0, (N_TEXT | N_EXT)},
     {NULL, "_sigqueueInit", (char*)sigqueueInit, 0, (N_TEXT | N_EXT)},
@@ -3043,17 +3102,17 @@ SYMBOL symTblAll[1785] =
     {NULL, "_sllPutAtTail", (char*)sllPutAtTail, 0, (N_TEXT | N_EXT)},
     {NULL, "_sllRemove", (char*)sllRemove, 0, (N_TEXT | N_EXT)},
     {NULL, "_slowFill", (char*)slowFill, 0, (N_TEXT | N_EXT)},
-    {NULL, "___smakebuf", (char*)__smakebuf, 0, (N_TEXT | N_EXT)},
     {NULL, "_snprintf", (char*)snprintf, 0, (N_TEXT | N_EXT)},
+    {NULL, "_soLibInit", (char*)soLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_soabort", (char*)soabort, 0, (N_TEXT | N_EXT)},
     {NULL, "_soaccept", (char*)soaccept, 0, (N_TEXT | N_EXT)},
     {NULL, "_sobind", (char*)sobind, 0, (N_TEXT | N_EXT)},
     {NULL, "_socantrcvmore", (char*)socantrcvmore, 0, (N_TEXT | N_EXT)},
     {NULL, "_socantsendmore", (char*)socantsendmore, 0, (N_TEXT | N_EXT)},
-    {NULL, "_socket", (char*)socket, 0, (N_TEXT | N_EXT)},
     {NULL, "_sockFdtosockFunc", (char*)sockFdtosockFunc, 0, (N_TEXT | N_EXT)},
     {NULL, "_sockLibInit", (char*)sockLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_sockMapAdd", (char*)sockMapAdd, 0, (N_TEXT | N_EXT)},
+    {NULL, "_socket", (char*)socket, 0, (N_TEXT | N_EXT)},
     {NULL, "_soclose", (char*)soclose, 0, (N_TEXT | N_EXT)},
     {NULL, "_soconnect", (char*)soconnect, 0, (N_TEXT | N_EXT)},
     {NULL, "_soconnect2", (char*)soconnect2, 0, (N_TEXT | N_EXT)},
@@ -3066,7 +3125,6 @@ SYMBOL symTblAll[1785] =
     {NULL, "_soisconnecting", (char*)soisconnecting, 0, (N_TEXT | N_EXT)},
     {NULL, "_soisdisconnected", (char*)soisdisconnected, 0, (N_TEXT | N_EXT)},
     {NULL, "_soisdisconnecting", (char*)soisdisconnecting, 0, (N_TEXT | N_EXT)},
-    {NULL, "_soLibInit", (char*)soLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_solisten", (char*)solisten, 0, (N_TEXT | N_EXT)},
     {NULL, "_somaxconn", (char*)&somaxconn, 0, (N_DATA | N_EXT)},
     {NULL, "_sonewconn", (char*)sonewconn, 0, (N_TEXT | N_EXT)},
@@ -3082,35 +3140,25 @@ SYMBOL symTblAll[1785] =
     {NULL, "_soshutdown", (char*)soshutdown, 0, (N_TEXT | N_EXT)},
     {NULL, "_sowakeup", (char*)sowakeup, 0, (N_TEXT | N_EXT)},
     {NULL, "_sp", (char*)sp, 0, (N_TEXT | N_EXT)},
-    {NULL, "_splimp", (char*)splimp, 0, (N_TEXT | N_EXT)},
-    {NULL, "_splMutexOptions", (char*)&splMutexOptions, 0, (N_DATA | N_EXT)},
-    {NULL, "_splnet", (char*)splnet, 0, (N_TEXT | N_EXT)},
-    {NULL, "_splTaskId", (char*)&splTaskId, 0, (N_BSS | N_EXT)},
-    {NULL, "_splx", (char*)splx, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sprintf", (char*)sprintf, 0, (N_TEXT | N_EXT)},
     {NULL, "_spTaskOptions", (char*)&spTaskOptions, 0, (N_BSS | N_EXT)},
     {NULL, "_spTaskPriority", (char*)&spTaskPriority, 0, (N_DATA | N_EXT)},
     {NULL, "_spTaskStackSize", (char*)&spTaskStackSize, 0, (N_DATA | N_EXT)},
+    {NULL, "_splMutexOptions", (char*)&splMutexOptions, 0, (N_DATA | N_EXT)},
+    {NULL, "_splTaskId", (char*)&splTaskId, 0, (N_BSS | N_EXT)},
+    {NULL, "_splimp", (char*)splimp, 0, (N_TEXT | N_EXT)},
+    {NULL, "_splnet", (char*)splnet, 0, (N_TEXT | N_EXT)},
+    {NULL, "_splx", (char*)splx, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sprintf", (char*)sprintf, 0, (N_TEXT | N_EXT)},
     {NULL, "_srand", (char*)srand, 0, (N_TEXT | N_EXT)},
-    {NULL, "___sread", (char*)__sread, 0, (N_TEXT | N_EXT)},
-    {NULL, "___srefill", (char*)__srefill, 0, (N_TEXT | N_EXT)},
-    {NULL, "___srget", (char*)__srget, 0, (N_TEXT | N_EXT)},
     {NULL, "_sscanf", (char*)sscanf, 0, (N_TEXT | N_EXT)},
-    {NULL, "___sseek", (char*)__sseek, 0, (N_TEXT | N_EXT)},
-    {NULL, "_standTable", (char*)&standTable, 0, (N_DATA | N_EXT)},
-    {NULL, "_standTableInit", (char*)standTableInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_standTableSize", (char*)&standTableSize, 0, (N_BSS | N_EXT)},
     {NULL, "_startWd", (char*)startWd, 0, (N_TEXT | N_EXT)},
     {NULL, "_stat", (char*)stat, 0, (N_TEXT | N_EXT)},
     {NULL, "_stati", (char*)stati, 0, (N_TEXT | N_EXT)},
-    {NULL, "___stderr", (char*)__stderr, 0, (N_TEXT | N_EXT)},
-    {NULL, "___stdin", (char*)__stdin, 0, (N_TEXT | N_EXT)},
     {NULL, "_stdioFp", (char*)stdioFp, 0, (N_TEXT | N_EXT)},
     {NULL, "_stdioFpCreate", (char*)stdioFpCreate, 0, (N_TEXT | N_EXT)},
     {NULL, "_stdioFpDestroy", (char*)stdioFpDestroy, 0, (N_TEXT | N_EXT)},
     {NULL, "_stdioFpInit", (char*)stdioFpInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_stdioLibInit", (char*)stdioLibInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "___stdout", (char*)__stdout, 0, (N_TEXT | N_EXT)},
     {NULL, "_strcat", (char*)strcat, 0, (N_TEXT | N_EXT)},
     {NULL, "_strchr", (char*)strchr, 0, (N_TEXT | N_EXT)},
     {NULL, "_strcmp", (char*)strcmp, 0, (N_TEXT | N_EXT)},
@@ -3128,18 +3176,13 @@ SYMBOL symTblAll[1785] =
     {NULL, "_strstr", (char*)strstr, 0, (N_TEXT | N_EXT)},
     {NULL, "_strtok", (char*)strtok, 0, (N_TEXT | N_EXT)},
     {NULL, "_strtok_r", (char*)strtok_r, 0, (N_TEXT | N_EXT)},
-    {NULL, "__strto_l", (char*)_strto_l, 0, (N_TEXT | N_EXT)},
     {NULL, "_strtol", (char*)strtol, 0, (N_TEXT | N_EXT)},
     {NULL, "_strtoul", (char*)strtoul, 0, (N_TEXT | N_EXT)},
-    {NULL, "___submore", (char*)__submore, 0, (N_TEXT | N_EXT)},
     {NULL, "_subnetsarelocal", (char*)&subnetsarelocal, 0, (N_DATA | N_EXT)},
     {NULL, "_swapHook", (char*)swapHook, 0, (N_TEXT | N_EXT)},
     {NULL, "_swapped_tasks", (char*)&swapped_tasks, 0, (N_BSS | N_EXT)},
-    {NULL, "___swbuf", (char*)__swbuf, 0, (N_TEXT | N_EXT)},
-    {NULL, "_switched_tasks", (char*)&switched_tasks, 0, (N_BSS | N_EXT)},
     {NULL, "_switchHook", (char*)switchHook, 0, (N_TEXT | N_EXT)},
-    {NULL, "___swrite", (char*)__swrite, 0, (N_TEXT | N_EXT)},
-    {NULL, "___swsetup", (char*)__swsetup, 0, (N_TEXT | N_EXT)},
+    {NULL, "_switched_tasks", (char*)&switched_tasks, 0, (N_BSS | N_EXT)},
     {NULL, "_symAdd", (char*)symAdd, 0, (N_TEXT | N_EXT)},
     {NULL, "_symCreate", (char*)symCreate, 0, (N_TEXT | N_EXT)},
     {NULL, "_symDemo", (char*)&symDemo, 0, (N_DATA | N_EXT)},
@@ -3151,7 +3194,6 @@ SYMBOL symTblAll[1785] =
     {NULL, "_symGroupDefault", (char*)&symGroupDefault, 0, (N_BSS | N_EXT)},
     {NULL, "_symInit", (char*)symInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_symLibInit", (char*)symLibInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_symlink", (char*)symlink, 0, (N_TEXT | N_EXT)},
     {NULL, "_symNameGet", (char*)symNameGet, 0, (N_TEXT | N_EXT)},
     {NULL, "_symRemove", (char*)symRemove, 0, (N_TEXT | N_EXT)},
     {NULL, "_symShow", (char*)symShow, 0, (N_TEXT | N_EXT)},
@@ -3165,12 +3207,9 @@ SYMBOL symTblAll[1785] =
     {NULL, "_symTableInit", (char*)symTableInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_symTableRemove", (char*)symTableRemove, 0, (N_TEXT | N_EXT)},
     {NULL, "_symTableTerminate", (char*)symTableTerminate, 0, (N_TEXT | N_EXT)},
-    {NULL, "_symTblAll", (char*)&symTblAll, 0, (N_DATA | N_EXT)},
-    {NULL, "_symTblAllInit", (char*)symTblAllInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_symTblAllSize", (char*)&symTblAllSize, 0, (N_DATA | N_EXT)},
     {NULL, "_symTypeGet", (char*)symTypeGet, 0, (N_TEXT | N_EXT)},
     {NULL, "_symValueGet", (char*)symValueGet, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sys_chdir", (char*)sys_chdir, 0, (N_TEXT | N_EXT)},
+    {NULL, "_symlink", (char*)symlink, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysClDescTable", (char*)&sysClDescTable, 0, (N_DATA | N_EXT)},
     {NULL, "_sysClDescTableNumEntries", (char*)&sysClDescTableNumEntries, 0, (N_BSS | N_EXT)},
     {NULL, "_sysClockConnect", (char*)sysClockConnect, 0, (N_TEXT | N_EXT)},
@@ -3179,24 +3218,23 @@ SYMBOL symTblAll[1785] =
     {NULL, "_sysClockInt", (char*)sysClockInt, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysClockRateGet", (char*)sysClockRateGet, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysClockRateSet", (char*)sysClockRateSet, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sys_close", (char*)sys_close, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysCsExc", (char*)&sysCsExc, 0, (N_DATA | N_EXT)},
     {NULL, "_sysCsInt", (char*)&sysCsInt, 0, (N_DATA | N_EXT)},
     {NULL, "_sysCsSuper", (char*)&sysCsSuper, 0, (N_DATA | N_EXT)},
     {NULL, "_sysDelay", (char*)sysDelay, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sys_dup", (char*)sys_dup, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysFdBuf", (char*)&sysFdBuf, 0, (N_DATA | N_EXT)},
     {NULL, "_sysFdBufSize", (char*)&sysFdBufSize, 0, (N_DATA | N_EXT)},
-    {NULL, "_sys_fstat", (char*)sys_fstat, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysGdt", (char*)sysGdt, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysGdtr", (char*)sysGdtr, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysHwInit", (char*)sysHwInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysHwInit0", (char*)sysHwInit0, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysHwInit2", (char*)sysHwInit2, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysInByte", (char*)sysInByte, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sysInit", (char*)sysInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysInLong", (char*)sysInLong, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysInLongString", (char*)sysInLongString, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sysInWord", (char*)sysInWord, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sysInWordString", (char*)sysInWordString, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sysInit", (char*)sysInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysIntDisablePIC", (char*)sysIntDisablePIC, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysIntEnablePIC", (char*)sysIntEnablePIC, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysIntIdtType", (char*)&sysIntIdtType, 0, (N_DATA | N_EXT)},
@@ -3206,15 +3244,9 @@ SYMBOL symTblAll[1785] =
     {NULL, "_sysIntMask1", (char*)&sysIntMask1, 0, (N_BSS | N_EXT)},
     {NULL, "_sysIntMask2", (char*)&sysIntMask2, 0, (N_BSS | N_EXT)},
     {NULL, "_sysIntUnlock", (char*)sysIntUnlock, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sysInWord", (char*)sysInWord, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sysInWordString", (char*)sysInWordString, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sys_link", (char*)sys_link, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysLoadGdt", (char*)sysLoadGdt, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysMclBlkConfig", (char*)&sysMclBlkConfig, 0, (N_DATA | N_EXT)},
     {NULL, "_sysMemTop", (char*)sysMemTop, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sys_mkdir", (char*)sys_mkdir, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sys_mknod", (char*)sys_mknod, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sys_open", (char*)sys_open, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysOutByte", (char*)sysOutByte, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysOutLong", (char*)sysOutLong, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysOutLongString", (char*)sysOutLongString, 0, (N_TEXT | N_EXT)},
@@ -3223,12 +3255,20 @@ SYMBOL symTblAll[1785] =
     {NULL, "_sysPhysMemDesc", (char*)&sysPhysMemDesc, 0, (N_DATA | N_EXT)},
     {NULL, "_sysPhysMemDescNumEntries", (char*)&sysPhysMemDescNumEntries, 0, (N_BSS | N_EXT)},
     {NULL, "_sysPhysMemTop", (char*)sysPhysMemTop, 0, (N_TEXT | N_EXT)},
-    {NULL, "_sys_read", (char*)sys_read, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysReboot", (char*)sysReboot, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysSymTable", (char*)&sysSymTable, 0, (N_BSS | N_EXT)},
-    {NULL, "_sys_unlink", (char*)sys_unlink, 0, (N_TEXT | N_EXT)},
     {NULL, "_sysVectorIRQ0", (char*)&sysVectorIRQ0, 0, (N_DATA | N_EXT)},
     {NULL, "_sysWait", (char*)sysWait, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sys_chdir", (char*)sys_chdir, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sys_close", (char*)sys_close, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sys_dup", (char*)sys_dup, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sys_fstat", (char*)sys_fstat, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sys_link", (char*)sys_link, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sys_mkdir", (char*)sys_mkdir, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sys_mknod", (char*)sys_mknod, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sys_open", (char*)sys_open, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sys_read", (char*)sys_read, 0, (N_TEXT | N_EXT)},
+    {NULL, "_sys_unlink", (char*)sys_unlink, 0, (N_TEXT | N_EXT)},
     {NULL, "_sys_write", (char*)sys_write, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskActivate", (char*)taskActivate, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskArgGet", (char*)taskArgGet, 0, (N_TEXT | N_EXT)},
@@ -3237,15 +3277,15 @@ SYMBOL symTblAll[1785] =
     {NULL, "_taskCreat", (char*)taskCreat, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskCreateHookAdd", (char*)taskCreateHookAdd, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskCreateHookDelete", (char*)taskCreateHookDelete, 0, (N_TEXT | N_EXT)},
-    {NULL, "_taskCreateHooks", (char*)&taskCreateHooks, 0, (N_BSS | N_EXT)},
     {NULL, "_taskCreateHookShow", (char*)taskCreateHookShow, 0, (N_TEXT | N_EXT)},
+    {NULL, "_taskCreateHooks", (char*)&taskCreateHooks, 0, (N_BSS | N_EXT)},
     {NULL, "_taskDelay", (char*)taskDelay, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskDelete", (char*)taskDelete, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskDeleteForce", (char*)taskDeleteForce, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskDeleteHookAdd", (char*)taskDeleteHookAdd, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskDeleteHookDelete", (char*)taskDeleteHookDelete, 0, (N_TEXT | N_EXT)},
-    {NULL, "_taskDeleteHooks", (char*)&taskDeleteHooks, 0, (N_BSS | N_EXT)},
     {NULL, "_taskDeleteHookShow", (char*)taskDeleteHookShow, 0, (N_TEXT | N_EXT)},
+    {NULL, "_taskDeleteHooks", (char*)&taskDeleteHooks, 0, (N_BSS | N_EXT)},
     {NULL, "_taskDestroy", (char*)taskDestroy, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskExit", (char*)taskExit, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskHiPrio", (char*)taskHiPrio, 0, (N_TEXT | N_EXT)},
@@ -3254,23 +3294,23 @@ SYMBOL symTblAll[1785] =
     {NULL, "_taskIdCurrent", (char*)&taskIdCurrent, 0, (N_BSS | N_EXT)},
     {NULL, "_taskIdDefault", (char*)taskIdDefault, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskIdFigure", (char*)taskIdFigure, 0, (N_TEXT | N_EXT)},
-    {NULL, "_taskIdle", (char*)taskIdle, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskIdListGet", (char*)taskIdListGet, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskIdListSort", (char*)taskIdListSort, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskIdSelf", (char*)taskIdSelf, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskIdVerify", (char*)taskIdVerify, 0, (N_TEXT | N_EXT)},
+    {NULL, "_taskIdle", (char*)taskIdle, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskInfoGet", (char*)taskInfoGet, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskInit", (char*)taskInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskLibInit", (char*)taskLibInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_taskLock", (char*)taskLock, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskLoPrio", (char*)taskLoPrio, 0, (N_TEXT | N_EXT)},
+    {NULL, "_taskLock", (char*)taskLock, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskName", (char*)taskName, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskNameToId", (char*)taskNameToId, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskOptionsSet", (char*)taskOptionsSet, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskOptionsString", (char*)taskOptionsString, 0, (N_TEXT | N_EXT)},
+    {NULL, "_taskPrioTest", (char*)taskPrioTest, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskPriorityGet", (char*)taskPriorityGet, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskPrioritySet", (char*)taskPrioritySet, 0, (N_TEXT | N_EXT)},
-    {NULL, "_taskPrioTest", (char*)taskPrioTest, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskRegName", (char*)&taskRegName, 0, (N_DATA | N_EXT)},
     {NULL, "_taskRegsFmt", (char*)&taskRegsFmt, 0, (N_DATA | N_EXT)},
     {NULL, "_taskRegsFormat", (char*)&taskRegsFormat, 0, (N_DATA | N_EXT)},
@@ -3291,13 +3331,13 @@ SYMBOL symTblAll[1785] =
     {NULL, "_taskSwapHookAttach", (char*)taskSwapHookAttach, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskSwapHookDelete", (char*)taskSwapHookDelete, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskSwapHookDetach", (char*)taskSwapHookDetach, 0, (N_TEXT | N_EXT)},
-    {NULL, "_taskSwapHooks", (char*)&taskSwapHooks, 0, (N_BSS | N_EXT)},
     {NULL, "_taskSwapHookShow", (char*)taskSwapHookShow, 0, (N_TEXT | N_EXT)},
+    {NULL, "_taskSwapHooks", (char*)&taskSwapHooks, 0, (N_BSS | N_EXT)},
     {NULL, "_taskSwapReference", (char*)&taskSwapReference, 0, (N_BSS | N_EXT)},
     {NULL, "_taskSwitchHookAdd", (char*)taskSwitchHookAdd, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskSwitchHookDelete", (char*)taskSwitchHookDelete, 0, (N_TEXT | N_EXT)},
-    {NULL, "_taskSwitchHooks", (char*)&taskSwitchHooks, 0, (N_BSS | N_EXT)},
     {NULL, "_taskSwitchHookShow", (char*)taskSwitchHookShow, 0, (N_TEXT | N_EXT)},
+    {NULL, "_taskSwitchHooks", (char*)&taskSwitchHooks, 0, (N_BSS | N_EXT)},
     {NULL, "_taskTcb", (char*)taskTcb, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskTerminate", (char*)taskTerminate, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskUndelay", (char*)taskUndelay, 0, (N_TEXT | N_EXT)},
@@ -3310,17 +3350,21 @@ SYMBOL symTblAll[1785] =
     {NULL, "_taskVarLibInit", (char*)taskVarLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_taskVarSet", (char*)taskVarSet, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcbinfo", (char*)&tcbinfo, 0, (N_BSS | N_EXT)},
+    {NULL, "_tcpCfgParams", (char*)&tcpCfgParams, 0, (N_DATA | N_EXT)},
+    {NULL, "_tcpClient", (char*)tcpClient, 0, (N_TEXT | N_EXT)},
+    {NULL, "_tcpLibInit", (char*)tcpLibInit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_tcpOutRsts", (char*)&tcpOutRsts, 0, (N_BSS | N_EXT)},
+    {NULL, "_tcpRandFunc", (char*)&tcpRandFunc, 0, (N_DATA | N_EXT)},
+    {NULL, "_tcpServer", (char*)tcpServer, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_attach", (char*)tcp_attach, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_backoff", (char*)&tcp_backoff, 0, (N_DATA | N_EXT)},
     {NULL, "_tcp_canceltimers", (char*)tcp_canceltimers, 0, (N_TEXT | N_EXT)},
-    {NULL, "_tcpCfgParams", (char*)&tcpCfgParams, 0, (N_DATA | N_EXT)},
-    {NULL, "_tcpClient", (char*)tcpClient, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_close", (char*)tcp_close, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_ctlinput", (char*)tcp_ctlinput, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_ctloutput", (char*)tcp_ctloutput, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_disconnect", (char*)tcp_disconnect, 0, (N_TEXT | N_EXT)},
-    {NULL, "_tcp_dooptions", (char*)tcp_dooptions, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_do_rfc1323", (char*)&tcp_do_rfc1323, 0, (N_DATA | N_EXT)},
+    {NULL, "_tcp_dooptions", (char*)tcp_dooptions, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_drain", (char*)tcp_drain, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_drop", (char*)tcp_drop, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_fasttimo", (char*)tcp_fasttimo, 0, (N_TEXT | N_EXT)},
@@ -3331,7 +3375,6 @@ SYMBOL symTblAll[1785] =
     {NULL, "_tcp_keepinit", (char*)&tcp_keepinit, 0, (N_DATA | N_EXT)},
     {NULL, "_tcp_keepintvl", (char*)&tcp_keepintvl, 0, (N_DATA | N_EXT)},
     {NULL, "_tcp_last_inpcb", (char*)&tcp_last_inpcb, 0, (N_BSS | N_EXT)},
-    {NULL, "_tcpLibInit", (char*)tcpLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_maxidle", (char*)&tcp_maxidle, 0, (N_BSS | N_EXT)},
     {NULL, "_tcp_maxpersistidle", (char*)&tcp_maxpersistidle, 0, (N_DATA | N_EXT)},
     {NULL, "_tcp_msl", (char*)&tcp_msl, 0, (N_BSS | N_EXT)},
@@ -3342,41 +3385,38 @@ SYMBOL symTblAll[1785] =
     {NULL, "_tcp_now", (char*)&tcp_now, 0, (N_BSS | N_EXT)},
     {NULL, "_tcp_outflags", (char*)&tcp_outflags, 0, (N_DATA | N_EXT)},
     {NULL, "_tcp_output", (char*)tcp_output, 0, (N_TEXT | N_EXT)},
-    {NULL, "_tcpOutRsts", (char*)&tcpOutRsts, 0, (N_BSS | N_EXT)},
     {NULL, "_tcp_pcbhashsize", (char*)&tcp_pcbhashsize, 0, (N_DATA | N_EXT)},
     {NULL, "_tcp_pulloutofband", (char*)tcp_pulloutofband, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_quench", (char*)tcp_quench, 0, (N_TEXT | N_EXT)},
-    {NULL, "_tcpRandFunc", (char*)&tcpRandFunc, 0, (N_DATA | N_EXT)},
     {NULL, "_tcp_reass", (char*)tcp_reass, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_recvspace", (char*)&tcp_recvspace, 0, (N_DATA | N_EXT)},
     {NULL, "_tcp_respond", (char*)tcp_respond, 0, (N_TEXT | N_EXT)},
-    {NULL, "_tcprexmtthresh", (char*)&tcprexmtthresh, 0, (N_DATA | N_EXT)},
     {NULL, "_tcp_rttdflt", (char*)&tcp_rttdflt, 0, (N_DATA | N_EXT)},
     {NULL, "_tcp_saveti", (char*)&tcp_saveti, 0, (N_BSS | N_EXT)},
     {NULL, "_tcp_sendspace", (char*)&tcp_sendspace, 0, (N_DATA | N_EXT)},
-    {NULL, "_tcpServer", (char*)tcpServer, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_setpersist", (char*)tcp_setpersist, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_slowtimo", (char*)tcp_slowtimo, 0, (N_TEXT | N_EXT)},
-    {NULL, "_tcpstat", (char*)&tcpstat, 0, (N_BSS | N_EXT)},
     {NULL, "_tcp_template", (char*)tcp_template, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_timers", (char*)tcp_timers, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_totbackoff", (char*)&tcp_totbackoff, 0, (N_DATA | N_EXT)},
     {NULL, "_tcp_usrclosed", (char*)tcp_usrclosed, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_usrreq", (char*)tcp_usrreq, 0, (N_TEXT | N_EXT)},
     {NULL, "_tcp_xmit_timer", (char*)tcp_xmit_timer, 0, (N_TEXT | N_EXT)},
+    {NULL, "_tcprexmtthresh", (char*)&tcprexmtthresh, 0, (N_DATA | N_EXT)},
+    {NULL, "_tcpstat", (char*)&tcpstat, 0, (N_BSS | N_EXT)},
     {NULL, "_td", (char*)td, 0, (N_TEXT | N_EXT)},
-    {NULL, "_test_blkdev", (char*)test_blkdev, 0, (N_TEXT | N_EXT)},
-    {NULL, "_test_filename", (char*)test_filename, 0, (N_TEXT | N_EXT)},
     {NULL, "_testGfx", (char*)testGfx, 0, (N_TEXT | N_EXT)},
     {NULL, "_testGfxLo", (char*)testGfxLo, 0, (N_TEXT | N_EXT)},
     {NULL, "_testGfxLoInt", (char*)testGfxLoInt, 0, (N_TEXT | N_EXT)},
     {NULL, "_testGfxLoLin", (char*)testGfxLoLin, 0, (N_TEXT | N_EXT)},
-    {NULL, "_test_inode", (char*)test_inode, 0, (N_TEXT | N_EXT)},
     {NULL, "_testIo", (char*)testIo, 0, (N_TEXT | N_EXT)},
     {NULL, "_testJmp", (char*)testJmp, 0, (N_TEXT | N_EXT)},
     {NULL, "_testPrintf", (char*)testPrintf, 0, (N_TEXT | N_EXT)},
     {NULL, "_testStdio", (char*)testStdio, 0, (N_TEXT | N_EXT)},
     {NULL, "_testSymbols", (char*)testSymbols, 0, (N_TEXT | N_EXT)},
+    {NULL, "_test_blkdev", (char*)test_blkdev, 0, (N_TEXT | N_EXT)},
+    {NULL, "_test_filename", (char*)test_filename, 0, (N_TEXT | N_EXT)},
+    {NULL, "_test_inode", (char*)test_inode, 0, (N_TEXT | N_EXT)},
     {NULL, "_ti", (char*)ti, 0, (N_TEXT | N_EXT)},
     {NULL, "_tick64Get", (char*)tick64Get, 0, (N_TEXT | N_EXT)},
     {NULL, "_tick64Set", (char*)tick64Set, 0, (N_TEXT | N_EXT)},
@@ -3384,8 +3424,6 @@ SYMBOL symTblAll[1785] =
     {NULL, "_tickSet", (char*)tickSet, 0, (N_TEXT | N_EXT)},
     {NULL, "_time", (char*)time, 0, (N_TEXT | N_EXT)},
     {NULL, "_timeLibInit", (char*)timeLibInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "___tmNormalize", (char*)__tmNormalize, 0, (N_TEXT | N_EXT)},
-    {NULL, "___tmValidate", (char*)__tmValidate, 0, (N_TEXT | N_EXT)},
     {NULL, "_toggleDoubleBuffer", (char*)toggleDoubleBuffer, 0, (N_TEXT | N_EXT)},
     {NULL, "_tolower", (char*)tolower, 0, (N_TEXT | N_EXT)},
     {NULL, "_toupper", (char*)toupper, 0, (N_TEXT | N_EXT)},
@@ -3405,24 +3443,22 @@ SYMBOL symTblAll[1785] =
     {NULL, "_ttyRead", (char*)ttyRead, 0, (N_TEXT | N_EXT)},
     {NULL, "_ttyWrite", (char*)ttyWrite, 0, (N_TEXT | N_EXT)},
     {NULL, "_tyler", (char*)tyler, 0, (N_TEXT | N_EXT)},
-    {NULL, "_TylerGajewski", (char*)&TylerGajewski, 0, (N_DATA | N_EXT)},
     {NULL, "_udbinfo", (char*)&udbinfo, 0, (N_BSS | N_EXT)},
-    {NULL, "___udivdi3", (char*)__udivdi3, 0, (N_TEXT | N_EXT)},
     {NULL, "_udpCfgParams", (char*)&udpCfgParams, 0, (N_DATA | N_EXT)},
     {NULL, "_udpCheck", (char*)udpCheck, 0, (N_TEXT | N_EXT)},
     {NULL, "_udpClient", (char*)udpClient, 0, (N_TEXT | N_EXT)},
-    {NULL, "_udp_ctlinput", (char*)udp_ctlinput, 0, (N_TEXT | N_EXT)},
     {NULL, "_udpDoCkSumRcv", (char*)&udpDoCkSumRcv, 0, (N_BSS | N_EXT)},
     {NULL, "_udpDoCkSumSnd", (char*)&udpDoCkSumSnd, 0, (N_BSS | N_EXT)},
+    {NULL, "_udpLibInit", (char*)udpLibInit, 0, (N_TEXT | N_EXT)},
+    {NULL, "_udpServer", (char*)udpServer, 0, (N_TEXT | N_EXT)},
+    {NULL, "_udp_ctlinput", (char*)udp_ctlinput, 0, (N_TEXT | N_EXT)},
     {NULL, "_udp_in", (char*)&udp_in, 0, (N_BSS | N_EXT)},
     {NULL, "_udp_input", (char*)udp_input, 0, (N_TEXT | N_EXT)},
     {NULL, "_udp_last_inpcb", (char*)&udp_last_inpcb, 0, (N_BSS | N_EXT)},
-    {NULL, "_udpLibInit", (char*)udpLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_udp_output", (char*)udp_output, 0, (N_TEXT | N_EXT)},
     {NULL, "_udp_pcbhashsize", (char*)&udp_pcbhashsize, 0, (N_DATA | N_EXT)},
-    {NULL, "_udpServer", (char*)udpServer, 0, (N_TEXT | N_EXT)},
-    {NULL, "_udpstat", (char*)&udpstat, 0, (N_BSS | N_EXT)},
     {NULL, "_udp_usrreq", (char*)udp_usrreq, 0, (N_TEXT | N_EXT)},
+    {NULL, "_udpstat", (char*)&udpstat, 0, (N_BSS | N_EXT)},
     {NULL, "_uglBitmapCreate", (char*)uglBitmapCreate, 0, (N_TEXT | N_EXT)},
     {NULL, "_uglBitmapDestroy", (char*)uglBitmapDestroy, 0, (N_TEXT | N_EXT)},
     {NULL, "_uglClutGet", (char*)uglClutGet, 0, (N_TEXT | N_EXT)},
@@ -3489,8 +3525,6 @@ SYMBOL symTblAll[1785] =
     {NULL, "_uglVgaXBitmapWrite", (char*)uglVgaXBitmapWrite, 0, (N_TEXT | N_EXT)},
     {NULL, "_uglVgaXPixelSet", (char*)uglVgaXPixelSet, 0, (N_TEXT | N_EXT)},
     {NULL, "_uiomove", (char*)uiomove, 0, (N_TEXT | N_EXT)},
-    {NULL, "___ultostr", (char*)__ultostr, 0, (N_TEXT | N_EXT)},
-    {NULL, "___umoddi3", (char*)__umoddi3, 0, (N_TEXT | N_EXT)},
     {NULL, "_ungetc", (char*)ungetc, 0, (N_TEXT | N_EXT)},
     {NULL, "_unixDomain", (char*)&unixDomain, 0, (N_BSS | N_EXT)},
     {NULL, "_unixDomainLibInit", (char*)unixDomainLibInit, 0, (N_TEXT | N_EXT)},
@@ -3548,9 +3582,9 @@ SYMBOL symTblAll[1785] =
     {NULL, "_vmStateSet", (char*)vmStateSet, 0, (N_TEXT | N_EXT)},
     {NULL, "_vmTranslate", (char*)vmTranslate, 0, (N_TEXT | N_EXT)},
     {NULL, "_vnodeLock", (char*)vnodeLock, 0, (N_TEXT | N_EXT)},
+    {NULL, "_vnodeUnlock", (char*)vnodeUnlock, 0, (N_TEXT | N_EXT)},
     {NULL, "_vnodesCreate", (char*)vnodesCreate, 0, (N_TEXT | N_EXT)},
     {NULL, "_vnodesDelete", (char*)vnodesDelete, 0, (N_TEXT | N_EXT)},
-    {NULL, "_vnodeUnlock", (char*)vnodeUnlock, 0, (N_TEXT | N_EXT)},
     {NULL, "_vprintf", (char*)vprintf, 0, (N_TEXT | N_EXT)},
     {NULL, "_vscanf", (char*)vscanf, 0, (N_TEXT | N_EXT)},
     {NULL, "_vsnprintf", (char*)vsnprintf, 0, (N_TEXT | N_EXT)},
@@ -3565,15 +3599,16 @@ SYMBOL symTblAll[1785] =
     {NULL, "_wdFire", (char*)wdFire, 0, (N_TEXT | N_EXT)},
     {NULL, "_wdId", (char*)&wdId, 0, (N_BSS | N_EXT)},
     {NULL, "_wdInit", (char*)wdInit, 0, (N_TEXT | N_EXT)},
-    {NULL, "_wdir", (char*)wdir, 0, (N_TEXT | N_EXT)},
     {NULL, "_wdLibInit", (char*)wdLibInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_wdShow", (char*)wdShow, 0, (N_TEXT | N_EXT)},
     {NULL, "_wdShowInit", (char*)wdShowInit, 0, (N_TEXT | N_EXT)},
     {NULL, "_wdStart", (char*)wdStart, 0, (N_TEXT | N_EXT)},
     {NULL, "_wdTerminate", (char*)wdTerminate, 0, (N_TEXT | N_EXT)},
-    {NULL, "___weekOfYear", (char*)__weekOfYear, 0, (N_TEXT | N_EXT)},
+    {NULL, "_wdir", (char*)wdir, 0, (N_TEXT | N_EXT)},
     {NULL, "_winode", (char*)winode, 0, (N_TEXT | N_EXT)},
     {NULL, "_write", (char*)write, 0, (N_TEXT | N_EXT)},
+    {NULL, "_write_serial", (char*)write_serial, 0, (N_TEXT | N_EXT)},
+    {NULL, "_write_serial_str", (char*)write_serial_str, 0, (N_TEXT | N_EXT)},
     {NULL, "_writei", (char*)writei, 0, (N_TEXT | N_EXT)},
     {NULL, "_wsect", (char*)wsect, 0, (N_TEXT | N_EXT)},
     {NULL, "_xbdAttach", (char*)xbdAttach, 0, (N_TEXT | N_EXT)},
@@ -3601,4 +3636,4 @@ SYMBOL symTblAll[1785] =
     {NULL, "_zeroes", (char*)&zeroes, 0, (N_BSS | N_EXT)},
     {NULL, "_zeroin_addr", (char*)&zeroin_addr, 0, (N_BSS | N_EXT)},
 };
-int symTblAllSize = 1785;
+int symTblAllSize = 1808;

@@ -11,7 +11,7 @@ GDB    = i386-elf-gdb
 NASM = nasm
 
 CPU = PENTIUM2
-CFLAGS = -nostdinc -fno-builtin -m32 -fno-stack-protector
+CFLAGS = -nostdinc -fno-builtin -m32 -fno-stack-protector -g
 ASMFLAGS = -nostdinc -fno-builtin -m32
 DFLAGS = -DCPU=$(CPU) -DCOMPILE_DATE=\"`date +%d_%B_%Y.%H:%M`\"
 LIBS = -lstdc -lfs -ltools -lio -loldfs -los -lrtos -larch -lkern -lugl-2d -lugl-os -lugl-driver -lutil -lnet -lnetinet -lusr
@@ -30,15 +30,19 @@ LD_LIBRARY_PATH = -L$(RTOS_BASE)/lib/$(CPU)/
 # LINK PART
 ###############################################################################
 
-OBJECTS = sysALib.o sysLib.o ../all/usrConfig.o ../all/usrKernel.o \
-          ../all/usrMmuInit.o ../all/usrNetwork.o ../all/standTable.o \
-          ../all/pcDemo.o symTblAll.o
+OBJECTS = sysALib.o sysLib.o usrConfig.o usrKernel.o \
+          usrMmuInit.o usrNetwork.o \
+          pcDemo.o symTblAll.o
 
 all: image
 
-image:	$(OBJECTS)
+image: $(OBJECTS)
+	#rm -f rtos.symbols
+	#find ../../../ -name "*.o" | xargs nm -g >> rtos.symbols
+	#python createSymTbl.py rtos.symbols symTblAll.c
+	#$(CC) $(CFLAGS) $(INCFLAGS) $(DFLAGS) -o symTblAll.o -c symTblAll.c
 	$(NASM) -f elf32 multiboot_header.asm
 	$(LD) $(LDFLAGS) -o $(OUTPUT) $(OBJECTS) $(LD_LIBRARY_PATH) $(LIBS)
 
 clean:
-	$(RM) $(OBJECTS) $(OUTPUT) multiboot_header.o
+	$(RM) $(OBJECTS) $(OUTPUT) multiboot_header.o rtos.symbols

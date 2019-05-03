@@ -1,6 +1,5 @@
 /* sysLib.c - System dependent C code */
 
-#include "configAll.h"
 #include "config.h"
 #include <sys/types.h>
 #include <rtos.h>
@@ -42,7 +41,7 @@ PC_CON_DEV pcConDev[N_VIRTUAL_CONSOLES];
 /* Floppy driver */
 #include <drv/fdisk/nec765Fd.c>
 
-#include <util/historyLog.h>
+#include <util/logging.h>
 
 #ifdef LOCAL_MEM_AUTOSIZE
 
@@ -205,8 +204,8 @@ char* sysPhysMemTop(void);
  ******************************************************************************/
 void sysHwInit0(void)
 {
-    historyLogStr((void *)sysHwInit0, "sysHwInit0", "Entry", 0);
-    historyLogStr((void *)sysHwInit0, "sysHwInit0", "Exit", 0);
+    log_debug(sysHwInit0, "Entry", 0);
+    log_debug(sysHwInit0, "Exit", 0);
 }
 
 /*******************************************************************************
@@ -219,7 +218,7 @@ void sysHwInit(void)
     int i;
     PHYS_MEM_DESC *pVm;
 
-    historyLogStr((void*)sysHwInit, "sysHwInit", "Entry", 0);
+    log_debug(sysHwInit, "Entry", 0);
 
 #ifdef INCLUDE_MMU
     /* Initialize number of virtual memory descriptors */
@@ -245,7 +244,7 @@ void sysHwInit(void)
     /* Initialize interrupt controller */
     sysIntInitPIC();
     intEoi = sysIntEOI;
-    historyLogStr((void*)sysHwInit, "sysHwInit", "Exit", 0);
+    log_debug(sysHwInit, "Exit", 0);
 }
 
 /*******************************************************************************

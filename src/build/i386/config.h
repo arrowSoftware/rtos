@@ -84,11 +84,42 @@
 #define FD_DMA_BUF_ADDR (0x2000 + (VM_PAGE_OFFSET * 2))
 #define FD_DMA_BUF_SIZE (0x1000)
 
-/* Global includes */
+/* Kernel configuration */
+#define INT_LOCK_LEVEL          0x0 /* Interrupt lockout level */
+#define ROOT_STACK_SIZE         10000   /* Root task stack size */
+#define SHELL_STACK_SIZE        20000   /* Shell stack size */
+#define ISR_STACK_SIZE          2000    /* Interrupt stack size */
+#define VEC_BASE_ADRS           ((char *) LOCAL_MEM_LOCAL_ADRS)
+
+#define SYS_CLOCK_RATE          60  /* Ticks per second */
+#define NUM_DRIVERS         20  /* Maximum drivers */
+#define NUM_FILES           50  /* Maximum open files */
+#define MAX_LOG_MSGS            50  /* Maximum of log messages */
+#define NUM_SIGNAL_QUEUES       16  /* Numboer of signal queues */
+#define SYM_TABLE_HASH_SIZE_LOG2    8   /* Symbol table log 2 size  */
+
+#define USER_I_CACHE_MODE       CACHE_WRITETROUGH
+#define USER_D_CACHE_MODE       CACHE_WRITETROUGH
+#define USER_I_CACHE_ENABLE
+#define USER_D_CACHE_ENABLE
+
+/* Low memory layout */
+#define GDT_BASE_OFFSET         0x1000
+
 //#define schedLib_PORTABLE
 #define INCLUDE_SHOW_ROUTINES
 #define INCLUDE_LOGGING
 //#define INCLUDE_LOG_STARTUP
+
+#define INCLUDE_WDOG
+#define INCLUDE_TIME
+#define INCLUDE_ENV_VARS
+#define ENV_VAR_USE_HOOKS       TRUE
+#define INCLUDE_ASSERT
+#define INCLUDE_LOADER
+#define INCLUDE_ELF
+#define INCLUDE_FILESYSTEMS
+#define INCLUDE_NET
 
 /* usrKernel.c includes */
 #define INCLUDE_TASK_HOOKS
@@ -107,6 +138,7 @@
 #define INCLUDE_TASK_VAR
 #define INCLUDE_SELECT
 #define INCLUDE_IO_SYSTEM
+
 /*#define INCLUDE_TTY_DRV*/
 #define INCLUDE_PC_CONSOLE
 #define INCLUDE_SYM_TBL
